@@ -12,6 +12,13 @@
              Background="{x:Null}" Height="700" Width="1200">
     <UserControl.Resources>
 
+        <Storyboard x:Key="scaleUp">
+            <DoubleAnimation Storyboard.TargetProperty="Height" To="60" Duration="0:0:0.2" />
+            
+        </Storyboard>
+        <Storyboard x:Key="scaleDown">
+            <DoubleAnimation Storyboard.TargetProperty="Height" To="40" Duration="0:0:0.2" />
+        </Storyboard>
         <FontFamily x:Key="ColaborateThin">./#Colaborate Thin</FontFamily>
         <FontFamily x:Key="ColaborateRegular">./#Colaborate Regular</FontFamily>
         <FontFamily x:Key="ColaborateBold">./#Colaborate Bold</FontFamily>
@@ -44,7 +51,7 @@
             </Grid.ColumnDefinitions>
 
             <!--first element-->
-            <Border BorderBrush="Red" BorderThickness="2" Margin="20 30 0 20" CornerRadius="15" >
+            <Border BorderBrush="Red" BorderThickness="2" Margin="20 10 0 20" CornerRadius="15" >
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="Red" Offset="0.1"/>
@@ -64,14 +71,13 @@
                         </Grid.ColumnDefinitions>
                         <Ellipse Height="70" Width="70">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="/IMAGE/phong.jpg"/>
+                                <ImageBrush ImageSource="/IMAGE/phong.jpg" />
                             </Ellipse.Fill>
                         </Ellipse>
 
                         <Border 
                             Grid.Column="1" 
-                            CornerRadius="20"
-                            >
+                            CornerRadius="20">
                             <Border.Background>
                                 <LinearGradientBrush>
                                     <GradientStop Color="Red" Offset="0.1"/>
@@ -181,7 +187,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="ShoppingCart" FontSize="40"/>
-                                    <TextBlock Grid.Column="1" FontSize="24" FontFamily="{StaticResource boldFont}" Text="Order"/>
+                                    <TextBlock Grid.Column="1" FontSize="24" FontFamily="{StaticResource boldFont}" Text="Bill"/>
                                 </Grid>
                             </Button>
                         </Border>
@@ -287,235 +293,24 @@
             <!--end left Element-->
             <!--<Image Source="/IMAGE/burger.png"></Image>-->
 
-            <Grid Margin="15 5" Grid.Column="1">
-                <Border BorderThickness="3" BorderBrush="Red">
-                    <Border.Background>
-                        <LinearGradientBrush>
-                            <GradientStop Color="#FFC72C" Offset="0.01"/>
-                            <GradientStop Color="#27251F" Offset="0.09"/>
-                            <GradientStop Color="#27251F" Offset="0.87"/>
-                            <GradientStop Color="#FFC72C" Offset="0.99"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+
+            <Grid Grid.Column="1">
+                <Frame Source="/Views/Product.xaml" />
+                <!--<Border BorderBrush="Red" BorderThickness="1" CornerRadius="10" Width="250" Height="350">
                     <Border.Effect>
-                        <DropShadowEffect ShadowDepth="7" Color="Red"/>
+                        <DropShadowEffect Color="Red" BlurRadius="30" ShadowDepth="-7"/>
                     </Border.Effect>
-                    <!--<Grid Background="Transparent">
-                        <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="White" FontFamily="{StaticResource boldFont}" Text="HOME PAGE" Margin="31,12,547,606"/>
-                        <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="Red" FontFamily="{StaticResource boldFont}" Text="HOME PAGE" Margin="29,10,547,606"/>
-
-                    </Grid>-->
-                    <Grid Background="Transparent" Margin="0,0,0,19">
-                        <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="White" FontFamily="{StaticResource boldFont}" Text="CUSTOMER" Margin="31,12,547,606"/>
-                        <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="Red" FontFamily="{StaticResource boldFont}" Text="CUSTOMER" Margin="29,10,547,599"/>
-
-                        <TextBlock 
-                            Foreground="White"
-                            Width="100" Height="50"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Filter" 
-                            Margin="52,88,0,0" 
-                            RenderTransformOrigin="0.845,0.596"/>
-
-                        <ComboBox
-                            Background="White"
-                            Width="166"
-                            Style="{StaticResource 
-                            MaterialDesignOutlinedComboBox}"
-                            BorderBrush="LightGray"
-                            BorderThickness="3"
-                            Margin="29,125,0,0" 
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            SelectedIndex="0"
-                            >
-
-                            <ComboBoxItem FontSize="14">lkasd</ComboBoxItem>
-                        </ComboBox>
-                        <TextBlock 
-                            Foreground="White"
-                            Width="102" Height="50"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Search" 
-                            Margin="305,89,0,0" 
-                            RenderTransformOrigin="0.845,0.596"/>
-                        <Border BorderBrush="LightGray"
-                                BorderThickness="3"
-                                Background="White"
-                                Width="308" Height="54"
-                                Margin="0,125,0,0"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Center"
-                                CornerRadius="10">
-                            <TextBox 
-                            TextAlignment="Left"
-                             FontSize="20"
-                            Padding="10 0"
-                            Text="gggggg" Margin="3,-3,-3,0">
-                            </TextBox>
-                        </Border>
-
-                        <StackPanel 
-                            >
-
-
-                        </StackPanel>
-                        <Grid VerticalAlignment="Top"
-                              
-                            HorizontalAlignment="Left"
-                            Margin="40,202,0,0"
-                            Height="50" Width="797" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="67"/>
-                                <ColumnDefinition Width="350"/>
-                                <ColumnDefinition Width="180"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Padding="10 0"
-                                       Margin="0 0"
-                            Foreground="White"
-                            TextWrapping="Wrap"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="20" Text="ID" 
-
-                            RenderTransformOrigin="0.845,0.596"/>
-                            <TextBlock Grid.Column="1" Padding="40 0"
-                            Foreground="White"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="20" Text="Name" 
-
-                            RenderTransformOrigin="0.845,0.596"/>
-                            <TextBlock Grid.Column="2"  
-                            Foreground="White"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="20" Text="Phone Number" 
-
-                            RenderTransformOrigin="0.845,0.596" Width="166"/>
-                            <TextBlock Grid.Column="3" Padding="10 0"
-                            Foreground="White"
-                            TextWrapping="Wrap"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="20" Text="Revenue" 
-
-                            RenderTransformOrigin="0.845,0.596" Width="118"/>
-                        </Grid>
-                        <ListView x:Name="mylistview"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Margin="31,252,0,0" Height="413" Width="823">
-
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <EventSetter Event="MouseMove" Handler="ListViewItem_MouseMove"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListViewItem>
-                                <Grid Background="White" Width="800" Height="40">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="340"/>
-                                        <ColumnDefinition Width="160"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock VerticalAlignment="Center" 
-                                               Padding="10 0"
-                                               Text="C9999" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="1"
-                                               Padding="20 0"
-                                                VerticalAlignment="Center" 
-                                               Text="Nguyễn Phạm Thanh Phong" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="2"
-                                                VerticalAlignment="Center" 
-                                               Text="0932816560" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="3"
-                                               Padding="10 0 20 0"
-                                                VerticalAlignment="Center" 
-                                               Text="1.000.000.000VND" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                </Grid>
-                            </ListViewItem>
-                            <ListViewItem>
-                                <Grid Background="White" Width="800" Height="40">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="340"/>
-                                        <ColumnDefinition Width="160"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock VerticalAlignment="Center" 
-                                               Padding="10 0"
-                                               Text="C9999" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="1"
-                                               Padding="20 0"
-                                                VerticalAlignment="Center" 
-                                               Text="Nguyễn Phạm Thanh Phong" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="2"
-                                                VerticalAlignment="Center" 
-                                               Text="0932816560" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="3"
-                                               Padding="10 0 20 0"
-                                                VerticalAlignment="Center" 
-                                               Text="1.000.000.000VND" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                </Grid>
-                            </ListViewItem>
-                            <ListViewItem>
-                                <Grid Background="White" Width="800" Height="40">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="340"/>
-                                        <ColumnDefinition Width="160"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock VerticalAlignment="Center" 
-                                               Padding="10 0"
-                                               Text="C9999" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="1"
-                                               Padding="20 0"
-                                                VerticalAlignment="Center" 
-                                               Text="Nguyễn Phạm Thanh Phong" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="2"
-                                                VerticalAlignment="Center" 
-                                               Text="0932816560" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                    <TextBlock Grid.Column="3"
-                                               Padding="10 0 20 0"
-                                                VerticalAlignment="Center" 
-                                               Text="1.000.000.000VND" FontFamily="{StaticResource boldFont}" 
-                                               FontSize="20"/>
-                                </Grid>
-                            </ListViewItem>
-                            
-                            
-
-                        </ListView>
-                    </Grid>
+                    <Border CornerRadius="10" Background="#F3E9D2" >
+                        <TextBlock Foreground="#F97569" FontSize="50" >
+                            alskdjaks
+                        </TextBlock>
+                    </Border>
                 </Border>
+                <Grid  >
+                    
+                </Grid>-->
+                <Border Height="200" Width="200" Background="#40403C"/>
             </Grid>
-
 
         </Grid>
     </Border>

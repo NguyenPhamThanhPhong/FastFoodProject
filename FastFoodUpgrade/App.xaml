@@ -13,6 +13,12 @@
             
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ControlBarButton.xaml"/>
+                <ResourceDictionary Source="Styles/ColourStyle.xaml"/>
+                <ResourceDictionary Source="Styles/TextboxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ComboboxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ScrollBarStyle.xaml"/>
+
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />

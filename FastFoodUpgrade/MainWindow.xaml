@@ -5,24 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastFoodUpgrade"
         xmlns:views="clr-namespace:FastFoodUpgrade.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="{x:Null}"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-    
-        >
+        ResizeMode="CanResizeWithGrip"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+    <Window.Resources>
+
+    </Window.Resources>
+
+
     <Grid Background="Transparent">
-        <!--<materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">My First Material Design App</TextBlock>
-        </materialDesign:Card>-->
 
         <!--<views:Login  />-->
+
         <views:DashBoard/>
+        <!--<views:test/>-->
 
 
     </Grid>
+    <!--<Grid Background="Wheat">
+
+        <Border Background="{StaticResource background_cs}">
+            
+        </Border>
+        <Button Style="{StaticResource minimize}"
+                Width="50"
+                Height="50">
+            
+        </Button>
+
+        <Border Margin="300 90 300 90"
+                CornerRadius="20"
+                
+            Background="{StaticResource popup_background}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox FontSize="28" Grid.ColumnSpan="2" Style="{StaticResource SearchTextbox}">
+                    
+                </TextBox>
+
+                <TextBox FontSize="28" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource SearchTextbox}">
+
+                </TextBox>
+
+
+
+
+
+
+            </Grid>
+            
+        </Border>
+
+
+
+    </Grid>-->
 </Window>

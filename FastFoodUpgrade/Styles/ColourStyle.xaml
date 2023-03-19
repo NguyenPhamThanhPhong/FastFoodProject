@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <LinearGradientBrush x:Key="background_cs" StartPoint="0,0" EndPoint="0,5">
+        <GradientStop Color="#FF10658C" Offset="0.0"/>
+        <GradientStop Color="#fff5ECEB" Offset="0.5"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="popup_background">
+        <!--<GradientStop Color="#27251F" Offset="1.2"/>-->
+        <GradientStop Color="#27251F" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="background_cs_layer" Color="#ff5ecebe"/>
+    <SolidColorBrush x:Key="Borderbrush" Color="#FF97CEDA"/>
+
+</ResourceDictionary>
