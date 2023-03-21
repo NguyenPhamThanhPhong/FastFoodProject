@@ -19,13 +19,13 @@
     <Border CornerRadius="25">
         <Border.Background >
             <LinearGradientBrush>
-                <GradientStop Color="#27251F" Offset="0.5"/>
+                <GradientStop Color="Black" Offset="0.5"/>
                 
-                <GradientStop Color="#FFC72C" Offset="0.55"/>
+                <!--<GradientStop Color="#FFC72C" Offset="0.55"/>
                 <GradientStop Color="#27251F" Offset="0.7"/>
                 <GradientStop Color="#27251F" Offset="0.8"/>
 
-                <GradientStop Color="#FFC72C" Offset="0.99"/>
+                <GradientStop Color="#FFC72C" Offset="0.99"/>-->
             </LinearGradientBrush>
         </Border.Background>
         <Grid >
@@ -40,7 +40,8 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Border  CornerRadius="15" Margin="60 50" Grid.RowSpan="4">
+
+            <Border BorderBrush="Red" BorderThickness="1 1 1 1" CornerRadius="15" Margin="60 50" Grid.RowSpan="4">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#FFC72C" Offset="0.85"/>
@@ -49,99 +50,106 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Border.Effect>
-                    <DropShadowEffect ShadowDepth="7" Color="Red"/>
+                    <DropShadowEffect BlurRadius="55" ShadowDepth="-10" Color="White"/>
+                    <!--<DropShadowEffect ShadowDepth="7" Color="Red"/>-->
                 </Border.Effect>
                 <Grid>
-                    <StackPanel>
-                        <!--<TextBlock Text="askdja" FontSize="32" FontFamily="{StaticResource boldFont}"/>
+                    <Grid>
+                        <StackPanel>
+                            <!--<TextBlock Text="askdja" FontSize="32" FontFamily="{StaticResource boldFont}"/>
                     <TextBlock Text="askdja" FontSize="32" FontFamily="{StaticResource Rubik}"/>-->
-                        <TextBlock Margin="0 10 0 40" TextAlignment="Center" Foreground="White" Text="Fast Food Sales" FontSize="45" FontFamily="{StaticResource RampartOne}"/>
-                        <TextBlock Padding="20 0" Margin="0 30 0 0" 
+                            <TextBlock Margin="0 10 0 40" TextAlignment="Center" Foreground="White" Text="Fast Food Sales" FontSize="45" FontFamily="{StaticResource RampartOne}"/>
+                            <TextBlock Padding="20 0" Margin="0 30 0 0" 
                                    FontSize="34" Foreground="White" 
                                    FontFamily="{StaticResource boldFont}" 
                                    Text="Username"/>
-                        <TextBox Margin="20 0"  FontSize="20" 
+                            <TextBox Margin="20 0"  FontSize="20" 
                         FontFamily="{StaticResource boldFont}"
                         BorderThickness="2" Background="#FFFFFF"  Foreground="#9B9CA3"
-                        BorderBrush="Red" 
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                        BorderBrush="Red"
+                                     Text="{Binding username,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="64">
 
-                        </TextBox>
-                        <TextBlock Padding="20 0" Margin="0 10 0 0" 
+                            </TextBox>
+                            <TextBlock Padding="20 0" Margin="0 10 0 0" 
                                    FontSize="34" Foreground="White" 
                                    FontFamily="{StaticResource boldFont}" 
                                    Text="Password"/>
-                        <TextBox Margin="20 0"  FontSize="20" 
+                            <TextBox Margin="20 0"  FontSize="20" 
                         FontFamily="{StaticResource boldFont}"
                         BorderThickness="2" Background="#FFFFFF"  Foreground="#9B9CA3"
                         BorderBrush="Red" 
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                     Text="{Binding password,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61">
 
-                        </TextBox>
-                        <Grid  Margin="20 40">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                            </TextBox>
+                            <Grid  Margin="20 40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
 
-                            <Button Grid.Row="0"
+                                <Button Grid.Row="0"
                             Margin="20 0"
                             FontFamily="{StaticResource boldFont}"
                             Grid.ColumnSpan="2"
+                                        Command="{Binding CommandLogin,IsAsync=True}"
                             Content="Sign in" FontSize="30"
                             Height="69" Background="#27251F" Foreground="Red"
                             materialDesign:ButtonAssist.CornerRadius="10"
                             IsEnabled="{Binding DataContext.ControlsEnabled, 
-                                                RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             ToolTip="Resource name: MaterialDesignRaisedButton">
-                                <Button.Effect>
-                                    <DropShadowEffect ShadowDepth="5" Color="Red"/>
-                                </Button.Effect>
-                            </Button>
+                                    <Button.Effect>
+                                        <DropShadowEffect ShadowDepth="5" Color="Red"/>
+                                    </Button.Effect>
+                                </Button>
 
-                            <TextBlock TextAlignment="Center"
+                                <TextBlock TextAlignment="Center"
                                 Margin="-1 20" Cursor="Hand" 
                                 FontFamily="{StaticResource boldFont}" 
                                 FontSize="22" Text="Forgot Password" Grid.Row="1">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <!-- Set default text color -->
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="Red" />
-                                                <!-- Set text color when mouse is over -->
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <TextBlock Margin="0 20" Cursor="Hand" 
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <!-- Set default text color -->
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                    <!-- Set text color when mouse is over -->
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Margin="0 20" Cursor="Hand" 
                                        FontFamily="{StaticResource boldFont}" 
                                        FontSize="22" Text="Sign up"
                                        TextAlignment="Center"
                                        Grid.Row="1" Grid.Column="1">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <!-- Set default text color -->
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="Red" />
-                                                <!-- Set text color when mouse is over -->
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
-                    </StackPanel>
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <!-- Set default text color -->
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                    <!-- Set text color when mouse is over -->
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
+
             </Border>
         </Grid>
     </Border>

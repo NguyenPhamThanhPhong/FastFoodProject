@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fastfooddtbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="15" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="15" />
+          <Property Name="BillDate" Type="datetime" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="fullname" Type="nvarchar" MaxLength="15" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="14" />
+          <Property Name="Total" Type="int" />
+          <Property Name="CustomerRank" Type="nvarchar" MaxLength="15" />
+          <Property Name="CustomerAddress" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Import">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="AdminID" Type="nvarchar" MaxLength="15" />
+          <Property Name="ImportDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ImportListing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ImportID" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProvidersID" Type="nvarchar" MaxLength="15" />
+          <Property Name="IngredientID" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="IngredientName" Type="nvarchar" MaxLength="40" />
+          <Property Name="IngredientType" Type="nvarchar" MaxLength="30" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" />
+          <Property Name="Remaining" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="80" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="BillID" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="15" />
+          <Property Name="sell" Type="int" />
+          <Property Name="price" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="40" />
+          <Property Name="ProductType" Type="nvarchar" MaxLength="30" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Remaining" Type="int" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="80" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Providers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="40" />
+          <Property Name="DayStart" Type="datetime" />
+          <Property Name="DayEnd" Type="datetime" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="20" />
+          <Property Name="fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="accessRight" Type="nvarchar" MaxLength="20" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" />
+          <Property Name="pass" Type="nvarchar" MaxLength="30" />
+          <Property Name="sex" Type="nvarchar" MaxLength="10" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="phone" Type="nvarchar" MaxLength="14" />
+          <Property Name="mail" Type="nvarchar" MaxLength="40" />
+          <Property Name="addr" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_AdminID_Import">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Import" Type="Self.Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Import">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillID_Order">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerID_Bill">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImportID_ImportListing">
+          <End Role="Import" Type="Self.Import" Multiplicity="0..1" />
+          <End Role="ImportListing" Type="Self.ImportListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Import">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImportListing">
+              <PropertyRef Name="ImportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientID_Order">
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
+          <End Role="ImportListing" Type="Self.ImportListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImportListing">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productID_Order">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvidersID_Order">
+          <End Role="Providers" Type="Self.Providers" Multiplicity="0..1" />
+          <End Role="ImportListing" Type="Self.ImportListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImportListing">
+              <PropertyRef Name="ProvidersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staffID_Bill">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fastfooddtbModelStoreContainer">
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Import" EntityType="Self.Import" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportListing" EntityType="Self.ImportListing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Providers" EntityType="Self.Providers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdminID_Import" Association="Self.FK_AdminID_Import">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Import" EntitySet="Import" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillID_Order" Association="Self.FK_BillID_Order">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerID_Bill" Association="Self.FK_CustomerID_Bill">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImportID_ImportListing" Association="Self.FK_ImportID_ImportListing">
+            <End Role="Import" EntitySet="Import" />
+            <End Role="ImportListing" EntitySet="ImportListing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientID_Order" Association="Self.FK_IngredientID_Order">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="ImportListing" EntitySet="ImportListing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productID_Order" Association="Self.FK_productID_Order">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvidersID_Order" Association="Self.FK_ProvidersID_Order">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="ImportListing" EntitySet="ImportListing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staffID_Bill" Association="Self.FK_staffID_Bill">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fastfooddtbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StaffID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="BillDate" Type="DateTime" Precision="3" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_BillID_Order" FromRole="Bill" ToRole="Orders" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerID_Bill" FromRole="Bill" ToRole="Customer" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_staffID_Bill" FromRole="Bill" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fullname" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="CustomerRank" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_CustomerID_Bill" FromRole="Customer" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Import">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_AdminID_Import" FromRole="Import" ToRole="Staff" />
+          <NavigationProperty Name="ImportListings" Relationship="Self.FK_ImportID_ImportListing" FromRole="Import" ToRole="ImportListing" />
+        </EntityType>
+        <EntityType Name="ImportListing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImportID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProvidersID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IngredientID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Import" Relationship="Self.FK_ImportID_ImportListing" FromRole="ImportListing" ToRole="Import" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK_IngredientID_Order" FromRole="ImportListing" ToRole="Ingredient" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK_ProvidersID_Order" FromRole="ImportListing" ToRole="Providers" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IngredientName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="IngredientType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remaining" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Descript" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ImportListings" Relationship="Self.FK_IngredientID_Order" FromRole="Ingredient" ToRole="ImportListing" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="sell" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillID_Order" FromRole="Orders" ToRole="Bill" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_productID_Order" FromRole="Orders" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="ProductType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Remaining" Type="Int32" />
+          <Property Name="Descript" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_productID_Order" FromRole="Product" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DayStart" Type="DateTime" Precision="3" />
+          <Property Name="DayEnd" Type="DateTime" Precision="3" />
+          <Property Name="Descript" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ImportListings" Relationship="Self.FK_ProvidersID_Order" FromRole="Providers" ToRole="ImportListing" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="accessRight" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="addr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_staffID_Bill" FromRole="Staff" ToRole="Bill" />
+          <NavigationProperty Name="Imports" Relationship="Self.FK_AdminID_Import" FromRole="Staff" ToRole="Import" />
+        </EntityType>
+        <Association Name="FK_BillID_Order">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerID_Bill">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staffID_Bill">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminID_Import">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Import" Type="Self.Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Import">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImportID_ImportListing">
+          <End Role="Import" Type="Self.Import" Multiplicity="0..1" />
+          <End Role="ImportListing" Type="Self.ImportListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Import">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImportListing">
+              <PropertyRef Name="ImportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngredientID_Order">
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
+          <End Role="ImportListing" Type="Self.ImportListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImportListing">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvidersID_Order">
+          <End Role="Providers" Type="Self.Provider" Multiplicity="0..1" />
+          <End Role="ImportListing" Type="Self.ImportListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImportListing">
+              <PropertyRef Name="ProvidersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productID_Order">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fastfooddtbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Imports" EntityType="Self.Import" />
+          <EntitySet Name="ImportListings" EntityType="Self.ImportListing" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Providers" EntityType="Self.Provider" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <AssociationSet Name="FK_BillID_Order" Association="Self.FK_BillID_Order">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerID_Bill" Association="Self.FK_CustomerID_Bill">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staffID_Bill" Association="Self.FK_staffID_Bill">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminID_Import" Association="Self.FK_AdminID_Import">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Import" EntitySet="Imports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImportID_ImportListing" Association="Self.FK_ImportID_ImportListing">
+            <End Role="Import" EntitySet="Imports" />
+            <End Role="ImportListing" EntitySet="ImportListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngredientID_Order" Association="Self.FK_IngredientID_Order">
+            <End Role="Ingredient" EntitySet="Ingredients" />
+            <End Role="ImportListing" EntitySet="ImportListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvidersID_Order" Association="Self.FK_ProvidersID_Order">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="ImportListing" EntitySet="ImportListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productID_Order" Association="Self.FK_productID_Order">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fastfooddtbModelStoreContainer" CdmEntityContainer="fastfooddtbEntities">
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BillDate" ColumnName="BillDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="CustomerRank" ColumnName="CustomerRank" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imports">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Import">
+              <MappingFragment StoreEntitySet="Import">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImportListings">
+            <EntityTypeMapping TypeName="fastfooddtbModel.ImportListing">
+              <MappingFragment StoreEntitySet="ImportListing">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ImportID" ColumnName="ImportID" />
+                <ScalarProperty Name="ProvidersID" ColumnName="ProvidersID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredient">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+                <ScalarProperty Name="IngredientType" ColumnName="IngredientType" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="sell" ColumnName="sell" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Provider">
+              <MappingFragment StoreEntitySet="Providers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="DayStart" ColumnName="DayStart" />
+                <ScalarProperty Name="DayEnd" ColumnName="DayEnd" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="fastfooddtbModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="accessRight" ColumnName="accessRight" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="addr" ColumnName="addr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastFoodUpgrade"
         xmlns:views="clr-namespace:FastFoodUpgrade.Views"
+        xmlns:viewmodels="clr-namespace:FastFoodUpgrade.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1200"
@@ -13,17 +14,58 @@
         AllowsTransparency="True"
         Background="{x:Null}"
         ResizeMode="CanResizeWithGrip"
+        x:Name="MainWin"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Window.Resources>
 
+        
+        
     </Window.Resources>
+    
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
 
 
-    <Grid Background="Transparent">
+    <Grid Background="{StaticResource background_cs}">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:Login />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:DashBoardViewModel}">
+                <views:DashBoard />
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content="{Binding currentViewModel, IsAsync=True}">
+            
+        </ContentControl>
+        <!--<views:Login/>-->
+
+
+        <!--<Grid Width="500" Height="400" Background="Pink">
+            <ListView ItemsSource="{Binding cs}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding bmp}"/>
+                            <TextBlock Text="{Binding id}" FontSize="40"  Foreground="Black"/>
+                            <TextBlock Grid.Column="1" Text="{Binding num}" FontSize="40" Foreground="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>-->
+
+        
 
         <!--<views:Login  />-->
 
-        <views:DashBoard/>
+        <!--<views:DashBoard/>-->
         <!--<views:test/>-->
 
 

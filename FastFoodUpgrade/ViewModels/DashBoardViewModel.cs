@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace FastFoodUpgrade.ViewModels
 {
-    internal class DashBoardViewModel
+    public class DashBoardViewModel : ViewModelBase
     {
+        public DashBoardViewModel(MainViewModel currentMain)
+        {
+
+        }
     }
 }
