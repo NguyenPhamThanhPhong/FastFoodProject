@@ -30,7 +30,7 @@ namespace FastFoodUpgrade.ViewModels
         }
         public MainViewModel()
         {
-            currentViewModel= new LoginViewModel(this);
+            currentViewModel = new DashBoardViewModel(this);
         }
     }
 

@@ -18,5 +18,9 @@
         <GradientStop Color="Black" Offset="0.5"/>
         <GradientStop Color="Black" Offset="0.87"/>
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="product_items_background" StartPoint="0,1" EndPoint="1,0">
+        <GradientStop Color="LightGray" Offset="1.9"/>
+        <GradientStop Color="Black" Offset="0"/>
+    </LinearGradientBrush>
 
 </ResourceDictionary>

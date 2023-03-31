@@ -12,26 +12,67 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using FastFoodUpgrade.ViewModels;
 namespace FastFoodUpgrade.Views
 {
     /// <summary>
     /// Interaction logic for Product.xaml
     /// </summary>
-    public partial class Product : Page
+    public partial class ProductPage : Page
     {
-        public Product()
+        public ProductPage()
         {
             InitializeComponent();
-            mylistview.ItemsSource = new List<string> { "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl" };
+            this.DataContext = new ProductViewModel();
+            //mylistview.ItemsSource = new List<string> { "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl" };
         }
+        //Handle Drag&Drop getting object
         string SelectedStringItem = "";
         Tuple<int, Grid> DraggedObject = null;
+
+        private bool isDragging = false;
+        private double originalTop = 0;
+        private void DrawerButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = true;
+            
+            Thickness tn = Drawer.Margin;
+            originalTop = tn.Top;
+            DrawerButton.CaptureMouse();
+        }
+
+        private async void DrawerButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point position = e.GetPosition(this);
+                //double yy = position.Y;
+                double top = position.Y;
+                if (top < 0)
+                {
+                    top = 0;
+                }
+                else if (top > 500)
+                {
+                    top = 500;
+                }
+                Drawer.Margin = new Thickness(0, top, 0, 0);
+            }
+        }
+
+        private void DrawerButton_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+            DrawerButton.ReleaseMouseCapture();
+        }
+
+
+
         private void ListView_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if(!(sender is ListView))
+                if (!(sender is ListView))
                 {
                     return;
                 }
@@ -54,8 +95,10 @@ namespace FastFoodUpgrade.Views
             {
                 current = VisualTreeHelper.GetParent(current);
             }
-        
+
             return current as T;
         }
+
+
     }
 }

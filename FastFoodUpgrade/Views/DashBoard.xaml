@@ -289,7 +289,7 @@
 
 
             <Grid Grid.Column="1">
-                <Frame Source="/Views/Product.xaml" />
+                <Frame Source="/Views/ProductPage.xaml" />
                 <!--<Border BorderBrush="Red" BorderThickness="1" CornerRadius="10" Width="250" Height="350">
                     <Border.Effect>
                         <DropShadowEffect Color="Red" BlurRadius="30" ShadowDepth="-7"/>
@@ -303,7 +303,7 @@
                 <Grid  >
                     
                 </Grid>-->
-                <Border Height="200" Width="200" Background="#40403C"/>
+                <!--<Border Height="200" Width="200" Background="#40403C" />-->
             </Grid>
 
         </Grid>
