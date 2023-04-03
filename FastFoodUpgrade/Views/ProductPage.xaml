@@ -137,7 +137,7 @@
                 <!--listview food here-->
                 <Grid   Background="Transparent"
                         Margin="29,205,10,0">
-                    <listviews:ProductListView  />
+                    <listviews:ProductListView SelectCommand="{Binding LeftMouseButtonDownCommand}"/>
                 </Grid>
                 <Grid x:Name="Drawer"  Background="White" Margin="0 500 0 0">
                     <Grid.RowDefinitions>
@@ -146,59 +146,7 @@
                     </Grid.RowDefinitions>
                     <Border Grid.RowSpan="2" CornerRadius="40" Background="#333939" Opacity="0.8" />
 
-                    <ListView>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid HorizontalAlignment="Left" Margin="0 0 0 0" Width="190" Height="170">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40"/>
-                                        <RowDefinition Height="40"/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Border BorderThickness="1 4 4 1" BorderBrush="White" CornerRadius="10" Grid.RowSpan="2" Grid.Row="1">
-
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                                <GradientStop Color="LightGray" Offset="1.9"/>
-                                                <GradientStop Color="Black" Offset="0"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <Image Width="150"
-                                        HorizontalAlignment="Center" 
-                                        Grid.RowSpan="2" Stretch="Uniform" 
-                                        Source="/IMAGE/burger.png"/>
-
-                                    <Grid Grid.Row="2">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0"
-                                            Text="180.00 VND" 
-                                            TextAlignment="Center" 
-                                            FontFamily="{StaticResource boldFont}" 
-                                            FontSize="18"
-                                            Foreground="White"/>
-                                        <TextBlock Grid.Row="1"
-                                            Text="Chese Burger" 
-                                            TextAlignment="Center" 
-                                            FontFamily="{StaticResource boldFont}" 
-                                            FontSize="18"
-                                            Foreground="White"/>
-                                    </Grid>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-
-
-                    </ListView>
+                    <listviews:DrawerListView/>
                     <Border x:Name="DrawerButton"
                             Height="35"
                             VerticalAlignment="Top"

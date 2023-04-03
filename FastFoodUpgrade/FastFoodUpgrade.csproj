@@ -106,6 +106,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DragDropCommands\MouseDownDrag.cs" />
     <Compile Include="Commands\InsertCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Models\Bill.cs">
@@ -161,6 +162,9 @@
     <Compile Include="Views\DashBoard.xaml.cs">
       <DependentUpon>DashBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ListViews\DrawerListView.xaml.cs">
+      <DependentUpon>DrawerListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ListViews\ProductListView.xaml.cs">
       <DependentUpon>ProductListView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +181,10 @@
     <Compile Include="Windows\DashBoardWindow.xaml.cs">
       <DependentUpon>DashBoardWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ListViews\DrawerListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ListViews\ProductListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

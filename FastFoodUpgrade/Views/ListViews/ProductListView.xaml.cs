@@ -25,6 +25,21 @@ namespace FastFoodUpgrade.Views.ListViews
             InitializeComponent();
             //MessageBox.Show(this.DataContext.ToString());
         }
+        public ICommand SelectCommand
+        {
+            get { return (ICommand)GetValue(SelectCommandProperty);}
+            set { SetValue(SelectCommandProperty, value);}
+        }
+        public static readonly DependencyProperty SelectCommandProperty =
+            DependencyProperty.Register("SelectCommand", typeof(ICommand), typeof(ProductListView), new PropertyMetadata(null));
         
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(SelectCommand!=null)
+            {
+                SelectCommand.Execute(sender);
+            }
+            
+        }
     }
 }

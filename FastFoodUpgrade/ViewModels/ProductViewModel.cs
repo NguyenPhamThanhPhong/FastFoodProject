@@ -1,4 +1,5 @@
-﻿using FastFoodUpgrade.Models;
+﻿using FastFoodUpgrade.Commands.DragDropCommands;
+using FastFoodUpgrade.Models;
 using FastFoodUpgrade.Views;
 using System;
 using System.Collections.Generic;
@@ -26,10 +27,11 @@ namespace FastFoodUpgrade.ViewModels
                 OnPropertyChanged(nameof(products));
             }
         }
+        public Product SelectedItem { get; set; }
         public ICommand LeftMouseButtonDownCommand { get; set; }
         public ProductViewModel()
         {
-
+            LeftMouseButtonDownCommand = new MouseDownDrag(this);
         }
 
 
