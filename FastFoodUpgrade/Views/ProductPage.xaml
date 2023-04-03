@@ -146,7 +146,7 @@
                     </Grid.RowDefinitions>
                     <Border Grid.RowSpan="2" CornerRadius="40" Background="#333939" Opacity="0.8" />
 
-                    <listviews:DrawerListView/>
+                    <listviews:DrawerListView DropCommand="{Binding DropProductCommand}"/>
                     <Border x:Name="DrawerButton"
                             Height="35"
                             VerticalAlignment="Top"

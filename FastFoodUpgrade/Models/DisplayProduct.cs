@@ -12,16 +12,11 @@ namespace FastFoodUpgrade.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class DisplayProduct
     {
         public string ID { get; set; }
-        public string BillID { get; set; }
-        public string Productname { get; set; }
-        public Nullable<int> sell { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<int> Discount { get; set; }
-        public Nullable<int> Total { get; set; }
+        public string ProductID { get; set; }
     
-        public virtual Bill Bill { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

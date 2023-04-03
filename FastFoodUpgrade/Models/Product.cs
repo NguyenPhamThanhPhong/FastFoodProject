@@ -17,7 +17,7 @@ namespace FastFoodUpgrade.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Orders = new HashSet<Order>();
+            this.DisplayProducts = new HashSet<DisplayProduct>();
         }
     
         public string ID { get; set; }
@@ -29,6 +29,6 @@ namespace FastFoodUpgrade.Models
         public string Avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<DisplayProduct> DisplayProducts { get; set; }
     }
 }

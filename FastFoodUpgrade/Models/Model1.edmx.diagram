@@ -5,24 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8d0776a2a4744de6b80931a08ce104b0" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="fastfooddtbModel.Bill" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Customer" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Import" Width="1.5" PointX="3.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.ImportListing" Width="1.5" PointX="7.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Ingredient" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Order" Width="1.5" PointX="5.875" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Provider" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="fastfooddtbModel.Staff" Width="1.5" PointX="7.875" PointY="4.125" IsExpanded="true" />
-        <AssociationConnector Association="fastfooddtbModel.FK_BillID_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_CustomerID_Bill" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_staffID_Bill" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_AdminID_Import" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_ImportID_ImportListing" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_IngredientID_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_ProvidersID_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="fastfooddtbModel.FK_productID_Order" ManuallyRouted="false" >
-        </AssociationConnector>
+        <EntityTypeShape EntityType="fastfooddtbModel.Bill" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Customer" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="fastfooddtbModel.DisplayCustomer" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="fastfooddtbModel.DisplayProduct" Width="1.5" PointX="10" PointY="3.375" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Import" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="fastfooddtbModel.ImportListing" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Ingredient" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Order" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Product" Width="1.5" PointX="7.75" PointY="2.875" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Provider" Width="1.5" PointX="3" PointY="15.125" />
+        <EntityTypeShape EntityType="fastfooddtbModel.Staff" Width="1.5" PointX="0.75" PointY="4.25" />
+        <AssociationConnector Association="fastfooddtbModel.FK_BillID_Order" />
+        <AssociationConnector Association="fastfooddtbModel.FK_CustomerID_Bill" />
+        <AssociationConnector Association="fastfooddtbModel.FK_staffID_Bill" />
+        <AssociationConnector Association="fastfooddtbModel.FK_CustomerID_DisplayCustomer" />
+        <AssociationConnector Association="fastfooddtbModel.FK_productID_DisplayProduct" />
+        <AssociationConnector Association="fastfooddtbModel.FK_AdminID_Import" />
+        <AssociationConnector Association="fastfooddtbModel.FK_ImportID_ImportListing" />
+        <AssociationConnector Association="fastfooddtbModel.FK_IngredientID_Order" />
+        <AssociationConnector Association="fastfooddtbModel.FK_ProvidersID_Order" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

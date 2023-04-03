@@ -18,6 +18,7 @@ namespace FastFoodUpgrade.Models
         public Customer()
         {
             this.Bills = new HashSet<Bill>();
+            this.DisplayCustomers = new HashSet<DisplayCustomer>();
         }
     
         public string ID { get; set; }
@@ -29,5 +30,7 @@ namespace FastFoodUpgrade.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DisplayCustomer> DisplayCustomers { get; set; }
     }
 }

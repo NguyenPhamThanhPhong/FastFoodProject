@@ -27,6 +27,8 @@ namespace FastFoodUpgrade.Models
     
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<DisplayCustomer> DisplayCustomers { get; set; }
+        public virtual DbSet<DisplayProduct> DisplayProducts { get; set; }
         public virtual DbSet<Import> Imports { get; set; }
         public virtual DbSet<ImportListing> ImportListings { get; set; }
         public virtual DbSet<Ingredient> Ingredients { get; set; }

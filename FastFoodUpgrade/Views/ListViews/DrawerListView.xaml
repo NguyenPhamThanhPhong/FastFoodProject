@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:FastFoodUpgrade.Views.ListViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <ListView AllowDrop="True">
+    <Grid >
+        <ListView  ItemsSource="{Binding Odrs}" AllowDrop="True" MouseLeftButtonDown="ListView_MouseLeftButtonDown" Drop="ListView_Drop">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -42,13 +42,13 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0"
-                                            Text="180.00 VND" 
+                                            Text="{Binding price, StringFormat={}{0:N0} VND}" 
                                             TextAlignment="Center" 
                                             FontFamily="{StaticResource boldFont}" 
                                             FontSize="18"
                                             Foreground="White"/>
                             <TextBlock Grid.Row="1"
-                                            Text="Chese Burger" 
+                                            Text="{Binding Productname}" 
                                             TextAlignment="Center" 
                                             FontFamily="{StaticResource boldFont}" 
                                             FontSize="18"

@@ -24,5 +24,25 @@ namespace FastFoodUpgrade.Views.ListViews
         {
             InitializeComponent();
         }
+        public ICommand DropCommand
+        {
+            get { return (ICommand)GetValue(DropCommandProperty); }
+            set { SetValue(DropCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty DropCommandProperty =
+            DependencyProperty.Register("DropCommand", typeof(ICommand), typeof(DrawerListView), new PropertyMetadata(null));
+        private void ListView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ListView_Drop(object sender, DragEventArgs e)
+        {
+            if(DropCommand!=null) 
+            { 
+                DropCommand.Execute(e);
+            }
+        }
     }
 }
