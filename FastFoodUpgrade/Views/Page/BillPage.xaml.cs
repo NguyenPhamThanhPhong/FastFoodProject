@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FastFoodUpgrade.Views
+namespace FastFoodUpgrade.Views.Page
 {
     /// <summary>
-    /// Interaction logic for Customer.xaml
+    /// Interaction logic for BillPage.xaml
     /// </summary>
-    public partial class Customer : Page
+    public partial class BillPage : Page
     {
-        public Customer()
+        public BillPage()
         {
             InitializeComponent();
         }

@@ -24,6 +24,7 @@ namespace FastFoodUpgrade.Commands.DragDropCommands
                 if(e!=null && e.Data!=null) 
                 {
                     Product p = pvm.SelectedItem;
+                    
                     Order o = new Order() {Productname = p.ProductName, price = p.Price };
                     pvm.Odrs.Add(o);
                     pvm.SelectedItem= null;

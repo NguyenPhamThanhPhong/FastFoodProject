@@ -42,80 +42,12 @@
         <!--<views:Login/>-->
 
 
-        <!--<Grid Width="500" Height="400" Background="Pink">
-            <ListView ItemsSource="{Binding cs}">
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding bmp}"/>
-                            <TextBlock Text="{Binding id}" FontSize="40"  Foreground="Black"/>
-                            <TextBlock Grid.Column="1" Text="{Binding num}" FontSize="40" Foreground="Black"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>-->
 
         
 
-        <!--<views:Login  />-->
-
-        <!--<views:DashBoard/>-->
-        <!--<views:test/>-->
 
 
     </Grid>
-    <!--<Grid Background="Wheat">
-
-        <Border Background="{StaticResource background_cs}">
-            
-        </Border>
-        <Button Style="{StaticResource minimize}"
-                Width="50"
-                Height="50">
-            
-        </Button>
-
-        <Border Margin="300 90 300 90"
-                CornerRadius="20"
-                
-            Background="{StaticResource popup_background}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBox FontSize="28" Grid.ColumnSpan="2" Style="{StaticResource SearchTextbox}">
-                    
-                </TextBox>
-
-                <TextBox FontSize="28" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource SearchTextbox}">
-
-                </TextBox>
-
-
-
-
-
-
-            </Grid>
-            
-        </Border>
-
-
-
-    </Grid>-->
+    
 </Window>
