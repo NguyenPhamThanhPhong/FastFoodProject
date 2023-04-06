@@ -289,21 +289,7 @@
 
 
             <Grid Grid.Column="1">
-                <Frame Source="/Views/Page/ProductPage.xaml" />
-                <!--<Border BorderBrush="Red" BorderThickness="1" CornerRadius="10" Width="250" Height="350">
-                    <Border.Effect>
-                        <DropShadowEffect Color="Red" BlurRadius="30" ShadowDepth="-7"/>
-                    </Border.Effect>
-                    <Border CornerRadius="10" Background="#F3E9D2" >
-                        <TextBlock Foreground="#F97569" FontSize="50" >
-                            alskdjaks
-                        </TextBlock>
-                    </Border>
-                </Border>
-                <Grid  >
-                    
-                </Grid>-->
-                <!--<Border Height="200" Width="200" Background="#40403C" />-->
+                <Frame Source="/Views/Pages/ProductPage.xaml"/>
             </Grid>
 
         </Grid>

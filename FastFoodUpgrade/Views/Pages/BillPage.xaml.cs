@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FastFoodUpgrade.Views.Page
+namespace FastFoodUpgrade.Views.Pages
 {
     /// <summary>
     /// Interaction logic for BillPage.xaml

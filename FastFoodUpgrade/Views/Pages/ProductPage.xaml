@@ -1,4 +1,4 @@
-﻿<Page x:Class="FastFoodUpgrade.Views.ProductPage"
+﻿<Page x:Class="FastFoodUpgrade.Views.Pages.ProductPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -188,10 +188,6 @@
                         <Button Height="50" Width="300" FontSize="26" Content="Print Bill" Grid.Column="1" Margin="52,10,52,47"/>
 
                     </Grid>
-
-
-
-
                 </Grid>
 
 
