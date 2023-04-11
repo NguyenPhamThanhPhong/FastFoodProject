@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="fastfooddtbModel.DisplayCustomer" Width="1.5" PointX="3" PointY="1.375" />
         <EntityTypeShape EntityType="fastfooddtbModel.DisplayProduct" Width="1.5" PointX="10" PointY="3.375" />
         <EntityTypeShape EntityType="fastfooddtbModel.Import" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="fastfooddtbModel.ImportListing" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="fastfooddtbModel.ImportListing" Width="1.5" PointX="6.125" PointY="8.375" />
         <EntityTypeShape EntityType="fastfooddtbModel.Ingredient" Width="1.5" PointX="3" PointY="11.75" />
         <EntityTypeShape EntityType="fastfooddtbModel.Order" Width="1.5" PointX="5.25" PointY="4.75" />
         <EntityTypeShape EntityType="fastfooddtbModel.Product" Width="1.5" PointX="7.75" PointY="2.875" />

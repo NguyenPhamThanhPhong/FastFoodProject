@@ -26,18 +26,8 @@
         <FontFamily x:Key="SegoeRegular">Segoe</FontFamily>
     </UserControl.Resources>
 
-    <Border CornerRadius="25">
-        <Border.Background >
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="#27251F" Offset="0.5"/>
+    <Border CornerRadius="25" Background="Black">
 
-                <!--<GradientStop Color="#FFC72C" Offset="0.55"/>
-                <GradientStop Color="#27251F" Offset="0.7"/>
-                <GradientStop Color="#27251F" Offset="0.8"/>
-
-                <GradientStop Color="#FFC72C" Offset="0.99"/>-->
-            </LinearGradientBrush>
-        </Border.Background>
         <Grid >
             <!--<Grid.Background>
                 <LinearGradientBrush>
@@ -121,8 +111,24 @@
                     </Canvas>
 
                     <StackPanel Margin="0 20">
+                        <RadioButton x:Name="radiobutton1"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                                     Margin="30 0 30 10" 
+                                     Tag="{}"
+                                     Height="45" Content="Home"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
+                        <RadioButton x:Name="radiobutton2"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                                     Margin="30 0 30 10" 
+                                     Height="45" Content="Product"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
                         <Border Background="{StaticResource menu_button_color}" 
                                 Margin="30 0 30 10" CornerRadius="15" 
+                                
                                 BorderThickness="3" BorderBrush="Red">
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="7" Color="Red"/>
@@ -139,13 +145,17 @@
                             </Button>
                         </Border>
 
+                        <!--<RadioButton Style="{StaticResource RadioButton}">
+                            
+                        </RadioButton>-->
+
                         <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
                             <Border.Background>
                                 <LinearGradientBrush>
                                     <GradientStop Color="Red" Offset="0.1"/>
                                     <GradientStop Color="#FFC72C" Offset="0.2"/>
                                     <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="#27251F" Offset="0.87"/>
+                                    <GradientStop Color="Red" Offset="0.87"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Border.Effect>
