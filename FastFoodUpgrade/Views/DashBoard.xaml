@@ -111,184 +111,64 @@
                     </Canvas>
 
                     <StackPanel Margin="0 20">
-                        <RadioButton x:Name="radiobutton1"
-                            FontFamily="{StaticResource boldFont}"
-                                     Background="{StaticResource menu_button_color}" 
-                                     Margin="30 0 30 10" 
-                                     Tag="{}"
+                        <RadioButton x:Name="radiobutton1"  
+                                     FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}"  Tag="Home"
                                      Height="45" Content="Home"
                                      Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
                         </RadioButton>
-                        <RadioButton x:Name="radiobutton2"
+                        <RadioButton 
+                                     Tag="Cutlery"
                             FontFamily="{StaticResource boldFont}"
                                      Background="{StaticResource menu_button_color}" 
-                                     Margin="30 0 30 10" 
                                      Height="45" Content="Product"
                                      Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
                         </RadioButton>
-                        <Border Background="{StaticResource menu_button_color}" 
-                                Margin="30 0 30 10" CornerRadius="15" 
-                                
-                                BorderThickness="3" BorderBrush="Red">
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="Home" FontSize="37"/>
-                                    <TextBlock Grid.Column="1" FontSize="24" FontFamily="{StaticResource boldFont}" Text="Home"/>
-                                </Grid>
-                            </Button>
-                        </Border>
+                        <RadioButton 
+                                     Tag="ShoppingCart"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                                     Height="45" Content="Bills"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
+                        <RadioButton 
+                                     Tag="Male"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Customer"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
+                        <RadioButton 
+                                     Tag="AddressCard"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Managing"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
+                        <RadioButton 
+                                     Tag="Coffee"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Ingredient"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
+                        <RadioButton 
+                                     Tag="Gear"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Settings"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                        </RadioButton>
+
 
                         <!--<RadioButton Style="{StaticResource RadioButton}">
                             
                         </RadioButton>-->
 
-                        <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Red" Offset="0.1"/>
-                                    <GradientStop Color="#FFC72C" Offset="0.2"/>
-                                    <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="Red" Offset="0.87"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="Cutlery" FontSize="40"/>
-                                    <TextBlock Grid.Column="1" FontSize="24" FontFamily="{StaticResource boldFont}" Text="Product"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-                        <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Red" Offset="0.1"/>
-                                    <GradientStop Color="#FFC72C" Offset="0.2"/>
-                                    <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="#27251F" Offset="0.87"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="ShoppingCart" FontSize="40"/>
-                                    <TextBlock Grid.Column="1" FontSize="24" FontFamily="{StaticResource boldFont}" Text="Bill"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-
-                        <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Red" Offset="0.1"/>
-                                    <GradientStop Color="#FFC72C" Offset="0.2"/>
-                                    <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="#27251F" Offset="0.87"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="Male" FontSize="60"/>
-                                    <TextBlock Grid.Column="1" FontSize="23" FontFamily="{StaticResource boldFont}" Text="Customer"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-
-                        <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Red" Offset="0.1"/>
-                                    <GradientStop Color="#FFC72C" Offset="0.2"/>
-                                    <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="#27251F" Offset="0.87"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="AddressCard" FontSize="40"/>
-                                    <TextBlock Grid.Column="1" FontSize="24" FontFamily="{StaticResource boldFont}" Text="Managing"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-                        <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Red" Offset="0.1"/>
-                                    <GradientStop Color="#FFC72C" Offset="0.2"/>
-                                    <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="#27251F" Offset="0.87"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="Coffee" FontSize="40"/>
-                                    <TextBlock Grid.Column="1" FontSize="23" FontFamily="{StaticResource boldFont}" Text="Ingredient"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-                        <Border Margin="10 10" CornerRadius="15" BorderThickness="3" BorderBrush="Red">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Red" Offset="0.1"/>
-                                    <GradientStop Color="#FFC72C" Offset="0.2"/>
-                                    <GradientStop Color="#27251F" Offset="0.5"/>
-                                    <GradientStop Color="#27251F" Offset="0.87"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-                            </Border.Effect>
-                            <Button BorderThickness="0" Background="Transparent"   Height="40">
-                                <Grid  HorizontalAlignment="Left" Height="40" Width="200" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <fa:FontAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="Gear" FontSize="35"/>
-                                    <TextBlock Grid.Column="1" FontSize="23" FontFamily="{StaticResource boldFont}" Text="Settings"/>
-                                </Grid>
-                            </Button>
-                        </Border>
                     </StackPanel>
 
                 </StackPanel>
