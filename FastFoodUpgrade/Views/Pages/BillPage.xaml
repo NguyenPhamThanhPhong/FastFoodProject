@@ -5,10 +5,93 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="900"
       Title="BillPage">
 
-    <Grid Background="Blue">
-        
+    <Grid >
+        <Border Background="{StaticResource PageBackground}" CornerRadius="40">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="10" Color="White"/>
+            </Border.Effect>
+            <Grid>
+                <TextBlock FontSize="60" 
+                           TextWrapping="Wrap"  
+                           Foreground="White"
+                           
+                           FontFamily="{StaticResource boldFont}" 
+                           Text="BILLS" 
+                           Margin="29,10,547,599">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="25" Color="Red"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock 
+                            Foreground="White"
+                            
+                            Width="100" Height="50"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            FontFamily="{StaticResource boldFont}" 
+                            FontSize="22" Text="Filter" 
+                            Margin="52,88,0,0" 
+                            RenderTransformOrigin="0.845,0.596"/>
+
+                <ComboBox
+                        BorderBrush="White"
+                        FontSize="11"
+                        FontFamily="{StaticResource boldFont}"
+                        Foreground="White"
+                        BorderThickness="2 2 2 2"
+                        SelectedIndex="0"
+                         Margin="31,125,708,0" VerticalAlignment="Top" Height="54">
+                    <ComboBox.Style>
+                        <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderThickness" Value="2 2 2 5" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="BorderThickness" Value="2 2 2 2" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                <TextBlock 
+                            Foreground="White"
+                            Width="102" Height="50"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            FontFamily="{StaticResource boldFont}" 
+                            FontSize="22" Text="Search" 
+                            Margin="262,88,0,0" 
+                            RenderTransformOrigin="0.845,0.596"/>
+                <!--<Border BorderBrush="LightGray"
+                        Padding="0 0 0 0"
+                                BorderThickness="3"
+                                Background="White"
+                                Width="271" Height="54"
+                                
+                                CornerRadius="10">
+                </Border>-->
+                <TextBox Margin="252,125,0,0"
+                         Background="#3d4142"
+                         CaretBrush="White"
+                                VerticalAlignment="Top"
+                                Foreground="White" 
+                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="256">
+
+                </TextBox>
+                <StackPanel>
+                    
+                </StackPanel>
+                <Grid>
+                    <ListView>
+                        
+                    </ListView>
+                </Grid>
+
+            </Grid>
+        </Border>
     </Grid>
 </Page>

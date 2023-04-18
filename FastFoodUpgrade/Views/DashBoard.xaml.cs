@@ -46,7 +46,6 @@ namespace FastFoodUpgrade.Views
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            radiobutton1.Margin = new Thickness(30, 0, 10, 10);
         }
     }
 }

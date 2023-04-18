@@ -9,15 +9,7 @@
       Title="ManagingPage">
 
     <Grid>
-        <Border CornerRadius="40">
-            <Border.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="#FFC72C" Offset="0.01"/>
-                    <GradientStop Color="Black" Offset="0.09"/>
-                    <GradientStop Color="Black" Offset="0.87"/>
-                    <GradientStop Color="#FFC72C" Offset="0.99"/>
-                </LinearGradientBrush>
-            </Border.Background>
+        <Border Background="{StaticResource PageBackground}" CornerRadius="40">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="10" Color="White"/>
             </Border.Effect>
@@ -44,10 +36,15 @@
                             RenderTransformOrigin="0.845,0.596"/>
         <ComboBox 
             VerticalAlignment="Top" 
-            HorizontalAlignment="Left" 
+            HorizontalAlignment="Left"
+            SelectedIndex="{Binding SelectedIndex}"
             Margin="29,130,0,0" Width="244" Height="57"
             BorderThickness="4" BorderBrush="White">
-            <ComboBoxItem Content="kaksjdl"/>
+            <ComboBoxItem Content="All"/>
+            <ComboBoxItem Content="ID"/>
+            <ComboBoxItem Content="Fullname"/>
+            <ComboBoxItem Content="Phone numbers"/>
+
         </ComboBox>
         <TextBlock 
                             Foreground="White"
@@ -62,12 +59,13 @@
                          Background="#3d4142"
                          CaretBrush="White"
                                 VerticalAlignment="Top"
-                                Foreground="White" 
+                                Foreground="White"
+                 Text="ja"
                                 HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="256">
 
         </TextBox>
-        <Grid Margin="29,208,38,10">
-            <ListView>
+        <Grid Margin="29,208,38,10" >
+            <ListView ItemsSource="{Binding staffs}">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -96,23 +94,23 @@
                                 </Ellipse>
                                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
                                     <Border Background="LightGray" CornerRadius="20">
-                                        <TextBlock Padding="7" Text="NV0939" FontFamily="{StaticResource boldFont}" TextWrapping="Wrap"/>
+                                        <TextBlock Padding="7" Text="{Binding ID}" FontFamily="{StaticResource boldFont}" TextWrapping="Wrap"/>
                                     </Border>
                                 </StackPanel>
 
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Text="Nguyễn Phạm Thanh Phong aasdasdasdasdasdasd" 
+                                    <TextBlock Text="{Binding fullname}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
-                                    <TextBlock Text="Position: Staff" 
+                                    <TextBlock Text="{Binding accessRight, StringFormat={}Position: {0}}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
-                                    <TextBlock Text="Phone numbers: 065616516546" 
+                                    <TextBlock Text="{Binding phone, StringFormat= {}Phonenumbers:{0}}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
-                                    <TextBlock Text="Address:" 
+                                    <TextBlock Text="{Binding addr,StringFormat={}Address: {0}}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
                                     
@@ -122,7 +120,6 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <Grid/>
             </ListView>
         </Grid>
     </Grid>
