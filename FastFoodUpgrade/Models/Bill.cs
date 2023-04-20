@@ -11,7 +11,9 @@ namespace FastFoodUpgrade.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.RegularExpressions;
+    using static System.Net.Mime.MediaTypeNames;
+
     public partial class Bill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,5 +33,10 @@ namespace FastFoodUpgrade.Models
         public virtual ICollection<Order> Orders { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Staff Staff { get; set; }
+        public override string ToString()
+        {
+            string str = (ID + StaffID + Customer.fullname + BillDate.ToString() + Discount.ToString() + Total.ToString());
+            return Regex.Replace(str, @"s", "").ToLower();
+        }
     }
 }

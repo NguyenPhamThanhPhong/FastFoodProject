@@ -14,20 +14,26 @@
                 <DropShadowEffect ShadowDepth="10" Color="White"/>
             </Border.Effect>
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
                 <TextBlock FontSize="60" 
                            TextWrapping="Wrap"  
                            Foreground="White"
                            
+                           
                            FontFamily="{StaticResource boldFont}" 
                            Text="BILLS" 
-                           Margin="29,10,547,599">
+                           Margin="29,10,547,0">
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="25" Color="Red"/>
                     </TextBlock.Effect>
                 </TextBlock>
+                <TextBlock IsHitTestVisible="True"/>
                 <TextBlock 
                             Foreground="White"
-                            
+                            IsHitTestVisible="True"
                             Width="100" Height="50"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
@@ -42,7 +48,7 @@
                         FontFamily="{StaticResource boldFont}"
                         Foreground="White"
                         BorderThickness="2 2 2 2"
-                        SelectedIndex="0"
+                        SelectedIndex="{Binding SelectedFilterIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                          Margin="31,125,708,0" VerticalAlignment="Top" Height="54">
                     <ComboBox.Style>
                         <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
@@ -77,17 +83,37 @@
                 <TextBox Margin="252,125,0,0"
                          Background="#3d4142"
                          CaretBrush="White"
+                         Text="{Binding SearchString}"
                                 VerticalAlignment="Top"
                                 Foreground="White" 
-                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="256">
+                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="304">
 
                 </TextBox>
                 <StackPanel>
-                    
+
                 </StackPanel>
-                <Grid>
-                    <ListView>
-                        
+                <Grid Grid.Row="1">
+                    <ListView ItemsSource="{Binding Bills}">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource whiteGrayScrollbar}"/>
+                        </ListView.Resources>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Background="White"  Height="100">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding ID}"/>
+                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Customer.fullname}"/>
+                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding BillDate}"/>
+                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Total}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
 

@@ -15,6 +15,7 @@
             </Border.Effect>
         </Border>
         <TextBlock FontSize="60" 
+                   IsHitTestVisible="True"
                    TextWrapping="Wrap"  
                    Foreground="White"
                    FontFamily="{StaticResource boldFont}" 
