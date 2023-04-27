@@ -37,26 +37,26 @@ namespace FastFoodUpgrade.ViewModels
         // Constructor
         public ManagingViewModel()
         {
-            List<Staff> stfs = new fastfooddtbEntities().Staffs.ToList();
-            _staffs = new ObservableCollection<Staff>(stfs);
+            //List<Staff> stfs = new fastfooddtbEntities().Staffs.ToList();
+            //_staffs = new ObservableCollection<Staff>(stfs);
         }
         private void Search()
         {
-            List<Staff> result;
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                using (fastfooddtbEntities db = new fastfooddtbEntities())
-                {
-                    result = db.Staffs
-.Where(s => s.fullname.ToLower().Contains(SearchString.ToLower()))
-.ToList();
-                }
-                staffs.Clear();
-                foreach (Staff s in result)
-                {
-                    staffs.Add(s);
-                }
-            }
+//            List<Staff> result;
+//            if (!String.IsNullOrEmpty(SearchString))
+//            {
+//                using (fastfooddtbEntities db = new fastfooddtbEntities())
+//                {
+//                    result = db.Staffs
+//.Where(s => s.fullname.ToLower().Contains(SearchString.ToLower()))
+//.ToList();
+//                }
+//                staffs.Clear();
+//                foreach (Staff s in result)
+//                {
+//                    staffs.Add(s);
+//                }
+//            }
 
         }
 

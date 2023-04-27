@@ -23,11 +23,11 @@ namespace FastFoodUpgrade.Commands.DragDropCommands
                 DragEventArgs e = parameter as DragEventArgs;
                 if(e!=null && e.Data!=null) 
                 {
-                    Product p = pvm.SelectedItem;
+                    //Product p = pvm.SelectedItem;
                     
-                    Order o = new Order() {Productname = p.ProductName, price = p.Price };
-                    pvm.Odrs.Add(o);
-                    pvm.SelectedItem= null;
+                    //Order o = new Order() {Productname = p.ProductName, price = p.Price };
+                    //pvm.Odrs.Add(o);
+                    //pvm.SelectedItem= null;
                 }
             }
         }

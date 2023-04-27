@@ -60,9 +60,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Ellipse Height="70" Width="70">
-                            <Ellipse.Fill>
+                            <!--<Ellipse.Fill>
                                 <ImageBrush ImageSource="/IMAGE/phong.jpg" />
-                            </Ellipse.Fill>
+                            </Ellipse.Fill>-->
                         </Ellipse>
 
                         <Border 
@@ -179,7 +179,7 @@
 
 
             <Grid Grid.Column="1">
-                <Frame Source="/Views/Pages/ManagingPage.xaml"/>
+                <Frame Source="/Views/Pages/ProductPage.xaml"/>
             </Grid>
 
         </Grid>

@@ -12,7 +12,7 @@ namespace FastFoodUpgrade.ViewModels
 {
     public class BillViewModel : ViewModelBase
     {
-        private ObservableCollection<Bill> _bills = new ObservableCollection<Bill>(new fastfooddtbEntities().Bills);
+        private ObservableCollection<Bill> _bills = new ObservableCollection<Bill>();
         public ObservableCollection<Bill> Bills
         { 
             get { return _bills; }
@@ -43,36 +43,36 @@ namespace FastFoodUpgrade.ViewModels
             List<Bill> results = new List<Bill>();
             if(!String.IsNullOrEmpty(SearchString))
             {
-                using(fastfooddtbEntities db = new fastfooddtbEntities())
-                {
-                    string text = Regex.Replace(SearchString, @"s", "").ToLower();
+                //using(fastfooddtbEntities db = new fastfooddtbEntities())
+                //{
+                //    string text = Regex.Replace(SearchString, @"s", "").ToLower();
 
-                    switch (SelectedFilterIndex)
-                    {
-                        case 0:
-                            db.Bills.Where(b => b.ToString().Contains(text));
-                            break;
-                        case 1:
-                            results = db.Bills.
-                                Where(b =>
-                                Regex.Replace(b.Customer.fullname, @"s", "").ToLower().Contains(SearchString.ToLower())).ToList();
-                            break;
-                        case 2:
-                            results = db.Bills.Where(b=>b.BillDate.ToString().ToLower().Contains(SearchString.ToLower())).ToList();
-                            break;
-                        case 3:
-                            results = db.Bills.Where(b => b.Total.ToString().ToLower().Contains(SearchString.ToLower())).ToList();
-                            break;
-                        default:
+                //    switch (SelectedFilterIndex)
+                //    {
+                //        case 0:
+                //            db.Bills.Where(b => b.ToString().Contains(text));
+                //            break;
+                //        case 1:
+                //            results = db.Bills.
+                //                Where(b =>
+                //                Regex.Replace(b.Customer.fullname, @"s", "").ToLower().Contains(SearchString.ToLower())).ToList();
+                //            break;
+                //        case 2:
+                //            results = db.Bills.Where(b=>b.BillDate.ToString().ToLower().Contains(SearchString.ToLower())).ToList();
+                //            break;
+                //        case 3:
+                //            results = db.Bills.Where(b => b.Total.ToString().ToLower().Contains(SearchString.ToLower())).ToList();
+                //            break;
+                //        default:
 
-                            break;
-                    }
-                    Bills.Clear();
-                    foreach(Bill b in results) 
-                    {
-                        Bills.Add(b);
-                    }
-                }
+                //            break;
+                //    }
+                //    Bills.Clear();
+                //    foreach(Bill b in results) 
+                //    {
+                //        Bills.Add(b);
+                //    }
+                //}
             }
         }
 
