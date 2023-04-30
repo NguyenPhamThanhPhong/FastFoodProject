@@ -28,7 +28,7 @@
 
 
     <Grid Background="{StaticResource background_cs}">
-        <Grid.Resources>
+        <!--<Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:Login />
             </DataTemplate>
@@ -38,7 +38,7 @@
         </Grid.Resources>
         <ContentControl Content="{Binding currentViewModel, IsAsync=True}">
             
-        </ContentControl>
+        </ContentControl>-->
         <!--<views:Login/>-->
 
 

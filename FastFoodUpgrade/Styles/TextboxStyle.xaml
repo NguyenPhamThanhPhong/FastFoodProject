@@ -59,6 +59,12 @@
                             <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="txtborder"/>
                             <Setter Property="Visibility" Value="Hidden" TargetName="watermark"/>
                         </Trigger>
+                        <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
+                            <Setter Property="Visibility" Value="Visible" TargetName="watermark"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="1">
+                            <Setter Property="Visibility" Value="Visible" TargetName="watermark"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

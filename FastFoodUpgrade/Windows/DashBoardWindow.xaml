@@ -8,13 +8,191 @@
         xmlns:viewmodels="clr-namespace:FastFoodUpgrade.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1200"
+        Title="MainWindow" Height="700" Width="1500"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
+        Background="Transparent"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
-    <Grid>
-        <views:DashBoard/>
+    <Window.Resources>
+        <Storyboard x:Key="scaleUp">
+            <DoubleAnimation Storyboard.TargetProperty="Height" To="60" Duration="0:0:0.2" />
+        </Storyboard>
+        <Storyboard x:Key="scaleDown">
+            <DoubleAnimation Storyboard.TargetProperty="Height" To="40" Duration="0:0:0.2" />
+        </Storyboard>
+        <FontFamily x:Key="ColaborateThin">./#Colaborate Thin</FontFamily>
+        <FontFamily x:Key="ColaborateRegular">./#Colaborate Regular</FontFamily>
+        <FontFamily x:Key="ColaborateBold">./#Colaborate Bold</FontFamily>
+        <FontFamily x:Key="DroidSansRegular">./#Droid Sans Regular</FontFamily>
+        <FontFamily x:Key="SegoeRegular">Segoe</FontFamily>
+
+    </Window.Resources>
+    <Grid Background="Transparent">
+        <Border BorderBrush="red" BorderThickness="2" CornerRadius="25" Background="Black">
+            <Grid >
+                <!--<Grid.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#27251F" Offset="0.6"/>
+                    <GradientStop Color="#FFC72C" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Grid.Background>-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="1200"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="3" CornerRadius="40" Background="Black"/>
+                <!--<Border Grid.Column="2" CornerRadius="40" />-->
+
+                <!--first element-->
+                <Border BorderBrush="Red" BorderThickness="2 2 2 2" Margin="0 0 0 0" CornerRadius="15" >
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Red" Offset="0.1"/>
+                            <GradientStop Color="black" Offset="0.2"/>
+                            <GradientStop Color="Black" Offset="0.87"/>
+                            <GradientStop Color="#FFC72C" Offset="0.99"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="7" Color="Red"/>
+                    </Border.Effect>
+                    <StackPanel >
+                        <Grid Height="80" Margin="3 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Height="70" Width="70">
+                                <Ellipse.Fill>
+                                <ImageBrush ImageSource="/IMAGE/phong.jpg" />
+                            </Ellipse.Fill>
+                            </Ellipse>
+
+                            <Border 
+                            Grid.Column="1" 
+                            CornerRadius="20">
+                                <Border.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="Red" Offset="0.1"/>
+                                        <GradientStop Color="Black" Offset="0.2"/>
+                                        <GradientStop Color="Black" Offset="0.87"/>
+                                        <GradientStop Color="Red" Offset="0.95"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="7" Color="Red"/>
+                                </Border.Effect>
+                                <TextBlock 
+                                Text="Nguyễn Phạm Thanh Phong" 
+                                FontFamily="{StaticResource boldFont}"
+                                TextWrapping="Wrap" 
+                                Foreground="White"
+                                FontSize="24" 
+                                MaxHeight="80" 
+                                />
+                            </Border>
+
+                        </Grid>
+                        <Canvas Background="#E8F9FD"  Width="272" Height="36">
+                            <TextBlock 
+                            x:Name="txtSlide" 
+                            FontFamily="{StaticResource boldFont}"  
+                            Text="Staff" FontSize="25" Foreground="Red" 
+                            Canvas.Left="0" Canvas.Top="0"/>
+                            <Canvas.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="txtSlide" 
+                                        Storyboard.TargetProperty="(Canvas.Left)"
+                                        From="0" To="200" Duration="0:0:2.5"
+                                        RepeatBehavior="Forever"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Canvas.Triggers>
+                        </Canvas>
+
+                        <StackPanel Margin="0 20">
+                            <RadioButton x:Name="radiobutton1"  
+                                     FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}"  Tag="Home"
+                                     Height="45" Content="Home"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+                            <RadioButton 
+                                     Tag="Cutlery"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                                     Height="45" Content="Product"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+                            <RadioButton 
+                                     Tag="ShoppingCart"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                                     Height="45" Content="Bills"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+                            <RadioButton 
+                                     Tag="Male"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Customer"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+                            <RadioButton 
+                                     Tag="AddressCard"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Managing"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+                            <RadioButton 
+                                     Tag="Coffee"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Ingredient"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+                            <RadioButton 
+                                     Tag="Gear"
+                            FontFamily="{StaticResource boldFont}"
+                                     Background="{StaticResource menu_button_color}" 
+                            HorizontalContentAlignment="Center"
+                                     Height="45" Content="Settings"
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                            </RadioButton>
+
+
+                            <!--<RadioButton Style="{StaticResource RadioButton}">
+                            
+                        </RadioButton>-->
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Border>
+                <!--end left Element-->
+                <!--<Image Source="/IMAGE/burger.png"></Image>-->
+
+
+                <Grid Grid.Column="1">
+                    <Frame Source="/Views/Pages/ProductPage.xaml"/>
+                </Grid>
+                
+                
+
+
+
+            </Grid>
+        </Border>
+        <!--<views:DashBoard/>-->
     </Grid>
 </Window>

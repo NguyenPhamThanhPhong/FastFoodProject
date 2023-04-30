@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              Foreground="White"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{x:Null}" Height="700" Width="1200">
+             Background="{x:Null}" Height="700" Width="1400">
     <UserControl.Resources>
 
         <Storyboard x:Key="scaleUp">
@@ -27,7 +27,6 @@
     </UserControl.Resources>
 
     <Border CornerRadius="25" Background="Black">
-
         <Grid >
             <!--<Grid.Background>
                 <LinearGradientBrush>
@@ -37,8 +36,11 @@
             </Grid.Background>-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="800"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" CornerRadius="40" Background="{StaticResource PageBackground}"/>
+            <Border Grid.Column="2" CornerRadius="40" Background="LightBlue"/>
 
             <!--first element-->
             <Border BorderBrush="Red" BorderThickness="2" Margin="20 10 0 20" CornerRadius="15" >

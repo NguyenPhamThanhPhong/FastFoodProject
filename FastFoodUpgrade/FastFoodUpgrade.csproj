@@ -196,6 +196,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AdvancedSearchCommand\ProductAdvancedSearchCommand.cs" />
+    <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DragDropCommands\DropCommand.cs" />
     <Compile Include="Commands\DragDropCommands\MouseDownDrag.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManagingViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\RightSplitTask\ProductAdvancedSearch.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Pages\BillPage.xaml.cs">
       <DependentUpon>BillPage.xaml</DependentUpon>
@@ -251,6 +254,9 @@
     <Compile Include="Views\Pages\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SplitTaskTable\ProductPageSplit.xaml.cs">
+      <DependentUpon>ProductPageSplit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
@@ -283,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SplitTaskTable\ProductPageSplit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -383,7 +393,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\RightSplitTask\" />
     <Folder Include="Views\ViewForm\" />
   </ItemGroup>
   <ItemGroup>

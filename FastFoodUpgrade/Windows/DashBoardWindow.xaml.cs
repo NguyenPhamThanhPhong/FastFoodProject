@@ -44,5 +44,8 @@ namespace FastFoodUpgrade.Windows
             }
             MessageBox.Show(str);
         }
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

@@ -9,7 +9,7 @@
     <Grid Background="Transparent">
         <ListView 
                         x:Name="listviewfood"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding products}">
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding products,IsAsync=True}">
             <ListView.Resources>
                 <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource whiteGrayScrollbar}"/>
             </ListView.Resources>

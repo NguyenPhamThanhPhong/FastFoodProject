@@ -7,7 +7,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using MongoDB.Bson;
-
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace FastFoodUpgrade.ViewModels
 {
@@ -43,7 +44,7 @@ namespace FastFoodUpgrade.ViewModels
         public string SearchString
         {
             get { return _searchString; }
-            set { _searchString = value; Search(); }
+            set { _searchString = value; OnPropertyChanged(nameof(SearchString)); Search(); }
         }
         // Selected item for drag&drop
         public Product SelectedItem { get; set; }
@@ -73,32 +74,47 @@ namespace FastFoodUpgrade.ViewModels
             List<String> DistinctTypes = db.ReadDistinctString("Type");
             this._types = new ObservableCollection<String>(DistinctTypes);
         }
+        public void DatabaseChangedTrigger()
+        {
+            OnPropertyChanged(nameof(Types));
+            OnPropertyChanged(nameof(products));
+        }
 
         private void Search()
         {
-            List<Product> result = new List<Product>();
-
-            if (!String.IsNullOrEmpty(SearchString))
+            Task.Run(() => 
             {
-                DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
-                
-                if (SelectedTypeIndex < 0)
-                {
-                    string searchInput = SearchString.ToLower().Trim();
-                    FilterDefinition<Product> filter = Builders<Product>.Filter.Regex("Name", new BsonRegularExpression(searchInput,"i"));
-                    result = db.ReadFiltered(filter);
-                }
-                else
-                {
-                    string searchInput = SearchString.ToLower().Trim();
-                    FilterDefinition<Product> filter = Builders<Product>.Filter.Regex("Name", new BsonRegularExpression(searchInput, "i")) 
-                        & Builders<Product>.Filter.Eq(p => p.Type, Types[SelectedTypeIndex]);
-                    result = db.ReadFiltered(filter);
-                }
+                List<Product> result = new List<Product>();
 
-            }
-            products.Clear();
-            foreach(Product p in result) { products.Add(p); }
+                if (SearchString!=null)
+                {
+                    DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
+
+                    if (SelectedTypeIndex < 0)
+                    {
+                        string searchInput = SearchString.Trim();
+                        FilterDefinition<Product> filter = Builders<Product>.Filter.Regex("Name", new BsonRegularExpression(searchInput, "i"));
+                        result = db.ReadFiltered(filter);
+                    }
+                    else
+                    {
+                        string searchInput = SearchString.Trim();
+                        FilterDefinition<Product> filter = Builders<Product>.Filter.Regex("Name", new BsonRegularExpression(searchInput, "i"))
+                            & Builders<Product>.Filter.Eq(p => p.Type, Types[SelectedTypeIndex]);
+                        result = db.ReadFiltered(filter);
+                    }
+
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Task.Delay(500);
+                    products.Clear();
+                    foreach (Product p in result) { products.Add(p); }
+                });
+
+
+            });
+
         }
 
 

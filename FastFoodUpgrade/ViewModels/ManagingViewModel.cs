@@ -37,6 +37,10 @@ namespace FastFoodUpgrade.ViewModels
         // Constructor
         public ManagingViewModel()
         {
+            DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
+            List<Staff> stf = db.ReadAll();
+            staffs= new ObservableCollection<Staff>(stf);
+
             //List<Staff> stfs = new fastfooddtbEntities().Staffs.ToList();
             //_staffs = new ObservableCollection<Staff>(stfs);
         }

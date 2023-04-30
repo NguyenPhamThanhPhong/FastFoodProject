@@ -9,20 +9,27 @@
 
       
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="900"
       Title="Product">
     <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
 
+        </Style>
     </Page.Resources>
 
 
-    <Grid>
-        <Border Background="{StaticResource PageBackground}" CornerRadius="40">
+    <Grid Background="Transparent">
+        <Border Background="Transparent" CornerRadius="40">
 
-            <Border.Effect>
+            <!--<Border.Effect>
                 <DropShadowEffect ShadowDepth="10" Color="White"/>
-            </Border.Effect>
+            </Border.Effect>-->
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="850"/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
                 <!--<TextBlock FontSize="50" TextWrapping="Wrap"  Foreground="White" FontFamily="{StaticResource boldFont}" Text="PRODUCT" Margin="31,12,547,606"/>-->
                 <TextBlock FontSize="60" 
                            TextWrapping="Wrap"  
@@ -30,7 +37,7 @@
                            
                            FontFamily="{StaticResource boldFont}" 
                            Text="PRODUCT" 
-                           Margin="29,10,547,599">
+                           Margin="29,10,518,599">
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="25" Color="Red"/>
                     </TextBlock.Effect>
@@ -54,7 +61,7 @@
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="22" Text="Search" 
-                            Margin="450,88,0,0" 
+                            Margin="332,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
                 <!--<Border BorderBrush="LightGray"
                         Padding="0 0 0 0"
@@ -64,24 +71,25 @@
                                 
                                 CornerRadius="10">
                 </Border>-->
-                <TextBox Margin="440,125,0,0"
+                <TextBox Margin="306,122,0,0"
                          Background="#3d4142"
                          CaretBrush="White"
+                         Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
                                 VerticalAlignment="Top"
                                 Foreground="White" 
                                 HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="256">
 
                 </TextBox>
-                <Button Margin="730,125,40,0" Height="54" VerticalAlignment="Top"/>
+                <Button Margin="632,122,100,0" Height="54" VerticalAlignment="Top"/>
 
-                <ComboBox
+                <!--<ComboBox
                         BorderBrush="White"
                         FontSize="11"
                         FontFamily="{StaticResource boldFont}"
                         Foreground="White"
                         BorderThickness="2 2 2 2"
                         SelectedIndex="0"
-                         Margin="31,125,708,0" VerticalAlignment="Top" Height="54">
+                         Margin="31,125,670,0" VerticalAlignment="Top" Height="54">
                     <ComboBox.Style>
                         <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
                             <Style.Triggers>
@@ -101,16 +109,17 @@
     Content="Item 2" />
                     <ComboBoxItem
     Content="Item 3" />
-                </ComboBox>
+                </ComboBox>-->
                 <ComboBox
-                    
+                        x:Name="ComboboxFilter"
                         BorderBrush="White"
                         FontSize="11"
                         FontFamily="{StaticResource boldFont}"
                         Foreground="White"
                         BorderThickness="2 2 2 2"
-                        SelectedIndex="0"
-                         Margin="233,125,497,0" VerticalAlignment="Top" Height="54">
+                        ItemsSource="{Binding Types}"
+                        SelectedIndex="{Binding SelectedTypeIndex}"
+                         Margin="29,122,599,0" VerticalAlignment="Top" Height="54">
                     <ComboBox.Style>
                         <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
                             <Style.Triggers>
@@ -123,65 +132,32 @@
                             </Style.Triggers>
                         </Style>
                     </ComboBox.Style>
-
-                    <ComboBoxItem Background="Black"
-    Content="Burger cheese" />
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="20" Foreground="AliceBlue" Background="Gray" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
                 <!--listview food here-->
                 <Grid   Background="Transparent"
                         Margin="29,205,10,0">
                     <listviews:ProductListView SelectCommand="{Binding LeftMouseButtonDownCommand}"/>
                 </Grid>
-                <Grid x:Name="Drawer"  Background="White" Margin="0 500 0 0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <Border Grid.RowSpan="2" CornerRadius="40" Background="#333939" Opacity="0.8" />
 
-                    <listviews:DrawerListView DropCommand="{Binding DropProductCommand}"/>
-                    <Border x:Name="DrawerButton"
+                <Grid Grid.Column="1">
+
+
+
+                    <Grid VerticalAlignment="Bottom" MinHeight="250" Margin="0,0,0,0">
+                        <Border x:Name="DrawerButton"
                             Height="35"
                             VerticalAlignment="Top"
-                            MouseDown="DrawerButton_MouseDown"
-                            MouseMove="DrawerButton_MouseMove"
-                            MouseUp="DrawerButton_MouseUp"
                             BorderThickness="0" Background="Green" Cursor="Hand">
-                    </Border>
-
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel>
-                            <TextBlock 
-                            Foreground="Black" TextWrapping="Wrap"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Total:           1.800.000.000 VND" 
-                            Margin="50,0,0,0" 
-                            />
-                            <TextBlock 
-                            Foreground="Black" TextWrapping="Wrap"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Discount: 1.800.000.000 VND" 
-                            Margin="50,0,0,0"  />
-                            <TextBlock 
-                            Foreground="Black" TextWrapping="Wrap"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Paid:             1.800.000.000 VND" 
-                            Margin="50,0,0,0"  />
-                        </StackPanel>
-                        <Button Height="50" Width="300" FontSize="26" Content="Print Bill" Grid.Column="1" Margin="52,10,52,47"/>
-
+                        </Border>
                     </Grid>
                 </Grid>
+
+
 
 
 
