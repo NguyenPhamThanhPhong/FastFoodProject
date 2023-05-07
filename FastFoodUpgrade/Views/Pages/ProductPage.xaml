@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:FastFoodUpgrade.Views"
       xmlns:listviews="clr-namespace:FastFoodUpgrade.Views.ListViews"
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
+    xmlns:splitTask="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
       
       mc:Ignorable="d" 
       Title="Product">
@@ -31,13 +31,13 @@
                     <ColumnDefinition Width="350"/>
                 </Grid.ColumnDefinitions>
                 <!--<TextBlock FontSize="50" TextWrapping="Wrap"  Foreground="White" FontFamily="{StaticResource boldFont}" Text="PRODUCT" Margin="31,12,547,606"/>-->
-                <TextBlock FontSize="60" 
+                <TextBlock FontSize="50" 
                            TextWrapping="Wrap"  
                            Foreground="White"
                            
                            FontFamily="{StaticResource boldFont}" 
                            Text="PRODUCT" 
-                           Margin="29,10,518,599">
+                           Margin="29,10,509,610">
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="25" Color="Red"/>
                     </TextBlock.Effect>
@@ -61,7 +61,7 @@
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="22" Text="Search" 
-                            Margin="332,88,0,0" 
+                            Margin="256,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
                 <!--<Border BorderBrush="LightGray"
                         Padding="0 0 0 0"
@@ -71,16 +71,17 @@
                                 
                                 CornerRadius="10">
                 </Border>-->
-                <TextBox Margin="306,122,0,0"
+                <TextBox Margin="242,121,0,0"
                          Background="#3d4142"
                          CaretBrush="White"
                          Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
                                 VerticalAlignment="Top"
                                 Foreground="White" 
-                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="256">
+                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="244" Height="46">
 
                 </TextBox>
-                <Button Margin="632,122,100,0" Height="54" VerticalAlignment="Top"/>
+                <Button Margin="523,122,209,0" Height="45" VerticalAlignment="Top" Click="Button_Click"/>
+                <Button Margin="676,123,56,0" Height="45" Content="create bill" VerticalAlignment="Top" Click="Button_Click_1"/>
 
                 <!--<ComboBox
                         BorderBrush="White"
@@ -119,7 +120,7 @@
                         BorderThickness="2 2 2 2"
                         ItemsSource="{Binding Types}"
                         SelectedIndex="{Binding SelectedTypeIndex}"
-                         Margin="29,122,599,0" VerticalAlignment="Top" Height="54">
+                         Margin="29,122,633,0" VerticalAlignment="Top" Height="46">
                     <ComboBox.Style>
                         <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
                             <Style.Triggers>
@@ -143,10 +144,12 @@
                         Margin="29,205,10,0">
                     <listviews:ProductListView SelectCommand="{Binding LeftMouseButtonDownCommand}"/>
                 </Grid>
+                <Grid x:Name="RightSplitTable" Grid.Column="1" >
+                    <splitTask:ProductPageSplit/>
+                </Grid>
 
-                <Grid Grid.Column="1">
 
-
+                <!--<Grid Grid.Column="1">
 
                     <Grid VerticalAlignment="Bottom" MinHeight="250" Margin="0,0,0,0">
                         <Border x:Name="DrawerButton"
@@ -155,13 +158,7 @@
                             BorderThickness="0" Background="Green" Cursor="Hand">
                         </Border>
                     </Grid>
-                </Grid>
-
-
-
-
-
-
+                </Grid>-->
 
 
             </Grid>

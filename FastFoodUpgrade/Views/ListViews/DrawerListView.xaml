@@ -15,7 +15,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Margin="0 0 0 0" Width="190" Height="170">
+                    <Grid HorizontalAlignment="Left" Margin="10 0 10 0" Width="190" Height="170">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
@@ -42,14 +42,26 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0"
-                                            Text="{Binding price, StringFormat={}{0:N0} VND}" 
+                                            Text="{Binding Merchandise.Price, StringFormat={}{0:N0} VND}" 
                                             TextAlignment="Center" 
                                             FontFamily="{StaticResource boldFont}" 
                                             FontSize="18"
                                             Foreground="White"/>
                             <TextBlock Grid.Row="1"
-                                            Text="{Binding Productname}" 
+                                            Text="{Binding Merchandise.Name}" 
                                             TextAlignment="Center" 
+                                            FontFamily="{StaticResource boldFont}" 
+                                            FontSize="18"
+                                            Foreground="White"/>
+                            <TextBlock Grid.Row="2"
+                                            Text="{Binding SellAmount,StringFormat={} x {0}}" 
+                                            TextAlignment="Right" 
+                                            FontFamily="{StaticResource boldFont}" 
+                                            FontSize="18"
+                                            Foreground="White"/>
+                            <TextBlock Grid.Row="2"
+                                            Text="{Binding DiscountAmount.Value,StringFormat={}Discount: {0} %}" 
+                                            TextAlignment="left" 
                                             FontFamily="{StaticResource boldFont}" 
                                             FontSize="18"
                                             Foreground="White"/>

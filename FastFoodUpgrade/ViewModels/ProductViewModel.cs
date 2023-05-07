@@ -9,6 +9,8 @@ using System.Windows.Input;
 using MongoDB.Bson;
 using System.Threading.Tasks;
 using System.Windows;
+using FastFoodUpgrade.Views.SplitTaskTable;
+using FastFoodUpgrade.ViewModels.RightSplitTask;
 
 namespace FastFoodUpgrade.ViewModels
 {
@@ -59,13 +61,14 @@ namespace FastFoodUpgrade.ViewModels
 
         // Drag & drop command
         public ICommand LeftMouseButtonDownCommand { get; set; }
-        public ICommand DropProductCommand { get; set; }
+
+        // Split Table DataContext
+        public ProductAdvancedSearch SplitTableDataContext { get; }
 
         // Constructor
         public ProductViewModel()
         {
             LeftMouseButtonDownCommand = new MouseDownDrag(this);
-            DropProductCommand = new DropCommand(this);
 
             DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
             List<Product> QueryProducts = db.ReadAll();
@@ -73,16 +76,39 @@ namespace FastFoodUpgrade.ViewModels
 
             List<String> DistinctTypes = db.ReadDistinctString("Type");
             this._types = new ObservableCollection<String>(DistinctTypes);
+
+            this.SplitTableDataContext = new ProductAdvancedSearch(this);
         }
         public void DatabaseChangedTrigger()
         {
+            DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
+            List<Product> QueryProducts = db.ReadAll();
+            products.Clear();
+            foreach(Product item in QueryProducts)
+            {
+                products.Add(item);
+            }
+            List<String> DistinctTypes = db.ReadDistinctString("Type");
+            this.Types.Clear();
+            foreach(String type in DistinctTypes)
+            {
+                this.Types.Add(type);
+            }
             OnPropertyChanged(nameof(Types));
             OnPropertyChanged(nameof(products));
         }
-
-        private void Search()
+        public void UpdateListViewResult(List<Product> p)
         {
-            Task.Run(() => 
+            this.products.Clear();
+            foreach(Product pp in p)
+            {
+                products.Add(pp);
+            }
+        }
+
+        private async void Search()
+        {
+            await Task.Run(() => 
             {
                 List<Product> result = new List<Product>();
 

@@ -13,7 +13,7 @@ namespace FastFoodUpgrade.Models
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.Int64)]
 
-        public int ID { get; }
+        public int ID { get; set; }
         public string Fullname { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

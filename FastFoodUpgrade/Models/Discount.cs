@@ -12,8 +12,11 @@ namespace FastFoodUpgrade.Models
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         private string _id;
-        public float Value { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public float Value { get; set; } = 0;
+        public DateTime StartDate { get; set; } = DateTime.Today;
+        public DateTime EndDate { get; set; } = new DateTime(DateTime.Today.Year, 12, 31);
+        public Discount() 
+        {
+        }
     }
 }

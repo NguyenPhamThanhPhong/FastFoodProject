@@ -60,7 +60,7 @@
                             <Setter Property="Visibility" Value="Hidden" TargetName="watermark"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
-                            <Setter Property="Visibility" Value="Visible" TargetName="watermark"/>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="watermark"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="1">
                             <Setter Property="Visibility" Value="Visible" TargetName="watermark"/>
@@ -70,5 +70,83 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="NormalTextbox" TargetType="{x:Type TextBox}">
+        <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+
+                    <Grid Cursor="{TemplateBinding Cursor}">
+                        <Border x:Name="txtborder"
+                                Grid.ColumnSpan="2"
+                            BorderBrush="White"
+                            BorderThickness="0 0 0 0"
+                            CornerRadius="2"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"/>
+                        <ScrollViewer x:Name="PART_ContentHost" 
+                                          Focusable="False"
+                                          FontSize="{TemplateBinding FontSize}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          FontFamily="{TemplateBinding FontFamily}"
+                                          Background="Transparent"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}">
+                        </ScrollViewer>
+
+                        <Label x:Name="watermark" 
+                                   VerticalAlignment="Top" 
+                                   HorizontalAlignment="Left" 
+                                   Margin="5 0 0 0" 
+                                   FontSize="{TemplateBinding FontSize}"
+                                   Foreground="LightGray"
+                                   Content="{TemplateBinding Tag}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="lightgray" TargetName="txtborder"/>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="watermark"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="lightgray" TargetName="txtborder"/>
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="txtborder"/>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="watermark"/>
+                        </Trigger>-->
+                        <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
+                            <Setter Property="Visibility" Value="Visible" TargetName="watermark"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="1">
+                            <Setter Property="Visibility" Value="Hidden" TargetName="watermark"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MyTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="2"
+                            BorderBrush="Gray"
+                            Background="White"
+                            BorderThickness="1"
+                            Padding="2">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Focusable="false"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Margin="0" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -10,8 +10,8 @@ namespace FastFoodUpgrade.Models
     public class Order
     {
         [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.Int64)]
-        public int ID { get; }
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string _id { get;}
         public Product Merchandise { get; set; }
         public int SellAmount { get; set; }
         public Discount DiscountAmount { get; set; }

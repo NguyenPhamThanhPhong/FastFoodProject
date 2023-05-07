@@ -9,12 +9,17 @@
              d:DesignHeight="700" d:DesignWidth="350">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="Yellow"/>
             <Setter Property="FontSize" Value="20"/>
 
         </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
+        </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid >
         <StackPanel>
             <TextBlock 
                         Margin="7"
@@ -41,84 +46,93 @@
                     <DropShadowEffect ShadowDepth="-1" Color="Yellow"/>
                 </Path.Effect>
             </Path>
-            <Grid HorizontalAlignment="Center" >
+            <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource MaterialDesignFont}" Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Name
                 </TextBlock>
-                <TextBox Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="40"  Width="270" Background="White"/>
+                <TextBox Grid.Row="1" Style="{StaticResource NormalTextbox}" 
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding SearchName}"/>
             </Grid>
-            <Grid HorizontalAlignment="Center" >
+            <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource MaterialDesignFont}" Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Product Types
                 </TextBlock>
-                <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                <ComboBox 
+                          ItemsSource="{Binding Types}"
+                          SelectedIndex="{Binding SearchTypeIndex}"
                                       Grid.Row="1" Height="40"  Width="270" Background="White">
 
                 </ComboBox>
             </Grid>
-            <Grid HorizontalAlignment="Center" >
+            <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource MaterialDesignFont}" Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Product Price
                 </TextBlock>
 
                 <Grid Width="270" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock FontFamily="{StaticResource MaterialDesignFont}" 
+                    <TextBlock FontFamily="{StaticResource boldFont}" 
                                             FontSize="16"
                                            Grid.Row="0" Grid.Column="0">
-                                Product Price
+                                From
                     </TextBlock>
-                    <TextBlock FontFamily="{StaticResource MaterialDesignFont}" 
-                                           FontSize="16"
-                                           Grid.Row="0" Grid.Column="1">
-                                Product Price
+                    <TextBlock FontFamily="{StaticResource boldFont}" 
+                                           FontSize="16" Margin="10 0"
+                                           Grid.Row="0" Grid.Column="2">
+                                To
                     </TextBlock>
-                    <TextBox HorizontalAlignment="Left" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    <TextBox HorizontalAlignment="Left" Style="{StaticResource NormalTextbox}" 
+                             Text="{Binding PriceFrom}"
                                           Height="40" Width="110" Grid.Row="1"  Background="White"/>
 
-                    <TextBox HorizontalAlignment="Right" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                          Height="40" Width="110"  Background="White"
-                                         Grid.Column="1" Grid.Row="1"/>
+                    <TextBox  Style="{StaticResource NormalTextbox}" 
+                             Text="{Binding PriceTo}"
+                             Height="40" Width="110"  Background="White"
+                                         Grid.Column="2" Grid.Row="1"/>
                 </Grid>
 
             </Grid>
-            <Grid HorizontalAlignment="Center" >
+            <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource MaterialDesignFont}" Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Remaining Quantities
                 </TextBlock>
-                <TextBox Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="40"  Width="270" Background="White"/>
+                <TextBox Grid.Row="1" 
+                         Text="{Binding RemainingQuantity}"
+                         Style="{StaticResource NormalTextbox}" Height="40"  Width="270" Background="White"/>
             </Grid>
-            <Grid HorizontalAlignment="Center" >
+            <Grid HorizontalAlignment="Center" Margin="0 5"  >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource MaterialDesignFont}" Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Product Price
                 </TextBlock>
 
@@ -131,74 +145,35 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock FontFamily="{StaticResource MaterialDesignFont}" 
+                    <TextBlock FontFamily="{StaticResource boldFont}" 
                                             FontSize="16"
                                            Grid.Row="0" Grid.Column="0">
-                                DiscountFrom
+                                From
                     </TextBlock>
-                    <TextBlock FontFamily="{StaticResource MaterialDesignFont}" 
+                    <TextBlock FontFamily="{StaticResource boldFont}" 
                                            FontSize="16"
                                            Grid.Row="0" Grid.Column="1">
-                                DiscountTo
+                                To
                     </TextBlock>
-                    <TextBox HorizontalAlignment="Left" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                          Height="40" Width="110" Grid.Row="1"  Background="White"/>
+                    <TextBox HorizontalAlignment="Left" Style="{StaticResource NormalTextbox}" 
+                             Text="{Binding DiscountAmountFrom}"
+                             Height="40" Width="110" Grid.Row="1"  Background="White"/>
 
-                    <TextBox HorizontalAlignment="Right" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                          Height="40" Width="110"  Background="White"
+                    <TextBox HorizontalAlignment="Right" Style="{StaticResource NormalTextbox}" 
+                             Text="{Binding DiscountAmountTo}"
+                             Height="40" Width="110"  Background="White"
                                          Grid.Column="1" Grid.Row="1"/>
                 </Grid>
 
             </Grid>
-
-        </StackPanel>
-        <Grid x:Name="Drawer"  Background="Transparent" Margin="0,431,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
-            <Border Grid.RowSpan="2" CornerRadius="40" Background="#333939"  />
-
-            <listviews:DrawerListView DropCommand="{Binding DropProductCommand}"/>
-            <Border x:Name="DrawerButton"
-                            Height="35"
-                            VerticalAlignment="Top"
-                            MouseDown="DrawerButton_MouseDown"
-                            MouseMove="DrawerButton_MouseMove"
-                            MouseUp="DrawerButton_MouseUp"
-                            BorderThickness="0" Background="Green" Cursor="Hand">
-            </Border>
-
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <TextBlock 
-                            Foreground="Black" TextWrapping="Wrap"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Total:           1.000.000 VND" 
-                            Margin="0,0,0,0" Height="33" Width="274" 
-                            />
-                    <TextBlock 
-                            Foreground="Black" TextWrapping="Wrap"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Discount: 1.000.000 VND" 
-                            Margin="0,0,0,0"  />
-                    <TextBlock 
-                            Foreground="Black" TextWrapping="Wrap"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            FontFamily="{StaticResource boldFont}" 
-                            FontSize="22" Text="Paid:             1.000.000 VND" 
-                            Margin="0,0,0,0"  />
-                </StackPanel>
-                <!--<Button Height="50" Width="300" FontSize="26" Content="Print Bill" Grid.Column="1" Margin="52,10,52,47"/>-->
-
+            <Grid Margin="35 20">
+                <Button BorderThickness="2" 
+                        Command="{Binding ProductAdvancedSearchCommand}"
+                        BorderBrush="Yellow" Background="{StaticResource menu_button_color}" Height="40" FontSize="20" FontFamily="{StaticResource boldFont}">
+                    Search
+                </Button>
             </Grid>
-        </Grid>
+        </StackPanel>
+
     </Grid>
 </UserControl>

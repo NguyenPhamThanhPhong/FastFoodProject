@@ -22,6 +22,7 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
 
         public override async Task ExecuteAsync(object parameter)
         {
+
             try
             {
                 await Task.Run(() => {
@@ -39,9 +40,20 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
                         & Builders<Product>.Filter.Lt("Price", priceTo)
                         & Builders<Product>.Filter.Lt("Remain", RemainingQuantity)
                         & Builders<Product>.Filter.Gt(p => p.DiscountAmount.Value, discountFrom)
-                        & Builders<Product>.Filter.Gt(p => p.DiscountAmount.Value, discountTo);
+                        & Builders<Product>.Filter.Lt(p => p.DiscountAmount.Value, discountTo);
+                    //                FilterDefinition<Product> filter = Builders<Product>.Filter.Regex("Name", new BsonRegularExpression("rek", "i"))
+                    //& Builders<Product>.Filter.Regex("Type", new BsonRegularExpression("drinks", "i"))
+                    //& Builders<Product>.Filter.Gt("Price", 0)
+                    //& Builders<Product>.Filter.Lt("Price", 110000)
+                    //& Builders<Product>.Filter.Lt("Remain", 500)
+                    //& Builders<Product>.Filter.Gt(p => p.DiscountAmount.Value, 0)
+                    //& Builders<Product>.Filter.Lt(p => p.DiscountAmount.Value, 100000000);
                     DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
-                    db.ReadFiltered(filter);
+                    List<Product> results = db.ReadFiltered(filter);
+                    Application.Current.Dispatcher.Invoke(() => {
+                        currentAdvancedSearch.pvm.UpdateListViewResult(results);
+                    });
+                    
                 });
 
 

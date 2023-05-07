@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FastFoodUpgrade.Models;
 using FastFoodUpgrade.ViewModels;
+using FastFoodUpgrade.Views.InsertForm;
+
 namespace FastFoodUpgrade.Views.Pages
 {
     /// <summary>
@@ -24,6 +27,11 @@ namespace FastFoodUpgrade.Views.Pages
         {
             InitializeComponent();
             this.DataContext = new ProductViewModel();
+            RightSplitTable.DataContext = (this.DataContext as ProductViewModel).SplitTableDataContext;
+            //Task.Run(() => {
+
+            //});
+
             //mylistview.ItemsSource = new List<string> { "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl" };
         }
         //Handle Drag&Drop getting object
@@ -66,6 +74,24 @@ namespace FastFoodUpgrade.Views.Pages
             return current as T;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            InsertProductForm f = new InsertProductForm();
+            f.ShowDialog();
+            ProductViewModel pvm = this.DataContext as ProductViewModel;
+            pvm.DatabaseChangedTrigger();
+        }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Staff s = new Staff()
+            {
+                Fullname = "john",
+                ID = 5
+            };
+            InsertBillForm f = new InsertBillForm(s);
+            f.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            f.Show();
+        }
     }
 }

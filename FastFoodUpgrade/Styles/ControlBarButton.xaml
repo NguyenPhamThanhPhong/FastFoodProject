@@ -4,7 +4,7 @@
     <ImageBrush x:Key="close_icon" ImageSource="/icons/close.png"/>
     <ImageBrush x:Key="close_hover_icon" ImageSource="/icons/close hover.png"/>
 
-    <Style x:Key="minimize" TargetType="{x:Type Button}">
+    <Style x:Key="CloseButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="25"></Setter>
         <Setter Property="Width" Value="25"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>

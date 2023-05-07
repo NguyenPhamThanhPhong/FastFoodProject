@@ -12,11 +12,11 @@ namespace FastFoodUpgrade.Models
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.Int64)]
 
-        public int ID { get; }
+        public int ID { get; set; }
         public Customer CustomerPurchaser  { get; set; }
         public Staff SaleStaff { get; set; }    
         public DateTime BillDate { get; set; }
-        public Discount DiscountAmount { get; set; }
+        public float DiscountAmount { get; set; }
         public int Total { get; set; }
         public List<Order>  Orders { get; set; }
 

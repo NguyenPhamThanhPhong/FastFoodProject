@@ -28,9 +28,9 @@ namespace FastFoodUpgrade.Windows
 
         private void insertbutton_Click(object sender, RoutedEventArgs e)
         {
-            DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
-            Product P = new Product() { Name = "Burger", Type = "burger1", Avatar = "P001" };
-            db.Insert(P);
+            //DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
+            //Product P = new Product() { Name = "Burger", Type = "burger1", Avatar = "P001" };
+            //db.Insert(P);
         }
 
         private void viewbutton_Click(object sender, RoutedEventArgs e)

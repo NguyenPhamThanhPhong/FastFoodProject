@@ -28,36 +28,36 @@ namespace FastFoodUpgrade.Views.SplitTaskTable
         private double originalTop = 0;
         private void DrawerButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            isDragging = true;
+            //isDragging = true;
 
-            Thickness tn = Drawer.Margin;
-            originalTop = tn.Top;
-            DrawerButton.CaptureMouse();
+            //Thickness tn = Drawer.Margin;
+            //originalTop = tn.Top;
+            //DrawerButton.CaptureMouse();
         }
 
         private async void DrawerButton_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isDragging)
-            {
-                Point position = e.GetPosition(this);
-                //double yy = position.Y;
-                double top = position.Y;
-                if (top < 0)
-                {
-                    top = 0;
-                }
-                else if (top > 500)
-                {
-                    top = 500;
-                }
-                Drawer.Margin = new Thickness(0, top, 0, 0);
-            }
+            //if (isDragging)
+            //{
+            //    Point position = e.GetPosition(this);
+            //    //double yy = position.Y;
+            //    double top = position.Y;
+            //    if (top < 0)
+            //    {
+            //        top = 0;
+            //    }
+            //    else if (top > 500)
+            //    {
+            //        top = 500;
+            //    }
+            //    Drawer.Margin = new Thickness(0, top, 0, 0);
+            //}
         }
 
         private void DrawerButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            isDragging = false;
-            DrawerButton.ReleaseMouseCapture();
+            //isDragging = false;
+            //DrawerButton.ReleaseMouseCapture();
         }
     }
 }

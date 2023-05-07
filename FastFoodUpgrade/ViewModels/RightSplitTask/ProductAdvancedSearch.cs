@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using FastFoodUpgrade.Commands;
+using FastFoodUpgrade.Commands.AdvancedSearchCommand;
 
 namespace FastFoodUpgrade.ViewModels.RightSplitTask
 {
@@ -24,24 +27,25 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
         public ObservableCollection<String> Types
         {
             get { return _types; }
+            set { _types = value; OnPropertyChanged(nameof(Types)); }
         }
 
         // Selected Type
-        private int _searchTypeIndex;
+        private int _searchTypeIndex = -1;
         public int SearchTypeIndex
         {
             get { return _searchTypeIndex; }
             set { _searchTypeIndex = value; OnPropertyChanged(nameof(SearchTypeIndex)); }
         }
         // Price
-        private int _priceFrom;
+        private int _priceFrom = 0;
         public int PriceFrom
         {
             get { return _priceFrom; }
             set { _priceFrom = value; OnPropertyChanged(nameof(PriceFrom)); }
         } 
 
-        private int _priceTo;
+        private int _priceTo = 0;
         
         public int PriceTo
         {
@@ -49,7 +53,7 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             set { _priceTo = value; OnPropertyChanged(nameof(PriceTo)); }
         }
         // Remaining
-        private int _remainingQuantiy;
+        private int _remainingQuantiy = 0;
         public int RemainingQuantity
         {
             get { return _remainingQuantiy; }
@@ -57,26 +61,29 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
         }
 
         // Discount
-        private float _discountAmountFrom;
+        private float _discountAmountFrom = 0;
         public float DiscountAmountFrom
         {
             get { return _discountAmountFrom; }
             set { _discountAmountFrom = value; OnPropertyChanged(nameof(DiscountAmountFrom)); }
         }
-        private float _discountAmountTo;
+        private float _discountAmountTo = 100;
         public float DiscountAmountTo
         {
             get { return _discountAmountTo; }
             set { _discountAmountTo = value; OnPropertyChanged(nameof(DiscountAmountTo)); }
         }
         public ProductViewModel pvm;
+        public ICommand ProductAdvancedSearchCommand { get; set; }
         public ProductAdvancedSearch(ProductViewModel pvm)
         {
             this.pvm = pvm;
-            foreach(String str in pvm.Types)
-            {
-                this.Types.Add(str);
-            }
+            this.Types = pvm.Types;
+            //foreach(String str in pvm.Types)
+            //{
+            //    this.Types.Add(str);
+            //}
+            this.ProductAdvancedSearchCommand = new ProductAdvancedSearchCommand(this);
         }
         public void DatabaseChangedTrigger()
         {

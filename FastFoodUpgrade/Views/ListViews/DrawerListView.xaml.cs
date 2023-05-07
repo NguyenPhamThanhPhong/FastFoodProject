@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastFoodUpgrade.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,7 +41,7 @@ namespace FastFoodUpgrade.Views.ListViews
         private void ListView_Drop(object sender, DragEventArgs e)
         {
             if(DropCommand!=null) 
-            { 
+            {
                 DropCommand.Execute(e);
             }
         }
