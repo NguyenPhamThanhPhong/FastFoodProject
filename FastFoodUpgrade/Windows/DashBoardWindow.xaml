@@ -184,7 +184,7 @@
 
 
                 <Grid Grid.Column="1">
-                    <Frame Source="/Views/Pages/ProductPage.xaml"/>
+                    <Frame Source="/Views/Pages/CustomerPage.xaml"/>
                 </Grid>
                 
                 

@@ -5,18 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="900"
       Title="BillPage">
 
     <Grid >
-        <Border Background="{StaticResource PageBackground}" CornerRadius="40">
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="10" Color="White"/>
-            </Border.Effect>
-            <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="850"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="500"/>
                 </Grid.RowDefinitions>
                 <TextBlock FontSize="60" 
                            TextWrapping="Wrap"  
@@ -49,7 +48,7 @@
                         Foreground="White"
                         BorderThickness="2 2 2 2"
                         SelectedIndex="{Binding SelectedFilterIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                         Margin="31,125,708,0" VerticalAlignment="Top" Height="54">
+                         Margin="31,125,623,0" VerticalAlignment="Top" Height="54">
                     <ComboBox.Style>
                         <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
                             <Style.Triggers>
@@ -99,25 +98,24 @@
                         </ListView.Resources>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Background="White"  Height="100">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding ID}"/>
-                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Customer.fullname}"/>
-                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding BillDate}"/>
-                                        <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Total}"/>
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="White"  Height="100">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding ID}"/>
+                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Customer.fullname}"/>
+                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding BillDate}"/>
+                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Total}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 </Grid>
 
             </Grid>
-        </Border>
     </Grid>
 </Page>

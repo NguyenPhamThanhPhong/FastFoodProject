@@ -1,12 +1,10 @@
-﻿<UserControl x:Class="FastFoodUpgrade.Views.SplitTaskTable.ProductPageSplit"
+﻿<UserControl x:Class="FastFoodUpgrade.Views.SplitTaskTable.CustomerPageSplit"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
-             xmlns:listviews="clr-namespace:FastFoodUpgrade.Views.ListViews"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="350">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Yellow"/>
@@ -56,7 +54,7 @@
                 </TextBlock>
                 <TextBox Grid.Row="1" Style="{StaticResource NormalTextbox}" 
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding SearchName}"/>
+                         Text="{Binding CustomerName}"/>
             </Grid>
             <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
@@ -64,11 +62,24 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Product Types
+                                Phone
+                </TextBlock>
+                <TextBox Grid.Row="1" Style="{StaticResource NormalTextbox}" 
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding Phone}"/>
+            </Grid>
+
+            <Grid HorizontalAlignment="Center" Margin="0 5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
+                                Rank
                 </TextBlock>
                 <ComboBox 
-                          ItemsSource="{Binding Types}"
-                          SelectedIndex="{Binding SearchTypeIndex}"
+                          ItemsSource="{Binding Ranks}"
+                          SelectedIndex="{Binding SelectedRank}"
                                       Grid.Row="1" Height="40"  Width="270" Background="White">
 
                 </ComboBox>
@@ -77,13 +88,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Product Price
+                                Total Revenue
                 </TextBlock>
 
-                <Grid Width="270" Grid.Row="2">
+                <Grid Width="270" Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="20"/>
@@ -104,71 +114,20 @@
                                 To
                     </TextBlock>
                     <TextBox HorizontalAlignment="Left" Style="{StaticResource NormalTextbox}" 
-                             Text="{Binding PriceFrom}"
+                             Text="{Binding RevenueFrom}"
                                           Height="40" Width="110" Grid.Row="1"  Background="White"/>
 
                     <TextBox  Style="{StaticResource NormalTextbox}" 
-                             Text="{Binding PriceTo}"
+                             Text="{Binding RevenueTo}"
                              Height="40" Width="110"  Background="White"
                                          Grid.Column="2" Grid.Row="1"/>
                 </Grid>
 
             </Grid>
-            <Grid HorizontalAlignment="Center" Margin="0 5" >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Remaining Quantities
-                </TextBlock>
-                <TextBox Grid.Row="1" 
-                         Text="{Binding RemainingQuantity}"
-                         Style="{StaticResource NormalTextbox}" Height="40"  Width="270" Background="White"/>
-            </Grid>
-            <Grid HorizontalAlignment="Center" Margin="0 5"  >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Discount
-                </TextBlock>
 
-                <Grid Width="270" Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock FontFamily="{StaticResource boldFont}" 
-                                            FontSize="16"
-                                           Grid.Row="0" Grid.Column="0">
-                                From
-                    </TextBlock>
-                    <TextBlock FontFamily="{StaticResource boldFont}" 
-                                           FontSize="16"
-                                           Grid.Row="0" Grid.Column="1">
-                                To
-                    </TextBlock>
-                    <TextBox HorizontalAlignment="Left" Style="{StaticResource NormalTextbox}" 
-                             Text="{Binding DiscountAmountFrom}"
-                             Height="40" Width="110" Grid.Row="1"  Background="White"/>
-
-                    <TextBox HorizontalAlignment="Right" Style="{StaticResource NormalTextbox}" 
-                             Text="{Binding DiscountAmountTo}"
-                             Height="40" Width="110"  Background="White"
-                                         Grid.Column="1" Grid.Row="1"/>
-                </Grid>
-
-            </Grid>
             <Grid Margin="35 20">
                 <Button BorderThickness="2" 
-                        Command="{Binding ProductAdvancedSearchCommand}"
+                        Command="{Binding CustomerAdvancedSearchCommand}"
                         BorderBrush="Yellow" Background="{StaticResource menu_button_color}" Height="40" FontSize="20" FontFamily="{StaticResource boldFont}">
                     Search
                 </Button>

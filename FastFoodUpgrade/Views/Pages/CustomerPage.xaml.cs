@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FastFoodUpgrade.ViewModels;
+using FastFoodUpgrade.Views.InsertForm;
+using FastFoodUpgrade.ViewModels.RightSplitTask;
+using FastFoodUpgrade.Models;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -23,6 +27,25 @@ namespace FastFoodUpgrade.Views.Pages
         public CustomerPage()
         {
             InitializeComponent();
+            ComboboxFilter.ItemsSource= new List<string>() {"ID", "Name", "Phone" };
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            InsertCustomerForm f = new InsertCustomerForm();
+            f.ShowDialog();
+            if(this.DataContext !=null)
+            {
+                CustomerViewModel ViewModel = this.DataContext as CustomerViewModel;
+                DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
+                ViewModel.UpdateCustomerList(await db.ReadAllAsync());
+            }
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = await CustomerViewModel.Initialize();
+            //AdvancedSearchGrid.DataContext = new CustomerAdvancedSearch(this.DataContext as CustomerViewModel);
         }
     }
 }

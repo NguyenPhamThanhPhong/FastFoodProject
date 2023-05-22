@@ -4,100 +4,107 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views"
+    xmlns:splitTask="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
+      xmlns:listview="clr-namespace:FastFoodUpgrade.Views.ListViews"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="900"
+      Loaded="Page_Loaded"
       Title="Customer">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
 
-    <Grid Margin="15 5" Grid.Column="1">
-        <Border BorderThickness="3" BorderBrush="Red">
-            <Border.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="#FFC72C" Offset="0.01"/>
-                    <GradientStop Color="#27251F" Offset="0.09"/>
-                    <GradientStop Color="#27251F" Offset="0.87"/>
-                    <GradientStop Color="#FFC72C" Offset="0.99"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="7" Color="Red"/>
-            </Border.Effect>
-            <!--<Grid Background="Transparent">
-                        <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="White" FontFamily="{StaticResource boldFont}" Text="HOME PAGE" Margin="31,12,547,606"/>
-                        <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="Red" FontFamily="{StaticResource boldFont}" Text="HOME PAGE" Margin="29,10,547,606"/>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="15 5" Grid.Column="1" Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="850"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
 
-                    </Grid>-->
-            <Grid Background="Transparent" Margin="0,0,0,19">
-                <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="White" FontFamily="{StaticResource boldFont}" Text="CUSTOMER" Margin="31,12,547,606"/>
-                <TextBlock FontSize="45" TextWrapping="Wrap"  Foreground="Red" FontFamily="{StaticResource boldFont}" Text="CUSTOMER" Margin="29,10,547,599"/>
+        <Grid Background="Transparent" Margin="0,0,0,19">
+            <TextBlock FontSize="50" 
+                           TextWrapping="Wrap"  
+                           Foreground="White"
+                           FontFamily="{StaticResource boldFont}" 
+                           Text="Customer" 
+                           Margin="29,10,509,591">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="Red"/>
+                </TextBlock.Effect>
+            </TextBlock>
 
-                <TextBlock 
+            <TextBlock 
                             Foreground="White"
-                            Width="100" Height="50"
+                            
+                            Width="100" Height="29"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="22" Text="Filter" 
                             Margin="52,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
+            <ComboBox
+                        x:Name="ComboboxFilter"
+                        BorderBrush="White"
+                Background="Transparent"
+                        FontSize="11"
+                        FontFamily="{StaticResource boldFont}"
+                        Foreground="White"
+                        BorderThickness="2 2 2 2"
+                        SelectedIndex="{Binding SelectedIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                Style="{StaticResource DarkThemeCombobox}"
+                         Width="194" Height="46" Margin="29,121,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding }" Width="170" FontSize="20"  Foreground="AliceBlue" Padding="3 0" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-                <ComboBox
-                            Background="White"
-                            Width="166"
-                            Style="{StaticResource 
-                            MaterialDesignOutlinedComboBox}"
-                            BorderBrush="LightGray"
-                            BorderThickness="3"
-                            Margin="29,125,0,0" 
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            SelectedIndex="0"
-                            >
 
-                    <ComboBoxItem FontSize="14">lkasd</ComboBoxItem>
-                </ComboBox>
-                <TextBlock 
+            <TextBlock 
                             Foreground="White"
-                            Width="102" Height="50"
+                            Width="102" Height="33"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="22" Text="Search" 
-                            Margin="305,89,0,0" 
+                            Margin="256,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
-                <Border BorderBrush="LightGray"
+            <!--<Border BorderBrush="LightGray"
+                        Padding="0 0 0 0"
                                 BorderThickness="3"
                                 Background="White"
-                                Width="308" Height="54"
-                                Margin="0,125,0,0"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Center"
+                                Width="271" Height="54"
+                                
                                 CornerRadius="10">
-                    <TextBox 
-                            TextAlignment="Left"
-                             FontSize="20"
-                            Padding="10 0"
-                            Text="gggggg" Margin="3,-3,-3,0">
-                    </TextBox>
-                </Border>
+                </Border>-->
+            <TextBox Margin="242,121,0,0"
+                         Background="#3d4142"
+                         CaretBrush="White"
+                         Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                VerticalAlignment="Top"
+                                Foreground="White" 
+                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="244" Height="46">
 
-                <StackPanel 
-                            >
+            </TextBox>
+            <Button Margin="555,117,177,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
 
-                </StackPanel>
-                <Grid VerticalAlignment="Top"
+            <Grid VerticalAlignment="Top"
                               
                             HorizontalAlignment="Left"
                             Margin="40,202,0,0"
                             Height="50" Width="797" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="67"/>
-                        <ColumnDefinition Width="350"/>
-                        <ColumnDefinition Width="180"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="67"/>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                    <TextBlock Padding="10 0"
+                <TextBlock Padding="10 0"
                                        Margin="0 0"
                             Foreground="White"
                             TextWrapping="Wrap"
@@ -107,23 +114,23 @@
                             FontSize="20" Text="ID" 
 
                             RenderTransformOrigin="0.845,0.596"/>
-                    <TextBlock Grid.Column="1" Padding="40 0"
+                <TextBlock Grid.Column="1" Padding="40 0"
                             Foreground="White"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="20" Text="Name" 
 
-                            RenderTransformOrigin="0.845,0.596"/>
-                    <TextBlock Grid.Column="2"  
+                            RenderTransformOrigin="0.845,0.596" Margin="70,0,0,0"/>
+                <TextBlock Grid.Column="1"  
                             Foreground="White"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="20" Text="Phone Number" 
 
-                            RenderTransformOrigin="0.845,0.596" Width="166"/>
-                    <TextBlock Grid.Column="3" Padding="10 0"
+                            RenderTransformOrigin="0.845,0.596" Width="166" Grid.ColumnSpan="2" Margin="315,0,0,0"/>
+                <TextBlock Grid.Column="3" Padding="10 0"
                             Foreground="White"
                             TextWrapping="Wrap"
                             VerticalAlignment="Center"
@@ -131,50 +138,69 @@
                             FontSize="20" Text="Revenue" 
 
                             RenderTransformOrigin="0.845,0.596" Width="118"/>
-                </Grid>
-                <ListView x:Name="mylistview"
-                            HorizontalAlignment="Left"
+            </Grid>
+            <ListView x:Name="mylistview"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Top"
-                                  
-                            Margin="31,252,0,0" Height="413" Width="823">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ListViewItem >
-                                <Grid  Background="White" Width="800" Height="40">
+                                  ItemsSource="{Binding Customers}"
+                            Margin="0,252,0,0" Height="413" Width="830">
+                <ListView.Resources>
+                    <Style TargetType="TextBlock" >
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ListViewItem >
+                            <Grid Margin="-10 -10"  Width="800" Height="55">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="340"/>
-                                        <ColumnDefinition Width="160"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock VerticalAlignment="Center" 
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="340"/>
+                                    <ColumnDefinition Width="160"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="False">
+                                                <Setter Property="Opacity" Value="1"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Opacity" Value="0.5"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Border Background="White" CornerRadius="20" Grid.ColumnSpan="4"/>
+                                <TextBlock VerticalAlignment="Center" 
                                                Padding="10 0"
-                                               Text="C9999" FontFamily="{StaticResource boldFont}" 
+                                               Text="{Binding ID}" FontFamily="{StaticResource boldFont}" 
                                                FontSize="20"/>
-                                    <TextBlock Grid.Column="1"
+                                <TextBlock Grid.Column="1"
                                                Padding="20 0"
                                                 VerticalAlignment="Center" 
-                                               Text="Nguyễn Phạm Thanh Phong" FontFamily="{StaticResource boldFont}" 
+                                               Text="{Binding Fullname}" FontFamily="{StaticResource boldFont}" 
                                                FontSize="20"/>
-                                    <TextBlock Grid.Column="2"
+                                <TextBlock Grid.Column="2"
                                                 VerticalAlignment="Center" 
-                                               Text="0932816560" FontFamily="{StaticResource boldFont}" 
+                                               Text="{Binding Phone}" FontFamily="{StaticResource boldFont}" 
                                                FontSize="20"/>
-                                    <TextBlock Grid.Column="3"
+                                <TextBlock Grid.Column="3"
                                                Padding="10 0 20 0"
                                                 VerticalAlignment="Center" 
-                                               Text="1.000.000.000VND" FontFamily="{StaticResource boldFont}" 
+                                               Text="{Binding Total}" FontFamily="{StaticResource boldFont}" 
                                                FontSize="20"/>
-                                </Grid>
-                            </ListViewItem>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                            </Grid>
+                        </ListViewItem>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                </ListView>
-
-            </Grid>
-        </Border>
+        </Grid>
+        <Grid  Grid.Column="1">
+            <splitTask:CustomerPageSplit DataContext="{Binding AdvancedSearchViewModel}"/>
+        </Grid>
     </Grid>
 
 </Page>

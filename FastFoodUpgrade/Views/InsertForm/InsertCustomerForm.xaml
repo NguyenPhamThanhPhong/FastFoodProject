@@ -1,0 +1,116 @@
+﻿<Window x:Class="FastFoodUpgrade.Views.InsertForm.InsertCustomerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastFoodUpgrade.Views.InsertForm"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        mc:Ignorable="d"
+        Foreground="White"
+        Loaded="Window_Loaded"
+        Height="302" Width="622">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="Yellow"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="Black" Margin="0,0,0,-24">
+        <Border  Background="Transparent"
+                 Cursor="Cross"
+                 MouseDown="Border_MouseDown"
+                 Height="30"
+                 Margin="0 0 0 0"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left" Width="587"/>
+        <Button 
+            Style="{StaticResource CloseButton}"
+            Width="30" Height="30" Click="Button_Click"/>
+
+        <Grid VerticalAlignment="Top" Margin="20,40,15,0"  Height="189">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox  x:Name="IDtxtbox"
+                Style="{StaticResource NormalTextbox}" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="0 30 0 0"
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding ID}"/>
+            <TextBlock FontFamily="{StaticResource boldFont}" 
+                       Grid.Row="0">
+                                BILLID
+            </TextBlock>
+
+            <TextBox  x:Name="Nametxtbox"
+                Grid.Column="1" 
+                    Style="{StaticResource NormalTextbox}" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="0 30 0 0"
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding Name}"/>
+            <TextBlock Grid.Column="1" Foreground="Yellow"
+                FontFamily="{StaticResource boldFont}" >
+                                Name
+            </TextBlock>
+            <TextBlock Grid.Column="1" Foreground="Red"
+                       FontStyle="Italic"
+                       Margin="0,75,30,80" FontSize="14"
+                FontFamily="{StaticResource boldFont}" Grid.RowSpan="2" Width="280" >
+                                Name should have characters only
+            </TextBlock>
+
+            <TextBox  x:Name="Addresstxtbox"
+                Grid.Column="1" Grid.Row="1"
+                    Style="{StaticResource NormalTextbox}" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="0 30 0 0"
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding Address,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Foreground="Yellow"
+                FontFamily="{StaticResource boldFont}" >
+                                ADDRESS
+            </TextBlock>
+
+            <TextBox x:Name="Phonetxtbox" Grid.Row="1"
+                Style="{StaticResource NormalTextbox}" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="0 30 0 0"
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding Phone,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"/>
+            <TextBlock Grid.Row="1"
+                FontFamily="{StaticResource boldFont}" >
+                                PHONE
+            </TextBlock>
+            <TextBlock Grid.Row="1" Foreground="Red"
+                       FontStyle="Italic" Width="280"
+                       Margin="0,76,20,-15" FontSize="14"
+                FontFamily="{StaticResource boldFont}" >
+                                Phone should have numbers only
+            </TextBlock>
+
+        </Grid>
+        <Button BorderThickness="4" BorderBrush="Green" 
+                FontSize="20"
+            FontFamily="{StaticResource boldFont}"
+                Command="{Binding InsertCustomer}"
+            Background="{StaticResource menu_button_color}" 
+            Content="Create" Height="50" VerticalAlignment="Bottom" Margin="433,0,35,25" />
+        <Button BorderThickness="4" BorderBrush="Green" 
+                FontSize="20"
+            FontFamily="{StaticResource boldFont}"
+            Background="OrangeRed" 
+            Content="Cancel" Height="50" VerticalAlignment="Bottom" Margin="20,0,442,25" Click="Button_Click"/>
+
+    </Grid>
+</Window>

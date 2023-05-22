@@ -196,15 +196,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AdvancedSearchCommand\CustomerAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AdvancedSearchCommand\ProductAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DragDropCommands\DropCommand.cs" />
     <Compile Include="Commands\DragDropCommands\MouseDownDrag.cs" />
     <Compile Include="Commands\InsertCommands\InsertBillCommand.cs" />
+    <Compile Include="Commands\InsertCommands\InsertCustomerCommand.cs" />
     <Compile Include="Commands\InsertCommands\InsertProductCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Converters\TagToIcon.cs" />
+    <Compile Include="Converters\TextToWaterMarkVisibility.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DataProvider.cs" />
@@ -215,17 +218,23 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="ViewModels\BillViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DashBoardViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertBillViewModel.cs" />
+    <Compile Include="ViewModels\InsertFormViewModels\InsertCustomerViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertProductViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManagingViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\RightSplitTask\CustomerAdvancedSearch.cs" />
     <Compile Include="ViewModels\RightSplitTask\ProductAdvancedSearch.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\InsertForm\InsertBillForm.xaml.cs">
       <DependentUpon>InsertBillForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InsertForm\InsertCustomerForm.xaml.cs">
+      <DependentUpon>InsertCustomerForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InsertForm\InsertProductForm.xaml.cs">
       <DependentUpon>InsertProductForm.xaml</DependentUpon>
@@ -263,6 +272,9 @@
     <Compile Include="Views\Pages\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SplitTaskTable\CustomerPageSplit.xaml.cs">
+      <DependentUpon>CustomerPageSplit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SplitTaskTable\ProductPageSplit.xaml.cs">
       <DependentUpon>ProductPageSplit.xaml</DependentUpon>
     </Compile>
@@ -277,6 +289,10 @@
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\InsertForm\InsertBillForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InsertForm\InsertCustomerForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -309,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SplitTaskTable\CustomerPageSplit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

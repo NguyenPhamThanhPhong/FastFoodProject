@@ -68,7 +68,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         public static async Task<InsertBillViewModel> CreateAsync(Staff CurrentWorkingStaff)
         {
             InsertBillViewModel viewModel = new InsertBillViewModel();
-            await viewModel.InitializeAsync( CurrentWorkingStaff);
+            await viewModel.InitializeAsync(CurrentWorkingStaff);
             return viewModel;
         }
 

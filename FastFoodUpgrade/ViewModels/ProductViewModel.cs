@@ -55,7 +55,12 @@ namespace FastFoodUpgrade.ViewModels
         public int SelectedTypeIndex
         {
             get { return _selctedTypeIndex; }
-            set { _selctedTypeIndex = value; OnPropertyChanged(nameof(SelectedTypeIndex)); }
+            set 
+            { 
+                _selctedTypeIndex = value; 
+                Search(); 
+                OnPropertyChanged(nameof(SelectedTypeIndex)); 
+            }
         }
 
 

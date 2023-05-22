@@ -152,8 +152,8 @@
                             FontSize="18"
                             Text="Expiration Date"></TextBlock>
                         <Grid Grid.Row="1" >
-                            <DatePicker SelectedDate="{Binding ExpirationDate,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Background="White">
-
+                            <Border Background="White" CornerRadius="4" />
+                            <DatePicker SelectedDate="{Binding ExpirationDate,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Background="Transparent">
                             </DatePicker>
                         </Grid>
                     </Grid>
