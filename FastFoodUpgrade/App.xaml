@@ -13,6 +13,7 @@
             
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ToggleButtonStyles.xaml"/>
                 <ResourceDictionary Source="Styles/ControlBarButton.xaml"/>
                 <ResourceDictionary Source="Styles/ColourStyle.xaml"/>
                 <ResourceDictionary Source="Styles/TextboxStyle.xaml"/>

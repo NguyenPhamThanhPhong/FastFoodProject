@@ -4,124 +4,152 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
+      xmlns:table="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="900"
       Title="ManagingPage">
 
-    <Grid>
-        <Border Background="{StaticResource PageBackground}" CornerRadius="40">
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="10" Color="White"/>
-            </Border.Effect>
-        </Border>
-        <TextBlock FontSize="60" 
-                   IsHitTestVisible="True"
-                   TextWrapping="Wrap"  
-                   Foreground="White"
-                   FontFamily="{StaticResource boldFont}" 
-                   Text="Managing" 
-                   Margin="29,10,547,599">
-            <TextBlock.Effect>
-                <DropShadowEffect BlurRadius="25" Color="Red"/>
-            </TextBlock.Effect>
-        </TextBlock>
-        <TextBlock 
+    <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="850"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid  >
+            <TextBlock FontSize="50" 
+                           TextWrapping="Wrap"  
+                           Foreground="White"
+                           FontFamily="{StaticResource boldFont}" 
+                           Text="Managing" 
+                           Margin="29,10,509,591">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="Red"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <TextBlock 
                             Foreground="White"
                             
-                            Width="100" Height="50"
+                            Width="100" Height="29"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="22" Text="Filter" 
-                            Margin="47,101,0,0" 
+                            Margin="52,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
-        <ComboBox 
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Left"
-            SelectedIndex="{Binding SelectedIndex}"
-            Margin="29,130,0,0" Width="244" Height="57"
-            BorderThickness="4" BorderBrush="White">
-            <ComboBoxItem Content="All"/>
-            <ComboBoxItem Content="ID"/>
-            <ComboBoxItem Content="Fullname"/>
-            <ComboBoxItem Content="Phone numbers"/>
+            <ComboBox
+                        x:Name="ComboboxFilter"
+                        BorderBrush="White"
+                Background="Transparent"
+                        FontSize="11"
+                        FontFamily="{StaticResource boldFont}"
+                        Foreground="White"
+                        BorderThickness="2 2 2 2"
+                        SelectedIndex="{Binding SelectedFilterIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                Style="{StaticResource DarkThemeCombobox}"
+                         Width="194" Height="46" Margin="29,121,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding }" Width="170" FontSize="20"   Foreground="AliceBlue" Padding="7 0" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-        </ComboBox>
-        <TextBlock 
+
+            <TextBlock 
                             Foreground="White"
-                            Width="102" Height="50"
+                            Width="102" Height="33"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Left"
                             FontFamily="{StaticResource boldFont}" 
                             FontSize="22" Text="Search" 
-                            Margin="450,88,0,0" 
+                            Margin="256,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
-        <TextBox Margin="440,125,0,0"
+            <!--<Border BorderBrush="LightGray"
+                        Padding="0 0 0 0"
+                                BorderThickness="3"
+                                Background="White"
+                                Width="271" Height="54"
+                                
+                                CornerRadius="10">
+                </Border>-->
+            <TextBox Margin="242,121,0,0"
                          Background="#3d4142"
                          CaretBrush="White"
+                         Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                 VerticalAlignment="Top"
-                                Foreground="White"
-                 Text="ja"
-                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="256">
+                                Foreground="White" 
+                                HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="244" Height="46">
 
-        </TextBox>
-        <Grid Margin="29,208,38,10" >
-            <ListView ItemsSource="{Binding staffs}">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Cursor="Hand" Width="371" Height="192">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="110"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Border CornerRadius="20" Background="White" Grid.ColumnSpan="2"  />
-                            <Grid >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Ellipse Height="100" Width="100" Grid.Column="0">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/IMAGE/test.png"/>
-                                    </Ellipse.Fill>
-                                    <Ellipse.Effect>
-                                        <DropShadowEffect ShadowDepth="3"></DropShadowEffect>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-                                    <Border Background="LightGray" CornerRadius="20">
-                                        <TextBlock Padding="7" Text="{Binding ID}" FontFamily="{StaticResource boldFont}" TextWrapping="Wrap"/>
-                                    </Border>
-                                </StackPanel>
+            </TextBox>
+            <Button Margin="555,117,177,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Text="{Binding fullname}" 
-                                               TextWrapping="Wrap" Width="250" 
-                                               FontFamily="{StaticResource boldFont}"/>
-                                    <TextBlock Text="{Binding accessRight, StringFormat={}Position: {0}}" 
-                                               TextWrapping="Wrap" Width="250" 
-                                               FontFamily="{StaticResource boldFont}"/>
-                                    <TextBlock Text="{Binding phone, StringFormat= {}Phonenumbers:{0}}" 
-                                               TextWrapping="Wrap" Width="250" 
-                                               FontFamily="{StaticResource boldFont}"/>
-                                    <TextBlock Text="{Binding addr,StringFormat={}Address: {0}}" 
-                                               TextWrapping="Wrap" Width="250" 
-                                               FontFamily="{StaticResource boldFont}"/>
-                                    
-                                </StackPanel>   
-                            </Grid>
-                            
+            <Grid Margin="29,208,38,10" >
+        <ListView ItemsSource="{Binding taffs}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Cursor="Hand" Width="371" Height="192">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="20" Background="White" Grid.ColumnSpan="2"  />
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Ellipse Height="100" Width="100" Grid.Column="0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/IMAGE/test.png"/>
+                                </Ellipse.Fill>
+                                <Ellipse.Effect>
+                                    <DropShadowEffect ShadowDepth="3"></DropShadowEffect>
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+                                <Border Background="LightGray" CornerRadius="20">
+                                    <TextBlock Padding="7" Text="{Binding ID}" FontFamily="{StaticResource boldFont}" TextWrapping="Wrap"/>
+                                </Border>
+                            </StackPanel>
+
                         </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        <Grid Grid.Column="1">
+                            <StackPanel Margin="10 10 0 0">
+                                <TextBlock Text="{Binding fullname}" 
+                                               TextWrapping="Wrap" Width="250" 
+                                               FontFamily="{StaticResource boldFont}"/>
+                                <TextBlock Text="{Binding accessRight, StringFormat={}Position: {0}}" 
+                                               TextWrapping="Wrap" Width="250" 
+                                               FontFamily="{StaticResource boldFont}"/>
+                                <TextBlock Text="{Binding phone, StringFormat= {}Phonenumbers:{0}}" 
+                                               TextWrapping="Wrap" Width="250" 
+                                               FontFamily="{StaticResource boldFont}"/>
+                                <TextBlock Text="{Binding addr,StringFormat={}Address: {0}}" 
+                                               TextWrapping="Wrap" Width="250" 
+                                               FontFamily="{StaticResource boldFont}"/>
+
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+
+        </Grid>
+        <Grid  Grid.Column="1">
+            <table:ManagingPageSplit/>
         </Grid>
     </Grid>
+
+
 </Page>
+    
+    

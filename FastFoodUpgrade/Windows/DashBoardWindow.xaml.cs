@@ -24,6 +24,8 @@ namespace FastFoodUpgrade.Windows
         public DashBoardWindow()
         {
             InitializeComponent();
+            this.DataContext = new DashBoardViewModel();
+            //MyFrame.Source = new Uri("/Views/Pages/CustomerPage.xaml",UriKind.Relative);
         }
 
         private void insertbutton_Click(object sender, RoutedEventArgs e)
@@ -46,6 +48,38 @@ namespace FastFoodUpgrade.Windows
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            (this.DataContext as DashBoardViewModel).SwitchHomePage();
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DashBoardViewModel).SwitchProductPage();
+
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DashBoardViewModel).SwitchBillPage();
+        }
+
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DashBoardViewModel).SwitchCustomerPage();
+        }
+
+        private void RadioButton_Checked_4(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DashBoardViewModel).SwitchManagingPage();
+        }
+
+        private void RadioButton_Checked_5(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DashBoardViewModel).SwitchIngredientPage();
+        }
+
+        private void RadioButton_Checked_6(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DashBoardViewModel).SwitchSettingPage();
         }
     }
 }

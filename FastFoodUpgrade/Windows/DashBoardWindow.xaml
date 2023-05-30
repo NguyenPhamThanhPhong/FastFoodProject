@@ -127,14 +127,14 @@
                             FontFamily="{StaticResource boldFont}"
                                      Background="{StaticResource menu_button_color}" 
                                      Height="45" Content="Product"
-                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_1">
                             </RadioButton>
                             <RadioButton 
                                      Tag="ShoppingCart"
                             FontFamily="{StaticResource boldFont}"
                                      Background="{StaticResource menu_button_color}" 
                                      Height="45" Content="Bills"
-                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_2">
                             </RadioButton>
                             <RadioButton 
                                      Tag="Male"
@@ -142,7 +142,7 @@
                                      Background="{StaticResource menu_button_color}" 
                             HorizontalContentAlignment="Center"
                                      Height="45" Content="Customer"
-                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_3">
                             </RadioButton>
                             <RadioButton 
                                      Tag="AddressCard"
@@ -150,7 +150,7 @@
                                      Background="{StaticResource menu_button_color}" 
                             HorizontalContentAlignment="Center"
                                      Height="45" Content="Managing"
-                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_4">
                             </RadioButton>
                             <RadioButton 
                                      Tag="Coffee"
@@ -158,7 +158,7 @@
                                      Background="{StaticResource menu_button_color}" 
                             HorizontalContentAlignment="Center"
                                      Height="45" Content="Ingredient"
-                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_5">
                             </RadioButton>
                             <RadioButton 
                                      Tag="Gear"
@@ -166,7 +166,7 @@
                                      Background="{StaticResource menu_button_color}" 
                             HorizontalContentAlignment="Center"
                                      Height="45" Content="Settings"
-                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked">
+                                     Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_6">
                             </RadioButton>
 
 
@@ -184,7 +184,7 @@
 
 
                 <Grid Grid.Column="1">
-                    <Frame Source="/Views/Pages/CustomerPage.xaml"/>
+                    <Frame x:Name="MyFrame" NavigationUIVisibility="Hidden" Source="{Binding CurrentPage,UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
                 
                 

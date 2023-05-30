@@ -4,7 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
+      xmlns:table="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       Title="BillPage">
 
     <Grid >
@@ -13,11 +15,12 @@
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
         <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="500"/>
-                </Grid.RowDefinitions>
-                <TextBlock FontSize="60" 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="460"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="60" 
                            TextWrapping="Wrap"  
                            Foreground="White"
                            
@@ -25,12 +28,12 @@
                            FontFamily="{StaticResource boldFont}" 
                            Text="BILLS" 
                            Margin="29,10,547,0">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="25" Color="Red"/>
-                    </TextBlock.Effect>
-                </TextBlock>
-                <TextBlock IsHitTestVisible="True"/>
-                <TextBlock 
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="Red"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock IsHitTestVisible="True"/>
+            <TextBlock 
                             Foreground="White"
                             IsHitTestVisible="True"
                             Width="100" Height="50"
@@ -41,28 +44,27 @@
                             Margin="52,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
 
-                <ComboBox
+            <ComboBox
+                        x:Name="ComboboxFilter"
                         BorderBrush="White"
+                Background="Transparent"
                         FontSize="11"
                         FontFamily="{StaticResource boldFont}"
                         Foreground="White"
                         BorderThickness="2 2 2 2"
-                        SelectedIndex="{Binding SelectedFilterIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                         Margin="31,125,623,0" VerticalAlignment="Top" Height="54">
-                    <ComboBox.Style>
-                        <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="BorderThickness" Value="2 2 2 5" />
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="False">
-                                    <Setter Property="BorderThickness" Value="2 2 2 2" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
-                </ComboBox>
-                <TextBlock 
+                        SelectedIndex="{Binding SelectedIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                Style="{StaticResource DarkThemeCombobox}"
+                         Width="194" Height="46" Margin="29,129,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding }" Width="170" FontSize="20"   Foreground="AliceBlue" Padding="7 0" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <!--<ComboBoxItem>Payment greater than</ComboBoxItem>
+                <ComboBoxItem>Customer Name</ComboBoxItem>-->
+            </ComboBox>
+            
+            <TextBlock 
                             Foreground="White"
                             Width="102" Height="50"
                             VerticalAlignment="Top"
@@ -71,7 +73,7 @@
                             FontSize="22" Text="Search" 
                             Margin="262,88,0,0" 
                             RenderTransformOrigin="0.845,0.596"/>
-                <!--<Border BorderBrush="LightGray"
+            <!--<Border BorderBrush="LightGray"
                         Padding="0 0 0 0"
                                 BorderThickness="3"
                                 Background="White"
@@ -79,7 +81,7 @@
                                 
                                 CornerRadius="10">
                 </Border>-->
-                <TextBox Margin="252,125,0,0"
+            <TextBox Margin="252,125,0,0"
                          Background="#3d4142"
                          CaretBrush="White"
                          Text="{Binding SearchString}"
@@ -87,35 +89,123 @@
                                 Foreground="White" 
                                 HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="304">
 
-                </TextBox>
-                <StackPanel>
+            </TextBox>
+            <Button Margin="606,130,126,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
-                </StackPanel>
-                <Grid Grid.Row="1">
-                    <ListView ItemsSource="{Binding Bills}">
-                        <ListView.Resources>
-                            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource whiteGrayScrollbar}"/>
-                        </ListView.Resources>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
+            <Grid VerticalAlignment="Top"
+                            Grid.Row="1" 
+                            HorizontalAlignment="Left"
+                            Height="50" Width="797" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="67"/>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Padding="10 0"
+                                       Margin="0 0"
+                            Foreground="White"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            FontFamily="{StaticResource boldFont}" 
+                            FontSize="20" Text="ID" 
+
+                            RenderTransformOrigin="0.845,0.596"/>
+                <TextBlock Grid.Column="1" Padding="40 0"
+                            Foreground="White"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            FontFamily="{StaticResource boldFont}" 
+                            FontSize="20" Text="Name" 
+
+                            RenderTransformOrigin="0.845,0.596" Margin="70,0,0,0"/>
+                <TextBlock Grid.Column="2"  
+                            Foreground="White"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            FontFamily="{StaticResource boldFont}" 
+                            FontSize="20" Text="Date" 
+
+                            RenderTransformOrigin="0.845,0.596" Width="106" Margin="64,0,0,0"/>
+                <TextBlock Grid.Column="3" Padding="10 0"
+                            Foreground="White"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource boldFont}" 
+                            FontSize="20" Text="Payment" 
+
+                            RenderTransformOrigin="0.845,0.596" Width="118"/>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0,0,27,0">
+                <ListView ItemsSource="{Binding Bills}">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource whiteGrayScrollbar}"/>
+                    </ListView.Resources>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
                             <StackPanel Orientation="Vertical"/>
                         </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
+                    </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Background="White"  Height="100">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding ID}"/>
-                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Customer.fullname}"/>
-                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding BillDate}"/>
-                                    <TextBlock Margin="10" FontSize="20" FontFamily="{StaticResource boldFont}" Text="{Binding Total}"/>
-                                </StackPanel>
-                            </Grid>
+                            <ListViewItem >
+                                <Grid Margin="-10 -10"  Width="800" Height="55">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="340"/>
+                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Style>
+                                        <Style TargetType="{x:Type Grid}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="False">
+                                                    <Setter Property="Opacity" Value="1"></Setter>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Opacity" Value="0.5"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Background" Value="Blue"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Border Background="White" CornerRadius="20" Grid.ColumnSpan="4"/>
+                                    <TextBlock VerticalAlignment="Center" 
+                                               Padding="10 0"
+                                               Text="{Binding ID}" FontFamily="{StaticResource boldFont}" 
+                                               FontSize="20"/>
+                                    <TextBlock Grid.Column="1"
+                                               Padding="20 0"
+                                                VerticalAlignment="Center" 
+                                               Text="{Binding Customer.fullname}"  FontFamily="{StaticResource boldFont}" 
+                                               FontSize="20"/>
+                                    <TextBlock Grid.Column="2"
+                                                VerticalAlignment="Center" 
+                                               Text="{Binding BillDate}" FontFamily="{StaticResource boldFont}" 
+                                               FontSize="20"/>
+                                    <TextBlock Grid.Column="3"
+                                               Padding="10 0 20 0"
+                                                VerticalAlignment="Center" 
+                                               Text="{Binding Total}" FontFamily="{StaticResource boldFont}" 
+                                               FontSize="20"/>
+                                </Grid>
+                            </ListViewItem>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                </Grid>
-
             </Grid>
+
+        </Grid>
+        <Grid Grid.Column="1">
+            <table:BillPageSplit DataContext="{Binding BillAdvancedSearchViewModel}"/>
+        </Grid>
+
     </Grid>
 </Page>

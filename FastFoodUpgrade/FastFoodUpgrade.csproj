@@ -196,8 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AdvancedSearchCommand\BillAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AdvancedSearchCommand\CustomerAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AdvancedSearchCommand\ProductAdvancedSearchCommand.cs" />
+    <Compile Include="Commands\AdvancedSearchCommand\StaffAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DragDropCommands\DropCommand.cs" />
@@ -205,7 +207,9 @@
     <Compile Include="Commands\InsertCommands\InsertBillCommand.cs" />
     <Compile Include="Commands\InsertCommands\InsertCustomerCommand.cs" />
     <Compile Include="Commands\InsertCommands\InsertProductCommand.cs" />
+    <Compile Include="Commands\InsertCommands\InsertStaffCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Converters\TagToColorConverter.cs" />
     <Compile Include="Converters\TagToIcon.cs" />
     <Compile Include="Converters\TextToWaterMarkVisibility.cs" />
     <Compile Include="Models\Bill.cs" />
@@ -223,12 +227,15 @@
     <Compile Include="ViewModels\InsertFormViewModels\InsertBillViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertCustomerViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertProductViewModel.cs" />
+    <Compile Include="ViewModels\InsertFormViewModels\InsertStaffViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManagingViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\RightSplitTask\BillAdvancedSearch.cs" />
     <Compile Include="ViewModels\RightSplitTask\CustomerAdvancedSearch.cs" />
     <Compile Include="ViewModels\RightSplitTask\ProductAdvancedSearch.cs" />
+    <Compile Include="ViewModels\RightSplitTask\StaffAdvancedSearch.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\InsertForm\InsertBillForm.xaml.cs">
       <DependentUpon>InsertBillForm.xaml</DependentUpon>
@@ -238,6 +245,9 @@
     </Compile>
     <Compile Include="Views\InsertForm\InsertProductForm.xaml.cs">
       <DependentUpon>InsertProductForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InsertForm\InsertStaffForm.xaml.cs">
+      <DependentUpon>InsertStaffForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\BillPage.xaml.cs">
       <DependentUpon>BillPage.xaml</DependentUpon>
@@ -272,8 +282,14 @@
     <Compile Include="Views\Pages\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SplitTaskTable\BillPageSplit.xaml.cs">
+      <DependentUpon>BillPageSplit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SplitTaskTable\CustomerPageSplit.xaml.cs">
       <DependentUpon>CustomerPageSplit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SplitTaskTable\ManagingPageSplit.xaml.cs">
+      <DependentUpon>ManagingPageSplit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SplitTaskTable\ProductPageSplit.xaml.cs">
       <DependentUpon>ProductPageSplit.xaml</DependentUpon>
@@ -288,6 +304,10 @@
     <Compile Include="Windows\TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Styles\ToggleButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InsertForm\InsertBillForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -297,6 +317,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InsertForm\InsertProductForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InsertForm\InsertStaffForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,7 +352,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SplitTaskTable\BillPageSplit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SplitTaskTable\CustomerPageSplit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SplitTaskTable\ManagingPageSplit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -470,6 +502,7 @@
   <ItemGroup>
     <Resource Include="IMAGE\BurgerBackground.jpg" />
     <Resource Include="IMAGE\PizzaBackground.png" />
+    <Resource Include="IMAGE\DarkThemeBackground.jpg" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

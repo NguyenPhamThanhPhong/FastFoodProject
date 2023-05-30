@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FastFoodUpgrade.Views.InsertForm;
+using FastFoodUpgrade.Models;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -25,6 +27,15 @@ namespace FastFoodUpgrade.Views.Pages
         {
             InitializeComponent();
             this.DataContext = new ManagingViewModel();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            InsertStaffForm f = new InsertStaffForm();
+            f.ShowDialog();
+            DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
+            List<Staff> results = await db.ReadAllAsync();
+            (this.DataContext as ManagingViewModel).UpdateListStaff(results);
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FastFoodUpgrade.ViewModels;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -23,6 +24,17 @@ namespace FastFoodUpgrade.Views.Pages
         public BillPage()
         {
             InitializeComponent();
+            ComboboxFilter.ItemsSource = new List<string>() { "ID", "Customer Name", "Staff Name" };
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = await BillViewModel.Initialize();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
