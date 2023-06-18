@@ -132,7 +132,8 @@
                                        FontFamily="{StaticResource boldFont}" 
                                        FontSize="22" Text="Sign up"
                                        TextAlignment="Center"
-                                       Grid.Row="1" Grid.Column="1">
+                                       Grid.Row="1" Grid.Column="1"
+                                           MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Foreground" Value="Black" />

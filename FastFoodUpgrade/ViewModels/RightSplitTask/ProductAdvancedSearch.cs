@@ -23,8 +23,8 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             set { _searchName = value; OnPropertyChanged(nameof(SearchName)); }
         }
         // Type List
-        private ObservableCollection<String> _types;
-        public ObservableCollection<String> Types
+        private ObservableCollection<string> _types;
+        public ObservableCollection<string> Types
         {
             get { return _types; }
             set { _types = value; OnPropertyChanged(nameof(Types)); }

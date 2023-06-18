@@ -26,7 +26,7 @@ namespace FastFoodUpgrade.Views.Pages
         public ManagingPage()
         {
             InitializeComponent();
-            this.DataContext = new ManagingViewModel();
+            ComboboxFilter.ItemsSource = new List<string>() {"Staff","Admin" };
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -36,6 +36,11 @@ namespace FastFoodUpgrade.Views.Pages
             DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
             List<Staff> results = await db.ReadAllAsync();
             (this.DataContext as ManagingViewModel).UpdateListStaff(results);
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = await ManagingViewModel.Initialize();
         }
     }
 }

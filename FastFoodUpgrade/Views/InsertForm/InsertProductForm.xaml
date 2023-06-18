@@ -177,7 +177,7 @@
                                  TextWrapping="Wrap"
                                  AcceptsReturn="True" 
                                  Text="{Binding Description,UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource MyTextBox}">
+                                 Style="{StaticResource MyTextBox}" Margin="0,0,0,-42">
                         </TextBox>
 
                     </Grid>

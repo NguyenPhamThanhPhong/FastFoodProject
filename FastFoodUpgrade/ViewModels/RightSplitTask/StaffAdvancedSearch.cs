@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastFoodUpgrade.Commands.AdvancedSearchCommand;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,11 +40,12 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _phone; }
             set { _phone = value; OnPropertyChanged(nameof(this.Phone)); }
         }
-        public ICommand AdvancedFindStaff { get; set; }
+        public ICommand AdvancedSearchStaff { get; set; }
         public ManagingViewModel viewModel { get; set; }
         public StaffAdvancedSearch(ManagingViewModel viewmodel)
         {
             this.viewModel = viewmodel;
+            this.AdvancedSearchStaff = new StaffAdvancedSearchCommand(this);
         }
 
     }

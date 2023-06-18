@@ -1,5 +1,4 @@
-﻿using FastFoodUpgrade.Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,27 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FastFoodUpgrade.ViewModels;
+using FastFoodUpgrade.ViewModels.InsertFormViewModels;
 
-namespace FastFoodUpgrade.Views
+namespace FastFoodUpgrade.Views.InsertForm
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for InsertIngredientForm.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class InsertIngredientForm : Window
     {
-        public Login()
+        public InsertIngredientForm()
         {
             InitializeComponent();
-            this.DataContext = new LoginViewModel();
+            this.DataContext = new InsertIngredientViewModel();
         }
 
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow f = new SignUpWindow();
-            f.ShowDialog();
+            this.Close();
         }
     }
 }

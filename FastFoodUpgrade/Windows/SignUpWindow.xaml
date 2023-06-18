@@ -1,15 +1,16 @@
-﻿<Window x:Class="FastFoodUpgrade.Views.InsertForm.InsertStaffForm"
+﻿<Window x:Class="FastFoodUpgrade.Windows.SignUpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FastFoodUpgrade.Views.InsertForm"
+        xmlns:local="clr-namespace:FastFoodUpgrade.Windows"
+        xmlns:converter="clr-namespace:FastFoodUpgrade.Converters"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True" 
         Title="InsertStaffForm" Height="550" Width="900">
+    
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Yellow"/>
@@ -24,6 +25,7 @@
 
             <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
         </Style>
+        <converter:AbsoluteFileNameToBitmapImage x:Key="filenameToImage"/>
     </Window.Resources>
     <Grid Background="Transparent">
         <Grid>
@@ -35,8 +37,10 @@
                 Style="{StaticResource CloseButton}"/>
             <Grid VerticalAlignment="Top" HorizontalAlignment="Left"
                    Margin="36,130,0,0" Height="200" Width="191" Cursor="Hand">
-                <Image  Source="/IMAGE/test.png"/>
+                <Image x:Name="MyImage" Source="{Binding Filename,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource filenameToImage}}"/>
+
             </Grid>
+            
 
 
             <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,30,0" >
@@ -56,7 +60,8 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding ID}"/>
+                          IsEnabled="False"
+                         Text="{Binding CurrentStaff.ID,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 ID
                 </TextBlock>
@@ -66,7 +71,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding Name}"/>
+                         Text="{Binding CurrentStaff.Fullname}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Full Name
                     </TextBlock>
@@ -77,7 +82,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding UserName}"/>
+                         Text="{Binding CurrentStaff.Username}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 User Name
                     </TextBlock>
@@ -88,7 +93,7 @@
                          Margin="0 30 0 0"
                                   Focusable="True"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding Password}"/>
+                         Text="{Binding CurrentStaff.Password}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}">
                                 Password
                     </TextBlock>
@@ -98,7 +103,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding Email}"/>
+                         Text="{Binding CurrentStaff.Email}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Email
                     </TextBlock>
@@ -108,19 +113,28 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding Phone}"/>
+                         Text="{Binding CurrentStaff.Phone}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Phone
                     </TextBlock>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <ComboBox  Style="{StaticResource LightThemeCombobox}" 
+                    <ComboBox  x:Name="ComboboxAcessright"
+                        Style="{StaticResource LightThemeCombobox2}" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" 
                          Background="White" SelectedIndex="0"
-                         SelectedItem="{Binding AccessRight}"/>
+                         SelectedItem="{Binding CurrentStaff.AccessRight}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding}" Foreground="Black" />
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Access Right
                     </TextBlock>
@@ -130,7 +144,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding Sex}"/>
+                         Text="{Binding CurrentStaff.Sex}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Gender
                     </TextBlock>
@@ -140,7 +154,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="90" Width="400"  Background="White"
-                         Text="{Binding Address}"/>
+                         Text="{Binding CurrentStaff.Address}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Address
                     </TextBlock>
@@ -151,13 +165,17 @@
 
 
             <Button VerticalAlignment="Bottom" 
-                    Command="{Binding InsertOneBillCommand}"
-                    Width="150" Height="50" Margin="658,0,92,32">
+                    Width="150" Height="50" Margin="658,0,92,32"
+                    Command="{Binding InsertStaff}">
                 Insert Staff
             </Button>
             <Button VerticalAlignment="Bottom" 
-                Command="{Binding InsertOneBillCommand}"
-                Width="150" Height="50" Margin="56,0,694,170" Content="change Avatar"/>
+                Width="150" Height="50" Margin="56,0,694,170" Content="change Avatar" Command="{Binding SaveImageDialog}"/>
+            <Button VerticalAlignment="Bottom" 
+                    Width="150" Height="50" Margin="300,0,92,32"
+                    Click="Button_Click_2">
+                check
+            </Button>
 
         </Grid>
     </Grid>

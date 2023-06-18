@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
       xmlns:table="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       Title="ManagingPage">
 
     <Grid Background="Transparent">
@@ -84,62 +85,65 @@
             <Button Margin="555,117,177,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
             <Grid Margin="29,208,38,10" >
-        <ListView ItemsSource="{Binding taffs}">
+        <ListView x:Name="lstview" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  ItemsSource="{Binding Staffs}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Cursor="Hand" Width="371" Height="192">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="110"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Border CornerRadius="20" Background="White" Grid.ColumnSpan="2"  />
-                        <Grid >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Ellipse Height="100" Width="100" Grid.Column="0">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/IMAGE/test.png"/>
-                                </Ellipse.Fill>
-                                <Ellipse.Effect>
-                                    <DropShadowEffect ShadowDepth="3"></DropShadowEffect>
-                                </Ellipse.Effect>
-                            </Ellipse>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-                                <Border Background="LightGray" CornerRadius="20">
-                                    <TextBlock Padding="7" Text="{Binding ID}" FontFamily="{StaticResource boldFont}" TextWrapping="Wrap"/>
-                                </Border>
-                            </StackPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Cursor="Hand" Width="371" Height="192">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border CornerRadius="20" Background="White" Grid.ColumnSpan="2"  />
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Ellipse Height="100" Width="100" Grid.Column="0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/IMAGE/test.png"/>
+                                        </Ellipse.Fill>
+                                        <Ellipse.Effect>
+                                            <DropShadowEffect ShadowDepth="3"></DropShadowEffect>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+                                        <Border Background="LightGray" CornerRadius="20">
+                                            <TextBlock Padding="7" Text="{Binding ID}" FontFamily="{StaticResource boldFont}" TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
 
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <StackPanel Margin="10 10 0 0">
-                                <TextBlock Text="{Binding fullname}" 
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel Margin="10 10 0 0">
+                                        <TextBlock Text="{Binding Fullname}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
-                                <TextBlock Text="{Binding accessRight, StringFormat={}Position: {0}}" 
+                                        <TextBlock Text="{Binding AccessRight, StringFormat={}Position: {0}}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
-                                <TextBlock Text="{Binding phone, StringFormat= {}Phonenumbers:{0}}" 
+                                        <TextBlock Text="{Binding Phone, StringFormat= {}Phonenumbers:{0}}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
-                                <TextBlock Text="{Binding addr,StringFormat={}Address: {0}}" 
+                                        <TextBlock Text="{Binding Address,StringFormat={}Address: {0}}" 
                                                TextWrapping="Wrap" Width="250" 
                                                FontFamily="{StaticResource boldFont}"/>
 
-                            </StackPanel>
-                        </Grid>
+                                    </StackPanel>
+                                </Grid>
 
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+            
+                </ListView>
     </Grid>
 
 

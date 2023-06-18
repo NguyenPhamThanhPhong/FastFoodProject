@@ -28,6 +28,7 @@
 
 
     <Grid Background="{StaticResource background_cs}">
+        <views:Login/>
         <!--<Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:Login />

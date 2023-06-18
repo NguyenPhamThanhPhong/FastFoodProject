@@ -91,7 +91,7 @@
                                 Gender
                 </TextBlock>
                 <ComboBox x:Name="GenderCombobox"
-                          SelectedIndex="{Binding SelectedRank}"
+                          SelectedItem="{Binding Gender}"
                                       Grid.Row="1" Height="40"  Width="270" Background="White">
 
                 </ComboBox>

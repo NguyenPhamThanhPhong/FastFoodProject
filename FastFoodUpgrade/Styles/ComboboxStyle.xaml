@@ -303,4 +303,57 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ComboBox" x:Key="LightThemeCombobox2">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+
+
+                        <Border Grid.ColumnSpan="2" CornerRadius="5"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="2" />
+
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Focusable="False"
+                          Content="{TemplateBinding SelectedItem}"
+                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"/>
+                        <ToggleButton 
+                                      
+                                      IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" 
+                                      Style="{StaticResource ToggleButtonBlackArrow}">
+                        </ToggleButton>
+                        <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" 
+                               AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                            <Border x:Name="DropDownBorder" CornerRadius="5"
+                                    Background="White" BorderBrush="White" 
+                                    BorderThickness="3 0 3 3">
+                                <StackPanel>
+                                    <ItemsPresenter/>
+                                </StackPanel>
+
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="BorderBrush" Value="Green"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -1,0 +1,154 @@
+﻿<Window x:Class="FastFoodUpgrade.Views.InsertForm.InsertIngredientForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastFoodUpgrade.Views.InsertForm"
+        xmlns:converter="clr-namespace:FastFoodUpgrade.Converters"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        mc:Ignorable="d"
+        Foreground="White"
+        Title="InsertProductForm" Height="500" Width="700">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
+            <Setter Property="Foreground" Value="Yellow"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource NormalTextbox}">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Padding" Value="3 0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <converter:AbsoluteFileNameToBitmapImage x:Key="filenameToImage"/>
+    </Window.Resources>
+    <Grid  >
+        <Border CornerRadius="25" Background="Black"/>
+        <Border CornerRadius="25">
+            <Border.Background>
+                <ImageBrush Opacity="0.5" ImageSource="/IMAGE/mcdonald1.jpg"/>
+            </Border.Background>
+        </Border>
+        <Border CornerRadius="20"  Background="Gray" Margin="30 50 30 30" Opacity="0.3">
+        </Border>
+        <Button Margin="0 0 10 0" Style="{StaticResource CloseButton}" Click="Button_Click"/>
+
+        <Grid Margin="30 50 30 30" >
+            <Grid.Resources>
+
+            </Grid.Resources>
+            <Border CornerRadius="20" BorderBrush="Yellow" BorderThickness="2">
+                <Border.Effect>
+                    <BlurEffect Radius="15"/>
+                </Border.Effect>
+            </Border>
+            <Ellipse Margin="32,82,478,223"  >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding Filename,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource filenameToImage}}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <Grid Height="85" Width="209" Margin="190,22,232,313" >
+                <TextBlock Width="164" Height="25"
+                            FontSize="18"
+                            Text="Ingredient Name" Margin="10,0,0,0"></TextBlock>
+                <TextBox x:Name="productname" Padding="3 0" Text="{Binding CurrentIngredient.Name, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+
+                </TextBox>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
+            </Grid>
+            <Grid Margin="408,22,0,319" >
+                <TextBlock FontSize="18"
+                            Text="Product Type" Margin="10,0,0,0" Width="183"
+                        ></TextBlock>
+                <ComboBox Padding="3 0" SelectedItem="{Binding CurrentIngredient.Type,UpdateSourceTrigger=PropertyChanged}"
+                          Style="{StaticResource LightThemeCombobox2}"
+                         Margin="0,30,0,0" FontSize="16" Background="White" HorizontalAlignment="Center" Height="30" Width="212">
+
+                </ComboBox>
+
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
+            </Grid>
+            <Grid Margin="190,118,232,223" >
+                <TextBlock FontSize="18"
+                            Text="Product Quantity" Margin="10,0,0,0"></TextBlock>
+                <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Quantity, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+                </TextBox>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0" Width="208"/>
+            </Grid>
+            <Grid Margin="408,118,0,223" >
+                <TextBlock FontSize="18"
+                            Text="Unit" Margin="10,0,0,0" Width="222"
+                        ></TextBlock>
+                <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Unit, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+                </TextBox>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
+            </Grid>
+            <Grid Margin="204,210,0,0" Width="320" Height="105" >
+                <TextBlock FontSize="18"
+                            Text="Description" Margin="27,0,0,0"
+                        ></TextBlock>
+                <TextBox  Tag="Optional" MaxHeight="100"
+                          Height="60"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True" 
+                                 Text="{Binding CurrentIngredient.Description,UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource MyTextBox}" >
+                </TextBox>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,84,0,0" Width="172"/>
+            </Grid>
+            <Button Width="200" Height="40" Content="Insert ingredient"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Command="{Binding InsertIngredient}" Margin="0,0,32,35"/>
+            <Button Width="130" Height="40" Content="Insert ingredient"
+                    Command="{Binding SaveImageDialog}"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="32,210,0,0"/>
+        </Grid>
+    </Grid>
+    <!--<Grid Background="Black">
+        -->
+    <!-- Background -->
+    <!--<Rectangle Fill="LightGray" Opacity="0.8"/>-->
+
+    <!-- Aura -->
+    <!--
+        <Border BorderBrush="Blue" BorderThickness="5" Margin="50">
+            <Border.Effect>
+                <BlurEffect Radius="10"/>
+            </Border.Effect>
+
+            -->
+    <!-- SearchBox -->
+    <!--
+            <TextBox Background="Transparent" BorderThickness="0" Opacity="0.9"/>
+
+            -->
+    <!-- Aura Overlay -->
+    <!--
+
+        </Border>
+        -->
+    <!--<Border BorderBrush="Blue" BorderThickness="4" Margin="48">
+                -->
+    <!--<Border Background="LightGray"/>-->
+    <!--
+            </Border>-->
+    <!--
+    </Grid>-->
+
+</Window>

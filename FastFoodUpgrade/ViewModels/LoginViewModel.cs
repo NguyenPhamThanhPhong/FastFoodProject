@@ -10,26 +10,21 @@ namespace FastFoodUpgrade.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private string _username;
+        private string _username="";
         public string username 
         { 
             get
-            {
-                return _username;
-            }
+            {return _username;}
             set
             {
                 _username = value;
                 OnPropertyChanged(nameof(username));
             }
         }
-        private string _password;
+        private string _password="";
         public string password 
         {
-            get
-            {
-                return _password;
-            }
+            get{return _password;}
             set
             {
                 _password= value;
@@ -37,9 +32,9 @@ namespace FastFoodUpgrade.ViewModels
             }
         }
         public ICommand CommandLogin { get; }
-        public LoginViewModel(MainViewModel currentMain) 
+        public LoginViewModel() 
         {
-            CommandLogin = new LoginCommand(this, currentMain);
+            CommandLogin = new LoginCommand(this);
             //CommandLogin = new LoginCommand();
         }
     }

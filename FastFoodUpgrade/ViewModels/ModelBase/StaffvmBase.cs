@@ -1,19 +1,15 @@
-﻿using FastFoodUpgrade.Commands.InsertCommands;
-using FastFoodUpgrade.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows.Media;
 
-namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
+namespace FastFoodUpgrade.ViewModels.ModelBase
 {
-    public class InsertStaffViewModel : ViewModelBase
+    public class StaffvmBase : ViewModelBase
     {
-        private string _id;
-        public string ID
+        private int _id;
+        public int ID
         {
             get { return _id; }
             set { _id = value; OnPropertyChanged(nameof(ID)); }
@@ -22,7 +18,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         public string Name
         {
             get { return _name; }
-            set{_name = value; OnPropertyChanged(nameof(Name));}
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
         private string _userName;
         public string UserName
@@ -52,7 +48,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         public string Sex
         {
             get { return _sex; }
-            set{_sex = value; OnPropertyChanged(nameof(Sex));}
+            set { _sex = value; OnPropertyChanged(nameof(Sex)); }
         }
         private string _accessRight;
         public string AccessRight
@@ -66,34 +62,6 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
             get { return _address; }
             set { _address = value; OnPropertyChanged(nameof(Address)); }
         }
-        public ICommand InsertStaff { get; set; }
-        public InsertStaffViewModel() { }
-        public InsertStaffViewModel(Staff s,Uri u)
-        {
-            UserName = s.Username;
-            Password = s.Password;
-            Email = s.Email;
-            Phone = s.Phone;
-            Sex= s.Sex;
-            AccessRight = s.AccessRight;
-            Address = s.Address;
-            this.InsertStaff = new InsertStaffCommand(this,u);
-        }
-
-        public static async Task<InsertStaffViewModel> Initialize()
-        {
-            InsertStaffViewModel viewModel= new InsertStaffViewModel();
-            await viewModel.IntializeAsync();
-            return viewModel;
-        }
-        private async Task IntializeAsync()
-        {
-            await Task.Run(async () =>
-            {
-                int x = await Staff.GenerateID();
-                ID = x.ToString();
-                InsertStaff = new InsertStaffCommand(this);
-            });
-        }
+        public string Avatar => this.ID + ".png";
     }
 }

@@ -14,8 +14,8 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
     {
         StaffAdvancedSearch vm;
         public StaffAdvancedSearchCommand(StaffAdvancedSearch vm) 
-        { 
-        
+        {
+            this.vm = vm;
         }
         public override async Task ExecuteAsync(object parameter)
         {
@@ -33,7 +33,7 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
                     && s.AccessRight.Trim().ToLower().Contains(AcessRight)
                     && s.Sex.Trim().ToLower().Contains(Gender)
                     && s.Phone.Trim().ToLower().Contains(Phone));
-                List<Staff> results = await db.ReadFilteredAsync(filter);
+                List<Staff> results = db.ReadFiltered(filter);
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     vm.viewModel.UpdateListStaff(results);

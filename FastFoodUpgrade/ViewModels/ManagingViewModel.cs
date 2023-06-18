@@ -32,7 +32,7 @@ namespace FastFoodUpgrade.ViewModels
             }
         }
         // COmbobox
-        private int _selectedFilterIndex = -1;
+        private int _selectedFilterIndex = 0;
         public int SelectedFilterIndex
         {
             get { return _selectedFilterIndex; }
@@ -61,15 +61,16 @@ namespace FastFoodUpgrade.ViewModels
         {
             DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
             List<Staff> stf = await db.ReadAllAsync();
+            int xx = stf.Count;
             this.Staffs = new ObservableCollection<Staff>(stf);
             this.CurrentAdvancedSearch = new StaffAdvancedSearch(this);
         }
         private async void Search()
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
-                string searchInput = SearchString.Trim();
+                string searchInput = SearchString.Trim().ToLower();
                 List<Staff> results = new List<Staff>();
                 switch(_selectedFilterIndex)
                 {
@@ -78,14 +79,16 @@ namespace FastFoodUpgrade.ViewModels
                             FilterDefinition<Staff> filter = Builders<Staff>.Filter.Where(
                                 s => s.Fullname.ToLower().Trim().Contains(searchInput)
                                 && s.AccessRight.Equals("Staff"));
+                            results = db.ReadFiltered(filter);
                             break;
 
                         }
                     case 1:
                         {
                             FilterDefinition<Staff> filter = Builders<Staff>.Filter.Where(
-                                s => s.Fullname.ToLower().Trim().Contains(searchInput)
-                                && s.AccessRight.Equals("Admin"));
+                                s => s.Fullname.ToLower().Trim().Contains(searchInput))
+                            & Builders<Staff>.Filter.Eq(s=>s.AccessRight,"Admin"); 
+                            results = db.ReadFiltered(filter);
                             break;
                         }
                     default:

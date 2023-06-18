@@ -14,11 +14,9 @@ namespace FastFoodUpgrade.Commands
     public class LoginCommand : CommandBase
     {
         LoginViewModel loginViewModel;
-        MainViewModel currentMain;
-        public LoginCommand(LoginViewModel loginViewModel, MainViewModel currentMain) 
+        public LoginCommand(LoginViewModel loginViewModel) 
         {
             this.loginViewModel = loginViewModel;
-            this.currentMain = currentMain;
         }
         public override bool CanExecute(object parameter)
         {
@@ -33,27 +31,17 @@ namespace FastFoodUpgrade.Commands
             var matchingStaff = await db.ReadFilteredAsync(filterLogin);
             if (matchingStaff != null) 
             {
-                currentMain.currentViewModel = new DashBoardViewModel(currentMain);
+                Window f = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                f.Hide();
+                DashBoardWindow ff = new DashBoardWindow();
+                ff.ShowDialog();
+                f.Show();
             }
             else
             {
                 MessageBox.Show("incorrect pass");
             }
-            //using (var db = new fastfooddtbEntities())
-            //{
-            //    string user = loginViewModel.username;
-            //    string pass = loginViewModel.password;
-            //    var matchingStaff = db.Staffs.FirstOrDefault(s => s.username == user && s.pass == pass);
-            //    if (matchingStaff != null)
-            //    {
-            //        currentMain.currentViewModel = new DashBoardViewModel(currentMain);
-            //        //DashBoardWindow f = new DashBoardWindow();
-            //        //f.ShowDialog();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("incorrect pass");
-            //    }
+
         }
         
     }
