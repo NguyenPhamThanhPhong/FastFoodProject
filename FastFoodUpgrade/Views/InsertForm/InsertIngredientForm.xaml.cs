@@ -25,6 +25,7 @@ namespace FastFoodUpgrade.Views.InsertForm
         {
             InitializeComponent();
             this.DataContext = new InsertIngredientViewModel();
+            this.ComboboxType.ItemsSource = new List<string>() { "Meat","Dairy","Seafood","Fruits","Vegetables","Grains","Herbs","Others"};
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

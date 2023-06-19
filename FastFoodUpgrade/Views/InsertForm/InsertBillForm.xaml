@@ -6,45 +6,52 @@
         xmlns:local="clr-namespace:FastFoodUpgrade.Views.InsertForm"
         xmlns:listviews="clr-namespace:FastFoodUpgrade.Views.ListViews"
         mc:Ignorable="d"
+        Background="Transparent"
         Loaded="Window_Loaded"
                 WindowStartupLocation="CenterScreen"
         
         WindowStyle="None"
-        AllowsTransparency="True" Height="700" Width="800">
+        AllowsTransparency="True" Height="600" Width="750">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Yellow"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Height" Value="26"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="20"/>
-            
+
             <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
         </Style>
+               
     </Window.Resources>
     <Grid Background="Transparent">
-        <Border CornerRadius="50" BorderThickness="3" BorderBrush="Red" SnapsToDevicePixels="True">
+        <Border CornerRadius="30" Background="Black"/>
+        <Border CornerRadius="30">
             <Border.Background>
-                <ImageBrush ImageSource="/IMAGE/PizzaBackground.png"></ImageBrush>
+                <ImageBrush Opacity="0.5" ImageSource="/IMAGE/mcdonald1.jpg"/>
             </Border.Background>
         </Border>
+        <Border CornerRadius="20"  Background="Gray"  Opacity="0.3">
+        </Border>
 
-
-        <Grid>
-            <Border Background="Black" Opacity="0.85"></Border>
-            <Border  Background="Green" MouseDown="Border_MouseDown" Width="800" Height="30" VerticalAlignment="Top"/>
+        <Grid >
+            <Border CornerRadius="20" BorderBrush="Yellow" BorderThickness="2" Margin="0,0,0,0">
+                <Border.Effect>
+                    <BlurEffect Radius="15"/>
+                </Border.Effect>
+            </Border>
+            <Border  Background="Green" MouseDown="Border_MouseDown" Width="700" Height="30" VerticalAlignment="Top"/>
             <Button
                 Width="45"
                 Height="43"
            Margin="0,10,15,0"
                 Style="{StaticResource CloseButton}"/>
 
-
-            <Grid VerticalAlignment="Top" Margin="46,50,193,0" Height="155">
+            <Grid VerticalAlignment="Top" Margin="46,50,38,0" Height="155">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -100,19 +107,20 @@
                     </TextBlock>
                 </Grid>
             </Grid>
-            
 
-
-            <Grid Margin="46,220,36,100">
+            <Grid Margin="46,220,36,160">
                 <listviews:DrawerListView 
-                    DropCommand="{Binding DropProductCommand}"/>
+                    DropCommand="{Binding DropProductCommand}" Margin="0,0,10,0"/>
             </Grid>
             <Button VerticalAlignment="Bottom" 
                     Command="{Binding InsertOneBillCommand}"
-                    Width="150" Height="50" Margin="551,0,99,24"> 
+                    Width="150" Height="50" Margin="510,0,90,51" >
                 Insert Bill
             </Button>
-
         </Grid>
+        
+
+
+
     </Grid>
 </Window>

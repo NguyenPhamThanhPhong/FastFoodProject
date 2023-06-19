@@ -10,7 +10,7 @@
         AllowsTransparency="True"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="InsertProductForm" Height="500" Width="700">
+        Title="InsertProductForm" >
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Top"/>
@@ -65,36 +65,36 @@
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
 
                 </TextBox>
-                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0" Width="182"/>
             </Grid>
             <Grid Margin="408,22,0,319" >
                 <TextBlock FontSize="18"
                             Text="Product Type" Margin="24,0,0,0" Width="183"
                         ></TextBlock>
-                <ComboBox Padding="3 0" SelectedItem="{Binding CurrentIngredient.Type,UpdateSourceTrigger=PropertyChanged}"
+                <ComboBox  x:Name="ComboboxType" Padding="3 0"
+                          
+                          SelectedItem="{Binding CurrentIngredient.Type,UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource LightThemeCombobox2}"
                          Margin="0,30,0,0" FontSize="16" Background="White" HorizontalAlignment="Center" Height="30" Width="212">
 
                 </ComboBox>
 
-                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Please choose product type" Margin="24,65,0,0" Width="236"/>
             </Grid>
-            <Grid Margin="190,118,232,223" >
+            <Grid Margin="190,118,0,0" Width="209" >
                 <TextBlock FontSize="18"
-                            Text="Product Quantity" Margin="10,0,0,0"></TextBlock>
+                            Text="Product Quantity" Width="189" HorizontalAlignment="Center"/>
                 <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Quantity, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
                 </TextBox>
-                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0" Width="208"/>
+                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Invalid Quantity" Margin="10,65,0,0" Width="166"/>
             </Grid>
             <Grid Margin="427,118,0,0" Width="241" >
                 <TextBlock FontSize="18"
-                            Text="Unit" Margin="10,0,0,0" Width="222"
-                        ></TextBlock>
+                            Text="Unit" Margin="10,0,0,0" Width="222"></TextBlock>
                 <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Unit, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
                          Margin="10,30,0,0" FontSize="16" Background="White" Width="207"  >
                 </TextBox>
-                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
             </Grid>
             <Grid Margin="204,210,0,0" Width="446" Height="139" >
                 <TextBlock FontSize="18"

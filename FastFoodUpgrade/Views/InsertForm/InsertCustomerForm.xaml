@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Foreground="White"
         Loaded="Window_Loaded"
-        Height="302" Width="622">
+        Height="341" Width="634">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
@@ -20,7 +20,15 @@
             <Setter Property="Width" Value="100"/>
         </Style>
     </Window.Resources>
-    <Grid Background="Black" Margin="0,0,0,-24">
+    <Grid Background="Black" Margin="0">
+        <Border CornerRadius="25" Background="Black"/>
+        <Border CornerRadius="25">
+            <Border.Background>
+                <ImageBrush Opacity="0.5" ImageSource="/IMAGE/mcdonald1.jpg"/>
+            </Border.Background>
+        </Border>
+        <Border CornerRadius="20"  Background="Gray" Margin="0" Opacity="0.3">
+        </Border>
         <Border  Background="Transparent"
                  Cursor="Cross"
                  MouseDown="Border_MouseDown"
@@ -28,9 +36,14 @@
                  Margin="0 0 0 0"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Left" Width="587"/>
+        <Border CornerRadius="20" BorderBrush="Yellow" BorderThickness="2">
+            <Border.Effect>
+                <BlurEffect Radius="15"/>
+            </Border.Effect>
+        </Border>
         <Button 
             Style="{StaticResource CloseButton}"
-            Width="30" Height="30" Click="Button_Click"/>
+            Width="30" Height="30" Click="Button_Click" Margin="0,0,10,0"/>
 
         <Grid VerticalAlignment="Top" Margin="20,40,15,0"  Height="189">
             <Grid.ColumnDefinitions>
