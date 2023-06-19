@@ -40,7 +40,7 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _totalFrom; }
             set { _totalFrom = value; OnPropertyChanged(nameof(TotalFrom)); }
         }
-        private int _totalTo = 0;
+        private int _totalTo = 9999999;
         public int TotalTo
         {
             get { return _totalTo; }

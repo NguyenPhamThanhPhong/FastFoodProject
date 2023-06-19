@@ -32,6 +32,12 @@ namespace FastFoodUpgrade.ViewModels
                 OnPropertyChanged(nameof(SearchString));
             }
         }
+        private int _selectedFilterIndex = 0;
+        public int SelectedFilterIndex
+        {
+            get { return _selectedFilterIndex; }
+            set { _selectedFilterIndex = value; Search(); OnPropertyChanged(nameof(SelectedFilterIndex)); }
+        }
         public BillAdvancedSearch BillAdvancedSearchViewModel { get; set; }
         // COmbobox
         public static async Task<BillViewModel> Initialize()
@@ -47,12 +53,7 @@ namespace FastFoodUpgrade.ViewModels
             BillAdvancedSearchViewModel = new BillAdvancedSearch(this);
         }
 
-        private int _selectedFilterIndex = 0;
-        public int SelectedFilterIndex
-        {
-            get { return _selectedFilterIndex; }
-            set { _selectedFilterIndex = value; Search(); OnPropertyChanged(nameof(SelectedFilterIndex)); }
-        }
+
         private async void Search()
         {
             List<Bill> results = new List<Bill>();
@@ -110,7 +111,7 @@ namespace FastFoodUpgrade.ViewModels
             Bills.Clear();
             foreach(Bill b in bills) 
             {
-                bills.Add(b);
+                Bills.Add(b);
             }
         }
 

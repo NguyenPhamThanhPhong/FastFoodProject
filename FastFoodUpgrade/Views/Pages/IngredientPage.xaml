@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
       xmlns:table="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
-
+      Loaded="Page_Loaded"
       mc:Ignorable="d" 
       Title="IngredientPage">
 
@@ -46,6 +46,7 @@
                         Foreground="White"
                         BorderThickness="2 2 2 2"
                         SelectedIndex="{Binding SelectedFilterIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                        ItemsSource="{Binding Types,UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource DarkThemeCombobox}"
                          Width="194" Height="46" Margin="29,121,0,0">
                 <ComboBox.ItemTemplate>
@@ -156,8 +157,8 @@
 
 
         </Grid>
-        <Grid  Grid.Column="1">
-            <table:ManagingPageSplit/>
+        <Grid  Grid.Column="1" DataContext="{Binding currentAdvancedSearch}">
+            <table:IngredientPageSplit/>
         </Grid>
     </Grid>
 

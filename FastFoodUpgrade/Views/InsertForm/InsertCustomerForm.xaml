@@ -48,8 +48,8 @@
                          Height="40"  Width="270" Background="White"
                          Text="{Binding ID}"/>
             <TextBlock FontFamily="{StaticResource boldFont}" 
-                       Grid.Row="0">
-                                BILLID
+                       Grid.Row="0" Width="136">
+                                Customer ID
             </TextBlock>
 
             <TextBox  x:Name="Nametxtbox"

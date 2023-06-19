@@ -26,6 +26,7 @@ namespace FastFoodUpgrade.Views.Pages
         public IngredientPage()
         {
             InitializeComponent();
+            //this.ComboboxFilter.ItemsSource = new List<string>() { "aljsdkljalksd", "kakjdsklajsd" };
         }
         private async void Button_Click(object sender, RoutedEventArgs e)
         {

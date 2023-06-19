@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastFoodUpgrade.Commands.AdvancedSearchCommand;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,18 +34,25 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get => _unit;
             set { _unit = value; OnPropertyChanged(nameof(Unit)); }
         }
-        private int _quantity;
-        public int Quantity
+        private int _quantityFrom =0;
+        public int QuantityFrom
         {
-            get => _quantity;
-            set { _quantity = value; OnPropertyChanged(nameof(Quantity)); }
+            get => _quantityFrom;
+            set { _quantityFrom = value; OnPropertyChanged(nameof(QuantityFrom)); }
         }
-        public IngredientViewModel vm;
+        private int _quantityTo=100;
+        public int QuantityTo
+        {
+            get => _quantityTo;
+            set { _quantityTo= value; OnPropertyChanged(nameof(QuantityTo)); }
+        }
+        public IngredientViewModel vm { get; set; }
         public ICommand AdvancedSearchIngredient { get; set; }
             //Constructor
         public IngredientAdvancedSearch() { }
         public IngredientAdvancedSearch(IngredientViewModel vm) {
             this.vm = vm;
+            this.AdvancedSearchIngredient = new IngredientAdvancedSearchCommand(this);
         }
 
     }

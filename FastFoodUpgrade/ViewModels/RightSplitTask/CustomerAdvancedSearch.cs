@@ -25,14 +25,8 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _phone; }
             set { _phone = value; OnPropertyChanged(nameof(Phone));}
         }
-        private ObservableCollection<String> _ranks;
-        public ObservableCollection<String> Ranks
-        {
-            get { return _ranks; }
-            set { _ranks = value; OnPropertyChanged(nameof(Ranks)); }
-        }
-        private String _selectedRank;
-        public String SelectedRank
+        private string _selectedRank;
+        public string SelectedRank
         {
             get { return _selectedRank; }
             set { _selectedRank = value; OnPropertyChanged(nameof(_selectedRank)); }
@@ -55,11 +49,6 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
         public CustomerAdvancedSearch(CustomerViewModel cvm) 
         {
             this.cvm = cvm;
-            DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
-            List<string> str = db.collection.Distinct<string>("Rank",Builders<Customer>.Filter.Empty).ToList();
-            _ranks = new ObservableCollection<string>(str);
-            if(str.Count > 0)
-                _selectedRank = _ranks[0];
             this.CustomerAdvancedSearchCommand = new CustomerAdvancedSearchCommand(this);
         }
     }

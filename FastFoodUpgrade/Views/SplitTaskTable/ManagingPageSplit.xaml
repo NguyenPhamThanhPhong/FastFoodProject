@@ -76,9 +76,9 @@
                                 AccessRight
                 </TextBlock>
                 <ComboBox x:Name="AcessRightCombobox"
+                    SelectedIndex="0"
                     SelectedItem="{Binding AcessRight}"
-                          SelectedIndex="0"
-                                      Grid.Row="1" Height="40"  Width="270" Background="White">
+                    Grid.Row="1" Height="40"  Width="270" Background="White">
 
                 </ComboBox>
             </Grid>
@@ -112,7 +112,7 @@
 
             <Grid Margin="35 20">
                 <Button BorderThickness="2" 
-                        Command="{Binding CustomerAdvancedSearchCommand}"
+                        Command="{Binding AdvancedSearchStaff}"
                         BorderBrush="Yellow" Background="{StaticResource menu_button_color}" Height="40" FontSize="20" FontFamily="{StaticResource boldFont}">
                     Search
                 </Button>

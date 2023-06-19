@@ -16,11 +16,11 @@ namespace FastFoodUpgrade.ViewModels
         private ObservableCollection<Ingredient> _ingredients;
         public ObservableCollection<Ingredient> Ingredients
         {
-            get { return _ingredients;}
+            get { return _ingredients; }
             set { _ingredients = value; OnPropertyChanged(nameof(Ingredients)); }
         }
         // Distinct Ingredient types
-        private ObservableCollection<string> _types;
+        private ObservableCollection<string> _types ;
         public ObservableCollection<string> Types
         {
             get { return _types; }
@@ -30,14 +30,14 @@ namespace FastFoodUpgrade.ViewModels
         public string SearchString
         {
             get { return _searchString; }
-            set { _searchString = value; OnPropertyChanged(nameof(SearchString)); }
+            set { _searchString = value; Search(); OnPropertyChanged(nameof(SearchString)); }
         }
         // COmbobox
         private int _selectedFilterIndex = 0;
         public int SelectedFilterIndex
         {
             get { return _selectedFilterIndex; }
-            set { _selectedFilterIndex = value; OnPropertyChanged(nameof(SelectedFilterIndex)); }
+            set { _selectedFilterIndex = value;Search(); OnPropertyChanged(nameof(SelectedFilterIndex)); }
         }
         public IngredientAdvancedSearch currentAdvancedSearch { get; set; }
         //Initializer instead of constructor
@@ -53,9 +53,10 @@ namespace FastFoodUpgrade.ViewModels
             List<Ingredient> ingr = await db.ReadAllAsync();
             Ingredients = new ObservableCollection<Ingredient>(ingr);
 
-            List<String> distinctTypes = db.ReadDistinctString("Types");
+            List<String> distinctTypes = db.ReadDistinctString("Type");
+            distinctTypes.Insert(0, "All");
             _types = new ObservableCollection<string>(distinctTypes);
-            this.currentAdvancedSearch = new IngredientAdvancedSearch();
+            this.currentAdvancedSearch = new IngredientAdvancedSearch(this);
         }
 
         private async void Search()
@@ -91,6 +92,19 @@ namespace FastFoodUpgrade.ViewModels
             foreach(var ingredient in result)
             {
                 Ingredients.Add(ingredient);
+            }
+        }
+        public void RefreshPage(List<Ingredient> result,List<string> distinctTypes)
+        {
+            _ingredients.Clear();
+            foreach (var ingredient in result)
+            {
+                Ingredients.Add(ingredient);
+            }
+            _types.Clear();
+            foreach(var distinct in distinctTypes )
+            {
+                _types.Add(distinct);
             }
         }
     }

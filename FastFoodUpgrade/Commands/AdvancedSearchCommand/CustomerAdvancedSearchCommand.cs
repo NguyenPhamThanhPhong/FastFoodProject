@@ -31,9 +31,9 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
                     string rank = vm.SelectedRank;
                     int From = vm.RevenueFrom;
                     int To = vm.RevenueTo;
-                    if (rank == null)
+                    if (rank == null||rank == "All")
                     {
-                        return;
+                        rank = "";
                     }
                     FilterDefinition<Customer> filter =
                     Builders<Customer>.Filter.Regex("Fullname", new BsonRegularExpression(SearchName, "i"))

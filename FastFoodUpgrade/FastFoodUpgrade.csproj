@@ -302,6 +302,9 @@
     <Compile Include="Views\SplitTaskTable\CustomerPageSplit.xaml.cs">
       <DependentUpon>CustomerPageSplit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SplitTaskTable\IngredientPageSplit.xaml.cs">
+      <DependentUpon>IngredientPageSplit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SplitTaskTable\ManagingPageSplit.xaml.cs">
       <DependentUpon>ManagingPageSplit.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SplitTaskTable\CustomerPageSplit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SplitTaskTable\IngredientPageSplit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

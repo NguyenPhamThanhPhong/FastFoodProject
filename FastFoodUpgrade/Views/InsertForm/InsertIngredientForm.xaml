@@ -9,7 +9,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         mc:Ignorable="d"
-        Foreground="White"
+        Background="Transparent"
         Title="InsertProductForm" Height="500" Width="700">
     <Window.Resources>
         <Style TargetType="TextBlock">
@@ -41,20 +41,17 @@
                 <ImageBrush Opacity="0.5" ImageSource="/IMAGE/mcdonald1.jpg"/>
             </Border.Background>
         </Border>
-        <Border CornerRadius="20"  Background="Gray" Margin="30 50 30 30" Opacity="0.3">
+        <Border CornerRadius="20"  Background="Gray" Margin="0" Opacity="0.3">
         </Border>
         <Button Margin="0 0 10 0" Style="{StaticResource CloseButton}" Click="Button_Click"/>
 
-        <Grid Margin="30 50 30 30" >
-            <Grid.Resources>
-
-            </Grid.Resources>
+        <Grid Margin="0" >
             <Border CornerRadius="20" BorderBrush="Yellow" BorderThickness="2">
                 <Border.Effect>
                     <BlurEffect Radius="15"/>
                 </Border.Effect>
             </Border>
-            <Ellipse Margin="32,82,478,223"  >
+            <Ellipse Margin="18,82,492,223"  >
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="{Binding Filename,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource filenameToImage}}"/>
                 </Ellipse.Fill>
@@ -72,7 +69,7 @@
             </Grid>
             <Grid Margin="408,22,0,319" >
                 <TextBlock FontSize="18"
-                            Text="Product Type" Margin="10,0,0,0" Width="183"
+                            Text="Product Type" Margin="24,0,0,0" Width="183"
                         ></TextBlock>
                 <ComboBox Padding="3 0" SelectedItem="{Binding CurrentIngredient.Type,UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource LightThemeCombobox2}"
@@ -90,19 +87,18 @@
                 </TextBox>
                 <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0" Width="208"/>
             </Grid>
-            <Grid Margin="408,118,0,223" >
+            <Grid Margin="427,118,0,0" Width="241" >
                 <TextBlock FontSize="18"
                             Text="Unit" Margin="10,0,0,0" Width="222"
                         ></TextBlock>
                 <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Unit, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
-                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+                         Margin="10,30,0,0" FontSize="16" Background="White" Width="207"  >
                 </TextBox>
                 <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,65,0,0"/>
             </Grid>
-            <Grid Margin="204,210,0,0" Width="320" Height="105" >
+            <Grid Margin="204,210,0,0" Width="446" Height="139" >
                 <TextBlock FontSize="18"
-                            Text="Description" Margin="27,0,0,0"
-                        ></TextBlock>
+                            Text="Description" Margin="0,8,0,0"/>
                 <TextBox  Tag="Optional" MaxHeight="100"
                           Height="60"
                                  TextWrapping="Wrap"
@@ -110,7 +106,6 @@
                                  Text="{Binding CurrentIngredient.Description,UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource MyTextBox}" >
                 </TextBox>
-                <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist" Margin="10,84,0,0" Width="172"/>
             </Grid>
             <Button Width="200" Height="40" Content="Insert ingredient"
                 VerticalAlignment="Bottom" HorizontalAlignment="Right"

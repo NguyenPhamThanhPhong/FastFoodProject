@@ -22,7 +22,7 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _email; }
             set { _email = value; OnPropertyChanged(nameof(this.Email)); }
         }
-        private string _accessRight = "";
+        private string _accessRight ;
         public string AccessRight
         {
             get { return _accessRight; }

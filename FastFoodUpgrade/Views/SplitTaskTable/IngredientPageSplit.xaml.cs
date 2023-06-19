@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace FastFoodUpgrade.Views.SplitTaskTable
 {
     /// <summary>
-    /// Interaction logic for CustomerPageSplit.xaml
+    /// Interaction logic for IngredientPageSplit.xaml
     /// </summary>
-    public partial class CustomerPageSplit : UserControl
+    public partial class IngredientPageSplit : UserControl
     {
-        public CustomerPageSplit()
+        public IngredientPageSplit()
         {
             InitializeComponent();
-            this.ComboboxRank.ItemsSource = new List<string>() { "All", "None", "Silver", "Gold" };
         }
     }
 }

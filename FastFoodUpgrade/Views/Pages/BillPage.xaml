@@ -52,7 +52,7 @@
                         FontFamily="{StaticResource boldFont}"
                         Foreground="White"
                         BorderThickness="2 2 2 2"
-                        SelectedIndex="{Binding SelectedIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                        SelectedIndex="{Binding SelectedFilterIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                 Style="{StaticResource DarkThemeCombobox}"
                          Width="194" Height="46" Margin="29,129,0,0">
                 <ComboBox.ItemTemplate>
@@ -90,7 +90,6 @@
                                 HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="304">
 
             </TextBox>
-            <Button Margin="606,130,126,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
             <Grid VerticalAlignment="Top"
                             Grid.Row="1" 
@@ -171,11 +170,6 @@
                                             </Style.Triggers>
                                         </Style>
                                     </Grid.Style>
-                                    <Grid.Resources>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Background" Value="Blue"/>
-                                        </Style>
-                                    </Grid.Resources>
                                     <Border Background="White" CornerRadius="20" Grid.ColumnSpan="4"/>
                                     <TextBlock VerticalAlignment="Center" 
                                                Padding="10 0"
@@ -184,7 +178,7 @@
                                     <TextBlock Grid.Column="1"
                                                Padding="20 0"
                                                 VerticalAlignment="Center" 
-                                               Text="{Binding Customer.fullname}"  FontFamily="{StaticResource boldFont}" 
+                                               Text="{Binding CustomerPurchaser.Fullname}"  FontFamily="{StaticResource boldFont}" 
                                                FontSize="20"/>
                                     <TextBlock Grid.Column="2"
                                                 VerticalAlignment="Center" 

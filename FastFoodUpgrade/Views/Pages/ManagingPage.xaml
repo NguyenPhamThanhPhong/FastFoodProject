@@ -149,7 +149,7 @@
 
         </Grid>
         <Grid  Grid.Column="1">
-            <table:ManagingPageSplit/>
+            <table:ManagingPageSplit DataContext="{Binding CurrentAdvancedSearch}"/>
         </Grid>
     </Grid>
 

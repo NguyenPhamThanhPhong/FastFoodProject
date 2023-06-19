@@ -64,14 +64,13 @@
 
                 <Grid Grid.Column="1">
                     <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left"
+                              IsEditable="True"
                          Margin="0 30 0 0"
-                         FontSize="7"
+                         FontSize="16"
                          Text="hey"
                          Height="40"  Width="270" Background="White"
-                         VerticalContentAlignment="Top"
-                              ItemsSource="{Binding CustomerPurchaserList}"
-                        IsEditable="True" 
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                         VerticalContentAlignment="Center" FontFamily="{StaticResource boldFont}"
+                              ItemsSource="{Binding CustomerPurchaserList}" >
 
                     </ComboBox>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">

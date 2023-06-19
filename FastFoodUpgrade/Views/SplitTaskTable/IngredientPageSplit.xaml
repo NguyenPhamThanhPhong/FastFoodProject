@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FastFoodUpgrade.Views.SplitTaskTable.BillPageSplit"
+﻿<UserControl x:Class="FastFoodUpgrade.Views.SplitTaskTable.IngredientPageSplit"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,10 +15,6 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
-        </Style>
-        <Style TargetType="DatePicker">
-            <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
     <Grid >
@@ -54,80 +50,35 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Customer  Name
+                                Name
                 </TextBlock>
                 <TextBox Grid.Row="1" Style="{StaticResource NormalTextbox}" 
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding CustomerName}"/>
+                         Text="{Binding Name}"/>
             </Grid>
+
             <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Staff Name
+                                Category
                 </TextBlock>
-                <TextBox Grid.Row="1" Style="{StaticResource NormalTextbox}" 
-                         Height="40"  Width="270" Background="White"
-                         Text="{Binding StaffName}"/>
+                <ComboBox 
+                    ItemsSource="{Binding vm.Types}" SelectedIndex="0"
+                    SelectedItem="{Binding Type}"  
+                    Grid.Row="1" Height="40"  Width="270" Background="White">
+
+                </ComboBox>
             </Grid>
-
-
             <Grid HorizontalAlignment="Center" Margin="0 5" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Bill Date
-                </TextBlock>
-
-                <Grid Width="270" Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock FontFamily="{StaticResource boldFont}" 
-                                            FontSize="16"
-                                           Grid.Row="0" Grid.Column="0">
-                                From
-                    </TextBlock>
-                    <TextBlock FontFamily="{StaticResource boldFont}" 
-                                           FontSize="16" Margin="10 0"
-                                           Grid.Row="0" Grid.Column="2">
-                                To
-                    </TextBlock>
-                    <DatePicker HorizontalAlignment="Left" 
-                                SelectedDate="{Binding DateFrom}" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                Width="110" Grid.Row="1"  
-                                Background="White" FontFamily="{StaticResource boldFont}">
-                    </DatePicker>
-                    <DatePicker HorizontalAlignment="Left" 
-                                SelectedDate="{Binding DateTo}" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                Width="110" Grid.Row="1" Grid.Column="2"  
-                                Background="White" FontFamily="{StaticResource boldFont}">
-                    </DatePicker>
-                </Grid>
-
-            </Grid>
-
-            <Grid HorizontalAlignment="Center" Margin="0 5" >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Payment
+                                Total Revenue
                 </TextBlock>
 
                 <Grid Width="270" Grid.Row="1">
@@ -151,21 +102,20 @@
                                 To
                     </TextBlock>
                     <TextBox HorizontalAlignment="Left" Style="{StaticResource NormalTextbox}" 
-                             Text="{Binding TotalFrom}"
+                             Text="{Binding QuantityFrom}"
                                           Height="40" Width="110" Grid.Row="1"  Background="White"/>
 
                     <TextBox  Style="{StaticResource NormalTextbox}" 
-                             Text="{Binding TotalTo}"
+                             Text="{Binding QuantityTo}"
                              Height="40" Width="110"  Background="White"
                                          Grid.Column="2" Grid.Row="1"/>
                 </Grid>
-
             </Grid>
 
 
             <Grid Margin="35 20">
                 <Button BorderThickness="2" 
-                        Command="{Binding BillAdvancedSearchCMD}"
+                        Command="{Binding AdvancedSearchIngredient}"
                         BorderBrush="Yellow" Background="{StaticResource menu_button_color}" Height="40" FontSize="20" FontFamily="{StaticResource boldFont}">
                     Search
                 </Button>
