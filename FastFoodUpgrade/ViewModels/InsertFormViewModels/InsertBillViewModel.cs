@@ -81,7 +81,21 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 
         public InsertBillViewModel()
         {
-
+        }
+        public InsertBillViewModel(Bill b)
+        {
+            _billID = b.ID;
+            CustomerName = b.CustomerPurchaser.Fullname;
+            SaleStaff = b.SaleStaff;
+            DiscountAmount = b.DiscountAmount;
+            Total = b.Total;
+            this.CustomerPurchaserList = new ObservableCollection<Customer>(new List<Customer>());
+            Payment = b.Total*(100-b.DiscountAmount)/100;
+            foreach(var o in b.Orders)
+            {
+                this.Odrs.Add(o);
+            }
+            IsDropDownOpen = false;
         }
         public static async Task<InsertBillViewModel> CreateAsync(Staff CurrentWorkingStaff)
         {
@@ -115,14 +129,18 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         }
         public void SearchCustomer()
         {
-            this.CustomerPurchaserList.Clear();
-            foreach (var c in currentCustomers)
+            if (CustomerPurchaserList != null)
             {
-                if (c.Fullname.Trim().ToLower().Contains(_customerName.Trim().ToLower()))
+                this.CustomerPurchaserList.Clear();
+                foreach (var c in currentCustomers)
                 {
-                    CustomerPurchaserList.Add(c);
+                    if (c.Fullname.Trim().ToLower().Contains(_customerName.Trim().ToLower()))
+                    {
+                        CustomerPurchaserList.Add(c);
+                    }
                 }
             }
+
         }
         public void UpdateTotal()
         {

@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FastFoodUpgrade.Models;
 using FastFoodUpgrade.ViewModels;
+using FastFoodUpgrade.Views.InsertForm;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -35,6 +37,23 @@ namespace FastFoodUpgrade.Views.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private DateTime _lastClickTime;
+
+        private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
+            {
+                Grid grid = sender as Grid;
+                Bill b = grid.DataContext as Bill;
+                InsertBillForm f = new InsertBillForm(b);
+                f.ShowDialog();
+
+                // Double-click event handler code here
+                // This code will be executed when the Grid is double-clicked
+            }
+
+            _lastClickTime = DateTime.Now;
         }
     }
 }

@@ -9,7 +9,6 @@
         Background="Transparent"
         Loaded="Window_Loaded"
                 WindowStartupLocation="CenterScreen"
-        
         WindowStyle="None"
         AllowsTransparency="True" Height="680" Width="750">
     <Window.Resources>
@@ -48,7 +47,7 @@
                 Width="45"
                 Height="43"
            Margin="0,10,15,0"
-                Style="{StaticResource CloseButton}"/>
+                Style="{StaticResource CloseButton}" Click="Button_Click"/>
 
             <Grid VerticalAlignment="Top" Margin="46,50,38,0" Height="225">
                 <Grid.ColumnDefinitions>
@@ -71,7 +70,7 @@
                 </TextBlock>
 
                 <Grid Grid.Column="1">
-                    <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left"
+                    <ComboBox x:Name="ComboboxCutomer" VerticalAlignment="Top" HorizontalAlignment="Left"
                               IsEditable="True"
                          Margin="0 30 0 0" FontSize="16"
                          Text="{Binding CustomerName}"
@@ -143,15 +142,15 @@
 
             <listviews:DrawerListView 
                     DropCommand="{Binding DropProductCommand}" Margin="46,298,90,82" />
-            <Button VerticalAlignment="Bottom" 
+            <Button x:Name="InsertButton" VerticalAlignment="Bottom" 
                     Command="{Binding InsertOneBillCommand}"
-                    Width="150" Height="50" Margin="532,0,68,27" >
+                    Width="150" Height="50" Margin="532,0,68,10" >
                 Insert Bill
             </Button>
 
 
         </Grid>
-        <Border Cursor="Arrow" Background="Green"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
+        <Border Cursor="Arrow" Background="Gray" Opacity="0"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
 
 
 

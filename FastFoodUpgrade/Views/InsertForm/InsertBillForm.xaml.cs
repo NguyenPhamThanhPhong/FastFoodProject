@@ -28,10 +28,17 @@ namespace FastFoodUpgrade.Views.InsertForm
             InitializeComponent();
             _currentStaff = currentStaff;
         }
-
+        public InsertBillForm(Bill b)
+        {
+            InitializeComponent();
+            this.DataContext= new InsertBillViewModel(b);
+            this.InsertButton.IsEnabled = false;
+            this.ComboboxCutomer.IsEnabled = false;
+        }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = await InsertBillViewModel.CreateAsync(_currentStaff);
+            if(this._currentStaff!= null)
+                this.DataContext = await InsertBillViewModel.CreateAsync(_currentStaff);
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -42,6 +49,11 @@ namespace FastFoodUpgrade.Views.InsertForm
         private void ComboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

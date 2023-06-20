@@ -150,7 +150,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ListViewItem >
-                                <Grid Margin="-10 -10"  Width="800" Height="55">
+                                <Grid PreviewMouseDown="Grid_PreviewMouseDown" Margin="-10 -10"  Width="800" Height="55">
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="80"/>

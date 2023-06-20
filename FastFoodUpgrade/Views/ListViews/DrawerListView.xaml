@@ -5,23 +5,66 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FastFoodUpgrade.Views.ListViews"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="614">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
     <Grid >
-        <ListView  ItemsSource="{Binding Odrs}" AllowDrop="True" MouseLeftButtonDown="ListView_MouseLeftButtonDown" Drop="ListView_Drop">
+        <ListView  ItemsSource="{Binding Odrs}" AllowDrop="True"  Drop="ListView_Drop" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel/>
+                    <StackPanel/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Margin="10 0 10 0" Width="190" Height="170">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1" Grid.RowSpan="2" Height="50" Width="580">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border CornerRadius="25" Background="White" Grid.Column="1" Grid.ColumnSpan="4"/>
+                            <Image HorizontalAlignment="Center" 
+                               Stretch="Uniform" Source="/IMAGE/burger.png"/>
+                            <TextBlock Margin="10 0" VerticalAlignment="Center" FontFamily="{StaticResource boldFont}" MaxWidth="140" FontSize="12" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Merchandise.Name}"/>
+                            <TextBlock Margin="25 0" VerticalAlignment="Center" FontFamily="{StaticResource boldFont}" Grid.Column="2" Text="{Binding Merchandise.Price, StringFormat={}{0:N0} VND}"/>
+                            <TextBlock Margin="10 0" VerticalAlignment="Center" FontFamily="{StaticResource boldFont}" Grid.Column="3" Text="{Binding SellAmount,StringFormat={} x {0}}"/>
+                            <TextBlock Margin="10 0" VerticalAlignment="Center" FontFamily="{StaticResource boldFont}" Grid.Column="4" Text="{Binding Total, StringFormat={}{0:N0} VND}"/>
+
+                        </Grid>
+                        <Grid Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="4">
+                            <Border CornerRadius="10" Background="Black" BorderThickness="2" BorderBrush="Red"/>
+                            <Border CornerRadius="20" BorderBrush="Yellow" BorderThickness="8" >
+                                <Border.Effect>
+                                    <BlurEffect Radius="10"/>
+                                </Border.Effect>
+                            </Border>
+                            <TextBlock Foreground="Red" FontFamily="{StaticResource boldFont}" Text="{Binding DiscountAmount.Value,StringFormat={}-{0} %}"/>
+                        </Grid>
+                    </Grid>
+
+                    <!--<Grid HorizontalAlignment="Left" Margin="10 0 10 0" Width="190" Height="170">
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Border BorderThickness="1 4 4 1" BorderBrush="White" CornerRadius="10" Grid.RowSpan="2" Grid.Row="1">
+                        -->
+                    <!--<Border BorderThickness="1 4 4 1" BorderBrush="White" CornerRadius="10" Grid.RowSpan="2" Grid.Row="1">
 
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
@@ -29,13 +72,9 @@
                                     <GradientStop Color="Black" Offset="0"/>
                                 </LinearGradientBrush>
                             </Border.Background>
-                        </Border>
-                        <Image Width="150"
-                                        HorizontalAlignment="Center" 
-                                        Grid.RowSpan="2" Stretch="Uniform" 
-                                        Source="/IMAGE/burger.png"/>
+                        </Border>-->
 
-                        <Grid Grid.Row="2">
+                    <!--<Grid Grid.Row="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition/>
@@ -65,8 +104,9 @@
                                             FontFamily="{StaticResource boldFont}" 
                                             FontSize="18"
                                             Foreground="White"/>
-                        </Grid>
-                    </Grid>
+                        </Grid>-->
+                    <!--
+                    </Grid>-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
