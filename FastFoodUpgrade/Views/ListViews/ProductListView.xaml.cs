@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FastFoodUpgrade.Models;
+using FastFoodUpgrade.ViewModels;
+using FastFoodUpgrade.Views.InsertForm;
+using FastFoodUpgrade.Views.ViewForm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +44,21 @@ namespace FastFoodUpgrade.Views.ListViews
                 SelectCommand.Execute(sender);
             }
             
+        }
+
+        private DateTime _lastClickTime;
+        private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
+            {
+                Grid g = sender as Grid;
+                Product p = g.DataContext as Product;
+                InsertProductForm f = new InsertProductForm(p);
+                f.ShowDialog();
+                ProductViewModel pvm = this.DataContext as ProductViewModel;
+                pvm.DatabaseChangedTrigger();
+            }
+            _lastClickTime = DateTime.Now;
         }
     }
 }

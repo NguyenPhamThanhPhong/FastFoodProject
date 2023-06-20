@@ -203,6 +203,7 @@
     <Compile Include="Commands\AdvancedSearchCommand\StaffAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DeleteCommands\DeleteProductCommand.cs" />
     <Compile Include="Commands\DragDropCommands\DropCommand.cs" />
     <Compile Include="Commands\DragDropCommands\MouseDownDrag.cs" />
     <Compile Include="Commands\InsertCommands\InsertBillCommand.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Commands\InsertCommands\InsertStaffCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveImageDialogCommand.cs" />
+    <Compile Include="Commands\UpdateCommands\UpdateProductCommand.cs" />
     <Compile Include="Converters\AbsoluteFileNameToBitmapImage.cs" />
     <Compile Include="Converters\IngredientAvatartoImage.cs" />
     <Compile Include="Converters\ProductAvatarToImage.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Utility\ImageStorage.cs" />
+    <Compile Include="Utility\SelectedValue.cs" />
     <Compile Include="ViewModels\BillViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DashBoardViewModel.cs" />
@@ -510,7 +513,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\UpdateCommands\" />
     <Folder Include="IMAGE_INGREDIENT\" />
     <Folder Include="IMAGE_PRODUCT\" />
     <Folder Include="IMAGE_STAFF\" />

@@ -35,7 +35,7 @@ namespace FastFoodUpgrade.Commands.InsertCommands
                 P.Price = ipvm.Price;
                 P.Description = ipvm.Description;
                 P.Avatar = P._id + ".png";
-                P.DiscountAmount = new Discount() { Value = ipvm.DiscountAmount, EndDate = ipvm.ExpirationDate };
+                P.DiscountAmount = new Discount() { Value = ipvm.DiscountAmount,StartDate=ipvm.StartDate, EndDate = ipvm.ExpirationDate };
                 string filepath = filename.ToString();
 
                 if (P.IsValid())

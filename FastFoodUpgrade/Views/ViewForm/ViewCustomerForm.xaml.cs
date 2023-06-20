@@ -1,4 +1,5 @@
 ﻿using FastFoodUpgrade.Models;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace FastFoodUpgrade.Views.ViewForm
     /// </summary>
     public partial class ViewCustomerForm : Window
     {
+        private int ID;
         public ViewCustomerForm(Customer c)
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace FastFoodUpgrade.Views.ViewForm
             this.txtboxRank.Text = c.Rank;
             this.txtboxTotal.Text = c.Total.ToString();
             this.txtboxAddress.Text = c.Address;
+            this.ID = c.ID;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -38,6 +41,17 @@ namespace FastFoodUpgrade.Views.ViewForm
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+        //update
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, ID);
+            //FilterDefinition<Customer> Update
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

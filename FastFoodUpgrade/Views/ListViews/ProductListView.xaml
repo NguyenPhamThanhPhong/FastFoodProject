@@ -25,7 +25,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate >
-                    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown"  Margin="0 0 0 0" Width="190" Height="200">
+                    <Grid PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown" MouseLeftButtonDown="Grid_MouseLeftButtonDown"  Margin="0 0 0 0" Width="190" Height="200">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>

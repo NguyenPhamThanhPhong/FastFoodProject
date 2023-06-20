@@ -27,6 +27,7 @@ namespace FastFoodUpgrade.Views.InsertForm
             InsertProductViewModel datacontext = new InsertProductViewModel();
             this.ComboboxType.ItemsSource = new List<string>() {"Burgers","Pasta","Pizza","Fries","Drinks","Others" };
             this.DataContext = datacontext;
+            this.buttonDelete.Visibility = Visibility.Hidden;
         }
         public InsertProductForm(Product p)
         {
@@ -34,29 +35,27 @@ namespace FastFoodUpgrade.Views.InsertForm
             InsertProductViewModel datacontext = new InsertProductViewModel(p);
             this.ComboboxType.ItemsSource = new List<string>() { "Burgers", "Pasta", "Pizza", "Fries", "Drinks", "Others" };
             this.DataContext = datacontext;
+            this.txtboxName.IsEnabled = false;
+            this.buttonInsert.Content = "Update Product";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Product p = new Product();
-            //p.Name = productname.Text.Trim();
-            //p.Type= producttype.Text.Trim();
-            //p.Remain = int.Parse(Remain.Text.Trim());
-            //p.Price = int.Parse(productprice.Text.Trim());
-            //p.DiscountAmount = new Discount() { Value = float.Parse(Amount.Text.Trim()),StartDate=DateTime.Today, EndDate= DateTime.Now };
-            //p.Description = description.Text;
-            //DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
-            //db.Insert(p);
-            //if(InsertCommand!= null) 
-            //{
-            //    InsertCommand.Execute(null);
-            //}
             this.Close();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            InsertProductViewModel vm = this.DataContext as InsertProductViewModel;
+            if (vm.DeleteCommand != null)
+            {
+                vm.DeleteCommand.Execute(this);
+            }
         }
     }
 }

@@ -21,6 +21,17 @@ namespace FastFoodUpgrade.Utility
                 File.Copy(SourcePath, Path.Combine(DesPath,FileName), true);
             }
         }
+        public static void DeleteImage(string filepath,string filename)
+        {
+            if (!String.IsNullOrEmpty(filepath)&&!String.IsNullOrEmpty(filename))
+            {
+                string fullpath = Path.Combine(filepath, filename);
+                if (File.Exists(fullpath))
+                {
+                    File.Delete(fullpath);
+                }
+            }
+        }
         public static string GetImage(string path,string filename)
         {
             return Path.Combine(path, filename);

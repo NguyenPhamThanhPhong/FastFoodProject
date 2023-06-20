@@ -1,5 +1,7 @@
 ﻿using FastFoodUpgrade.Commands;
+using FastFoodUpgrade.Commands.DeleteCommands;
 using FastFoodUpgrade.Commands.InsertCommands;
+using FastFoodUpgrade.Commands.UpdateCommands;
 using FastFoodUpgrade.Models;
 using FastFoodUpgrade.Utility;
 using System;
@@ -15,7 +17,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 {
     public class InsertProductViewModel : ViewModelBase
     {
-
+        public string ID;
         private string _name;
         public string Name
         {
@@ -116,7 +118,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         //COmmand
         public ICommand InsertCommand { get; set; }
         public ICommand SaveImageDialog { get; set; }
-        public ICommand UpdateCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
         // Constructor
         public InsertProductViewModel()
         {
@@ -133,6 +135,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         }
         public InsertProductViewModel(Product SelectedProduct)
         {
+            this.ID = SelectedProduct._id;
             this.Name = SelectedProduct.Name;
             this.Type = SelectedProduct.Type;
             this.Description = SelectedProduct.Description;
@@ -144,6 +147,8 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
             this.FileName.Clear();
             this.FileName.Append(ImageStorage.GetImage(ImageStorage.ProductImageLocation,SelectedProduct.Avatar));
             this.SaveImageDialog = new SaveImageDialogCommand(FileName, this);
+            this.InsertCommand = new UpdateProductCommand(this,FileName);
+            this.DeleteCommand = new DeleteProductCommand(this, FileName);
 
         }
         public void RefreshForm()

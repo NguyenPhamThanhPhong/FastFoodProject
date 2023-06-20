@@ -62,8 +62,8 @@
                 <Grid Height="85" Width="209" Margin="190,22,232,313" >
                     <TextBlock Width="164" Height="25"
                             FontSize="18"
-                            Text="Ingredient Name" Margin="10,0,0,0"></TextBlock>
-                    <TextBox x:Name="productname" Padding="3 0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                            Text="Product Name" Margin="10,0,0,0"></TextBlock>
+                    <TextBox x:Name="txtboxName" Padding="3 0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                          FontFamily="{StaticResource boldFont}"
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
 
@@ -143,198 +143,23 @@
                     </TextBox>
                 </Grid>
             </Grid>
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right"
+            <Button x:Name="buttonInsert" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                     Background="{StaticResource menu_button_color}"
                     Command="{Binding InsertCommand}"
                     BorderBrush="Green" BorderThickness="4" Margin="0,0,45,31" Height="40" Width="146">
                 Insert Product
             </Button>
+            <Button x:Name="buttonDelete" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Background="OrangeRed"
+                    Click="buttonDelete_Click"
+                    BorderBrush="Red" BorderThickness="4" Margin="0,0,317,31" Height="40" Width="146">
+                Delete Product
+            </Button>
 
         </Grid>
         <Button Margin="0 0 10 0" Style="{StaticResource CloseButton}" Click="Button_Click" Height="31" Width="30"/>
+
         <Border Cursor="SizeAll" Background="Gray" Opacity="0"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
     </Grid>
-    <!--<Grid>
-        <Grid Background="Transparent" >
-            <Border Background="Black" Opacity="0.85">
-            </Border>
-            <Image Source="/IMAGE/meatBurger.png" Margin="10,119,344,173"/>
-            <Button Background="Transparent"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Width="146" Height="42"
-                    Padding="0"
-                    Margin="10,290,0,0">
-                <Grid Width="123" Height="42">
-                    <Border CornerRadius="25" Background="Gray" ></Border>
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap">
-                Pick An Image
-                    </TextBlock>
-                </Grid>
-
-            </Button>
-            <Button Width="40" Height="40" Style="{StaticResource CloseButton}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-
-            <StackPanel  Margin="180,50,50,90">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock 
-                            FontSize="18"
-                            Text="Product name"
-                        ></TextBlock>
-                    <Grid Grid.Row="1" >
-                        <TextBox x:Name="productname" Padding="3 0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
-                                     FontSize="16" Background="White" Style="{StaticResource NormalTextbox}">
-                            
-                        </TextBox>
-                    </Grid>
-                    <TextBlock Grid.Row="3" FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="This Product already Exist">
-                        
-                    </TextBlock>
-
-                </Grid>
-
-                <Grid Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock 
-                            FontSize="18"
-                            Text="Product type"></TextBlock>
-                    <Grid  Grid.Row="1" >
-                        <TextBox x:Name="producttype" 
-                                 Padding="3 0" 
-                                 Tag="Must Fill"  
-                                 Text="{Binding Type,UpdateSourceTrigger=PropertyChanged}"
-                                 FontSize="16" Background="White" Style="{StaticResource NormalTextbox}">
-
-                        </TextBox>
-                    </Grid>
-                </Grid>
-                <TextBlock  FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Tips: this type still not exist, you may adding new type">
-
-                </TextBlock>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock 
-                            FontSize="18"
-                            Text="Product price"></TextBlock>
-                    <Grid Grid.Row="1">
-                        <Grid Grid.Row="1" >
-                            <TextBox x:Name="productprice" 
-                                     Text="{Binding Price,UpdateSourceTrigger=PropertyChanged}"
-                                     Padding="3 0" Tag="Must Fill"  FontSize="16" Background="White" Style="{StaticResource NormalTextbox}">
-
-                            </TextBox>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <TextBlock  FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Invalid price data">
-
-                </TextBlock>
-                <Grid Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock 
-                            FontSize="18"
-                        Foreground="Yellow"
-                            Text="Remaining Quantity" FontFamily="{StaticResource boldFont}"></TextBlock>
-                    <Grid Grid.Row="1" >
-                        <TextBox x:Name="Remain" Text="{Binding Remaining, UpdateSourceTrigger=PropertyChanged}" Padding="3 0" Tag="Must Fill"  FontSize="16" Background="White" Style="{StaticResource NormalTextbox}">
-
-                        </TextBox>
-                    </Grid>
-                </Grid>
-                <TextBlock  FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Invalid Remaining Quantity data"/>
-                <TextBlock Grid.Row="0"
-                            FontSize="18"
-                           FontFamily="{StaticResource boldFont}"
-                           Foreground="Yellow"
-                            Text="Discount"></TextBlock>
-                <Grid Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0"
-                            FontSize="18"
-                            Text="Amount"></TextBlock>
-                        <Grid Grid.Row="1" >
-                            <TextBox x:Name="Amount" 
-                                     Text="{Binding DiscountAmount,UpdateSourceTrigger=PropertyChanged}"
-                                     Height="25" Tag="Optional"  Padding="3 0"  FontSize="16" Background="White" Style="{StaticResource NormalTextbox}">
-
-                            </TextBox>
-                        </Grid>
-                    </Grid>
-                    
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0"
-                            FontSize="18"
-                            Text="Expiration Date"></TextBlock>
-                        <Grid Grid.Row="1" >
-                            <Border Background="White" CornerRadius="4" />
-                            <DatePicker SelectedDate="{Binding ExpirationDate,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Background="Transparent">
-                            </DatePicker>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <TextBlock  FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Invalid Discount data"/>
-
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock 
-                            FontSize="18"
-                        FontFamily="{StaticResource boldFont}"
-                         Foreground="Yellow"
-                            Text="Remain Quantity"></TextBlock>
-                    <Grid Grid.Row="1" >
-                        <TextBox x:Name="description"
-                                 Tag="Optional"
-                                 MaxHeight="100"
-                                 TextWrapping="Wrap"
-                                 AcceptsReturn="True" 
-                                 Text="{Binding Description,UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource MyTextBox}" Margin="0,0,0,-42">
-                        </TextBox>
-
-                    </Grid>
-                </Grid>
-
-            </StackPanel>
-            <Button Width="100" Margin="350,540,50,28" Command="{Binding InsertCommand}">
-                Insert
-            </Button>
-            <Button Width="100" Margin="200,540,200,28">
-                Delete
-            </Button>
-
-        </Grid>
-    </Grid>-->
 
 </Window>

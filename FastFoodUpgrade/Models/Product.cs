@@ -61,6 +61,8 @@ namespace FastFoodUpgrade.Models
                 || String.IsNullOrEmpty(Type)
                 || Price < 0
                 || Remain < 0
+                || DiscountAmount.Value <0
+                || DiscountAmount.Value >100
                 || Description == null
                 || Avatar == null)
             {

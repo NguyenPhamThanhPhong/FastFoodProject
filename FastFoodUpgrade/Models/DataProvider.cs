@@ -52,6 +52,10 @@ namespace FastFoodUpgrade.Models
         {
             collection.DeleteMany(filter);
         }
+        public void DeleteOne(FilterDefinition<T> filter)
+        {
+            collection.DeleteOne(filter);
+        }
         public async Task InsertOneAsync(T record)
         {
             await collection.InsertOneAsync(record);
