@@ -13,47 +13,65 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 {
     public class InsertBillViewModel : ViewModelBase
     {
+        // List orderssss
         private ObservableCollection<Order> _odrs = new ObservableCollection<Order>();
         public ObservableCollection<Order> Odrs
         {
             get { return _odrs; }
             set { _odrs = value;  OnPropertyChanged(nameof(Odrs)); }
         }
+        //ID
         private int _billID;
         public int BillID
         {
             get { return _billID; }
             set { _billID = value; OnPropertyChanged(nameof(BillID)); }
         }
+        //List customer
         private ObservableCollection<Customer> _customerPurchaserList;
         public ObservableCollection<Customer> CustomerPurchaserList
         {
             get { return _customerPurchaserList; }
             set { _customerPurchaserList = value; OnPropertyChanged(nameof(CustomerPurchaserList)); }
         }
-        private Customer _selectedCustomer;
-        public Customer SelectedCustomer
+        //Find customer
+        private bool _isDropDownOpen=false;
+        public bool IsDropDownOpen
         {
-            get { return _selectedCustomer; }
-            set { _selectedCustomer = value; OnPropertyChanged(nameof(SelectedCustomer)); }
+            get => _isDropDownOpen;
+            set { _isDropDownOpen = value; OnPropertyChanged(nameof(IsDropDownOpen)); }
         }
+        public List<Customer> currentCustomers;
+        private string _customerName="";
+        public string CustomerName
+        {
+            get => _customerName;
+            set { _customerName = value; SearchCustomer(); IsDropDownOpen = true; OnPropertyChanged(nameof(CustomerName)); }
+        }
+        // Staff
         private Staff _saleStaff;
         public Staff SaleStaff
         {
             get { return _saleStaff; }
             set { _saleStaff = value; OnPropertyChanged(nameof(SaleStaff)); }
         }
-        private float _discountAmount;
+        private float _discountAmount=0;
         public float DiscountAmount
         {
             get { return _discountAmount; }
             set { _discountAmount = value; OnPropertyChanged(nameof(DiscountAmount));  }
         }
-        private int _total;
+        private int _total=0;
         public int Total
         {
             get { return _total; }
             set { _total = value; OnPropertyChanged(nameof(Total)); }
+        }
+        private float _payment;
+        public float Payment 
+        { 
+            get => _payment;
+            set { _payment = value; OnPropertyChanged(nameof(Payment)); }
         }
         public Product SelectedProduct;
         //command
@@ -82,20 +100,38 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
                 DataProvider<Customer> dbCustomer = new DataProvider<Customer>(Customer.Collection);
                 List<Customer> AllCustomers = await dbCustomer.ReadAllAsync();
 
-
+                this.currentCustomers = AllCustomers;
                 BillID = db.ReadAll().Count + 1;
                 CustomerPurchaserList = new ObservableCollection<Customer>(AllCustomers);
                 SaleStaff = CurrentWorkingStaff;
                 DiscountAmount = 0;
 
-                DropProductCommand = new DropCommand(Odrs);
+                DropProductCommand = new DropCommand(Odrs,this);
                 this.InsertOneBillCommand = new InsertBillCommand(this);
 
 
                 //BillID = db.ReadAll().Count;
             });
-
-
+        }
+        public void SearchCustomer()
+        {
+            this.CustomerPurchaserList.Clear();
+            foreach (var c in currentCustomers)
+            {
+                if (c.Fullname.Trim().ToLower().Contains(_customerName.Trim().ToLower()))
+                {
+                    CustomerPurchaserList.Add(c);
+                }
+            }
+        }
+        public void UpdateTotal()
+        {
+            this.Total = 0;
+            foreach(Order o in Odrs)
+            {
+                this.Total += o.Total;
+            }
+            this.Payment = Total * (100 - DiscountAmount) / 100;
         }
     }
 }

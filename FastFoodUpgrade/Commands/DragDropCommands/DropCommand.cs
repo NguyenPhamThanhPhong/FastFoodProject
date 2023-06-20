@@ -15,9 +15,15 @@ namespace FastFoodUpgrade.Commands.DragDropCommands
     {
 
         ObservableCollection<Order> PurchaseList;
+        InsertBillViewModel ibvm;
         public DropCommand(ObservableCollection<Order> odrs) 
         {
             this.PurchaseList = odrs;
+        }
+        public DropCommand(ObservableCollection<Order> odrs,InsertBillViewModel ibvm)
+        {
+            this.PurchaseList = odrs;
+            this.ibvm = ibvm;
         }
         public override void Execute(object parameter)
         {
@@ -34,12 +40,14 @@ namespace FastFoodUpgrade.Commands.DragDropCommands
                     {
                         item.SellAmount++;
                         if(item.DiscountAmount!=null)
-                            item.Total += (int)(p.Price * (1 - item.DiscountAmount.Value));
+                            item.Total += (int)(p.Price * (100 - item.DiscountAmount.Value)/100);
                         else
                             item.Total += p.Price;
                         Order oo = item;
-                        PurchaseList.RemoveAt(i); // Remove the old item
-                        PurchaseList.Insert(i, oo); // Insert the new item at the same index
+                        ibvm.Odrs.RemoveAt(i); // Remove the old item
+                        ibvm.Odrs.Insert(i, oo); // Insert the new item at the same index
+                        ibvm.UpdateTotal();
+                        //ibvm.OnPropertyChanged("Odrs");
                         return;
                     }
                 }
@@ -51,7 +59,10 @@ namespace FastFoodUpgrade.Commands.DragDropCommands
                     DiscountAmount = p.DiscountAmount,
                     Total = p.Price * 1
                 };
-                PurchaseList.Add(o);
+                ibvm.Odrs.Add(o);
+                ibvm.UpdateTotal();
+                //ibvm.OnPropertyChanged("Odrs");
+
                 //pvm.Odrs.Add(o);
                 //pvm.SelectedItem = null;
             }

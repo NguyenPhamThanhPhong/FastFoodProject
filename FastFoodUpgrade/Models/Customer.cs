@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace FastFoodUpgrade.Models
 {
@@ -29,7 +30,27 @@ namespace FastFoodUpgrade.Models
             List<Customer> resultls = db.ReadFiltered(filter);
             return resultls.Count > 0;
         }
-
-
+        public override string ToString()
+        {
+            if(this.Fullname !=null)
+                return this.Fullname;
+            return "";
+        }
+        public static Customer GetCustomerByName(string Name)
+        {
+            if(Name == null)
+            {
+                return null;
+            }
+            Customer c = new Customer();
+            DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
+            FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.Fullname, Name);
+            List<Customer> customers = db.ReadFiltered(filter);
+            if(customers.Count > 0)
+            {
+                return customers[0];
+            }else
+                return null;
+        }
     }
 }

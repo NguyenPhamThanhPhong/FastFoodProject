@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FastFoodUpgrade.Commands.InsertCommands
 {
@@ -22,13 +23,18 @@ namespace FastFoodUpgrade.Commands.InsertCommands
                 Bill b = new Bill()
                 {
                     ID = _ibvm.BillID,
-                    CustomerPurchaser = _ibvm.SelectedCustomer,
+                    CustomerPurchaser = Customer.GetCustomerByName(_ibvm.CustomerName),
                     BillDate = DateTime.Now,
-                    DiscountAmount = 0,
+                    DiscountAmount = _ibvm.DiscountAmount,
                     Orders = _ibvm.Odrs.ToList(),
                     SaleStaff = _ibvm.SaleStaff,
                     Total = _ibvm.Total
                 };
+                if(b.CustomerPurchaser == null)
+                {
+                    MessageBox.Show("invalid Customer");
+                    return;
+                }
                 DataProvider<Bill> db = new DataProvider<Bill>(Bill.Collection);
                 db.Insert(b);
             });
@@ -38,8 +44,11 @@ namespace FastFoodUpgrade.Commands.InsertCommands
         {
             DataProvider<Bill> db = new DataProvider<Bill>(Bill.Collection);
             _ibvm.BillID = db.ReadAll().Count + 1;
-            _ibvm.SelectedCustomer = null;
+            _ibvm.CustomerName = "";
             _ibvm.Odrs.Clear();
+            _ibvm.IsDropDownOpen = false;
+            _ibvm.Total = 0;
+            _ibvm.Payment = 0;
         }
     }
 }

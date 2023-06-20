@@ -62,6 +62,7 @@
                             FontSize="18"
                             Text="Ingredient Name" Margin="10,0,0,0"></TextBlock>
                 <TextBox x:Name="productname" Padding="3 0" Text="{Binding CurrentIngredient.Name, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                         FontFamily="{StaticResource boldFont}"
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
 
                 </TextBox>

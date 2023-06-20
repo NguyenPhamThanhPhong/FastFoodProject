@@ -38,5 +38,10 @@ namespace FastFoodUpgrade.Views.InsertForm
         {
             this.DragMove();
         }
+
+        private void ComboBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

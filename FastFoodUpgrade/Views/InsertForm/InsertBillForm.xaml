@@ -11,7 +11,7 @@
                 WindowStartupLocation="CenterScreen"
         
         WindowStyle="None"
-        AllowsTransparency="True" Height="600" Width="750">
+        AllowsTransparency="True" Height="680" Width="750">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Yellow"/>
@@ -26,7 +26,7 @@
 
             <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
         </Style>
-               
+
     </Window.Resources>
     <Grid Background="Transparent">
         <Border CornerRadius="30" Background="Black"/>
@@ -44,14 +44,13 @@
                     <BlurEffect Radius="15"/>
                 </Border.Effect>
             </Border>
-            <Border  Background="Green" MouseDown="Border_MouseDown" Width="700" Height="30" VerticalAlignment="Top"/>
             <Button
                 Width="45"
                 Height="43"
            Margin="0,10,15,0"
                 Style="{StaticResource CloseButton}"/>
 
-            <Grid VerticalAlignment="Top" Margin="46,50,38,0" Height="155">
+            <Grid VerticalAlignment="Top" Margin="46,50,38,0" Height="225">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -59,11 +58,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBox  Style="{StaticResource NormalTextbox}" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="0 30 0 0"
+                         Margin="0 30 0 0" IsEnabled="False"
                          Height="40"  Width="270" Background="White"
+                          FontFamily="{StaticResource boldFont}"
                          Text="{Binding BillID}"/>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 BillID
@@ -72,12 +73,19 @@
                 <Grid Grid.Column="1">
                     <ComboBox VerticalAlignment="Top" HorizontalAlignment="Left"
                               IsEditable="True"
-                         Margin="0 30 0 0"
-                         FontSize="16"
-                         Text="hey"
+                         Margin="0 30 0 0" FontSize="16"
+                         Text="{Binding CustomerName}"
+                              IsDropDownOpen="{Binding IsDropDownOpen}"
                          Height="40"  Width="270" Background="White"
                          VerticalContentAlignment="Center" FontFamily="{StaticResource boldFont}"
                               ItemsSource="{Binding CustomerPurchaserList}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Width="260" Text="{Binding Fullname}" Foreground="Black" FontFamily="{StaticResource boldFont}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
 
                     </ComboBox>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
@@ -88,9 +96,9 @@
                 <Grid Grid.Row="1">
                     <TextBox  Style="{StaticResource NormalTextbox}" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="0 30 0 0"
+                         Margin="0 30 0 0" IsEnabled="False"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding SaleStaff}"/>
+                         Text="{Binding SaleStaff.Fullname}" FontFamily="{StaticResource boldFont}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Staff
                     </TextBlock>
@@ -98,27 +106,53 @@
                 <Grid Grid.Row="1" Grid.Column="1">
                     <TextBox  Style="{StaticResource NormalTextbox}" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="0 30 0 0"
+                         Margin="0 30 0 0" IsEnabled="False"
                                   Focusable="True"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding DiscountAmount}"/>
+                         Text="{Binding DiscountAmount}" FontFamily="{StaticResource boldFont}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Discount
                     </TextBlock>
                 </Grid>
+                <Grid Grid.Row="2">
+                    <TextBox  Style="{StaticResource NormalTextbox}" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="0 30 0 0" IsEnabled="False"
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding Total,Mode=OneWay}" FontFamily="{StaticResource boldFont}"/>
+                    <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
+                                Total
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <TextBox  Style="{StaticResource NormalTextbox}" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="0 30 0 0" IsEnabled="False"
+                         Height="40"  Width="270" Background="White"
+                         Text="{Binding Payment,Mode=OneWay}" FontFamily="{StaticResource boldFont}"/>
+                    <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
+                                Payment
+                    </TextBlock>
+                </Grid>
             </Grid>
+            <Border CornerRadius="20" BorderBrush="Red" BorderThickness="8" Margin="46,298,90,82">
+                <Border.Effect>
+                    <BlurEffect Radius="15"/>
+                </Border.Effect>
+            </Border>
 
-            <Grid Margin="46,220,36,160">
-                <listviews:DrawerListView 
-                    DropCommand="{Binding DropProductCommand}" Margin="0,0,10,0"/>
-            </Grid>
+            <listviews:DrawerListView 
+                    DropCommand="{Binding DropProductCommand}" Margin="46,298,90,82" />
             <Button VerticalAlignment="Bottom" 
                     Command="{Binding InsertOneBillCommand}"
-                    Width="150" Height="50" Margin="510,0,90,51" >
+                    Width="150" Height="50" Margin="532,0,68,27" >
                 Insert Bill
             </Button>
+
+
         </Grid>
-        
+        <Border Cursor="Arrow" Background="Green"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
+
 
 
 
