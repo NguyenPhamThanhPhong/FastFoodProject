@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FastFoodUpgrade.Views.ListViews"
+             xmlns:converter="clr-namespace:FastFoodUpgrade.Converters"
+
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:ProductAvatarToImage x:Key="staffAvatartoImage"/>
+    </UserControl.Resources>
     <Grid Background="Transparent">
         <ListView 
                         x:Name="listviewfood"
@@ -34,7 +39,7 @@
                         <Image Width="150"
                                         HorizontalAlignment="Center" 
                                         Grid.RowSpan="2" Stretch="Uniform" 
-                                        Source="/IMAGE/burger.png"/>
+                                        Source="{Binding Avatar,Converter={StaticResource staffAvatartoImage}}"/>
 
                         <Grid Grid.Row="2">
                             <Grid.RowDefinitions>

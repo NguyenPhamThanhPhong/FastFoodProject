@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using FastFoodUpgrade.Utility;
 
 namespace FastFoodUpgrade.Converters
 {
@@ -16,17 +17,24 @@ namespace FastFoodUpgrade.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string str = value as string;
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string solutionPath = Path.GetFullPath(Path.Combine(assemblyPath, @"..\..\..\"));
-            if (String.IsNullOrEmpty(str) || File.Exists(Path.Combine(solutionPath, "IMAGE_STAFF", str)))
+            string filename = value as string;
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.CacheOption = BitmapCacheOption.OnLoad;
+            bmp.UriSource = new Uri(Path.Combine(ImageStorage.CurrentSolutionLocation, "IMAGE", "Burger.png"), UriKind.Absolute);
+            bmp.EndInit();
+            if (!String.IsNullOrEmpty(filename))
             {
-                return new BitmapImage(new Uri(@"/IMAGE/NoImage.png", UriKind.Relative));
+                if (File.Exists(Path.Combine(ImageStorage.StaffImageLocation, filename)) == false)
+                    return bmp;
+                BitmapImage bmp1 = new BitmapImage();
+                bmp1.BeginInit();
+                bmp1.CacheOption = BitmapCacheOption.OnLoad;
+                bmp1.UriSource = new Uri(Path.Combine(ImageStorage.StaffImageLocation, filename), UriKind.Absolute);
+                bmp1.EndInit();
+                return bmp1;
             }
-            else 
-            {
-                return new BitmapImage(new Uri(@"/IMAGE/"+str, UriKind.Relative));
-            }
+            return bmp;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

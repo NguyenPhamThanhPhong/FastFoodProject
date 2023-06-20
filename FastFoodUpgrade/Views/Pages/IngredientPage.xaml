@@ -5,9 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
       xmlns:table="clr-namespace:FastFoodUpgrade.Views.SplitTaskTable"
+      xmlns:converter="clr-namespace:FastFoodUpgrade.Converters"
       Loaded="Page_Loaded"
       mc:Ignorable="d" 
       Title="IngredientPage">
+    <Page.Resources>
+        <converter:IngredientAvatartoImage x:Key="AvatartoImge"/>
+    </Page.Resources>
 
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
@@ -115,7 +119,7 @@
                                     </Grid.RowDefinitions>
                                     <Ellipse Height="70" Width="70" Grid.Column="0">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/IMAGE/test.png"/>
+                                            <ImageBrush ImageSource="{Binding Avatar,Converter={StaticResource AvatartoImge}}"/>
                                         </Ellipse.Fill>
                                         <Ellipse.Effect>
                                             <DropShadowEffect ShadowDepth="3"></DropShadowEffect>
