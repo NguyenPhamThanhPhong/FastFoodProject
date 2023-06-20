@@ -1,9 +1,11 @@
 ﻿using FastFoodUpgrade.Models;
+using FastFoodUpgrade.Utility;
 using FastFoodUpgrade.ViewModels.InsertFormViewModels;
 using FastFoodUpgrade.Views.InsertForm;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +16,11 @@ namespace FastFoodUpgrade.Commands.InsertCommands
     public class InsertProductCommand : AsyncCommandBase
     {
         InsertProductViewModel ipvm;
-        public InsertProductCommand(InsertProductViewModel currentIpvm) 
+        StringBuilder filename;
+        public InsertProductCommand(InsertProductViewModel currentIpvm,StringBuilder Filename) 
         { 
             ipvm = currentIpvm;
+            filename = Filename;
         }
         public override async Task ExecuteAsync(object parameter)
         {
@@ -32,13 +36,26 @@ namespace FastFoodUpgrade.Commands.InsertCommands
                 P.Description = ipvm.Description;
                 P.Avatar = P._id + ".png";
                 P.DiscountAmount = new Discount() { Value = ipvm.DiscountAmount, EndDate = ipvm.ExpirationDate };
+                string filepath = filename.ToString();
+
                 if (P.IsValid())
                 {
+                    if (P.DiscountAmount.StartDate < P.DiscountAmount.EndDate)
+                    {
+                        MessageBox.Show("invalid Discount: START DATE should be less than END DATE");
+                        return;
+                    }
                     await db.InsertOneAsync(P);
+                    if (!String.IsNullOrEmpty(filepath) && File.Exists(filepath))
+                    {
+                        ImageStorage.StoreImage(filepath, ImageStorage.ProductImageLocation, P.Avatar);
+                    }
                     MessageBox.Show("Added one new Product");
+                    ipvm.RefreshForm();
                 }
                 else
                     MessageBox.Show("Please check input Data again");
+
             }
         }
     }

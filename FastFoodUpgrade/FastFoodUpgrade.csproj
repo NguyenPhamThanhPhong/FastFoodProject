@@ -510,6 +510,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\UpdateCommands\" />
     <Folder Include="IMAGE_INGREDIENT\" />
     <Folder Include="IMAGE_PRODUCT\" />
     <Folder Include="IMAGE_STAFF\" />

@@ -25,12 +25,18 @@ namespace FastFoodUpgrade.Views.InsertForm
         {
             InitializeComponent();
             InsertProductViewModel datacontext = new InsertProductViewModel();
+            this.ComboboxType.ItemsSource = new List<string>() {"Burgers","Pasta","Pizza","Fries","Drinks","Others" };
             this.DataContext = datacontext;
-            this.InsertCommand= datacontext.InsertCommand;
         }
-        private ICommand InsertCommand;
+        public InsertProductForm(Product p)
+        {
+            InitializeComponent();
+            InsertProductViewModel datacontext = new InsertProductViewModel(p);
+            this.ComboboxType.ItemsSource = new List<string>() { "Burgers", "Pasta", "Pizza", "Fries", "Drinks", "Others" };
+            this.DataContext = datacontext;
+        }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Product p = new Product();
             //p.Name = productname.Text.Trim();
@@ -41,10 +47,16 @@ namespace FastFoodUpgrade.Views.InsertForm
             //p.Description = description.Text;
             //DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
             //db.Insert(p);
-            if(InsertCommand!= null) 
-            {
-                InsertCommand.Execute(null);
-            }
+            //if(InsertCommand!= null) 
+            //{
+            //    InsertCommand.Execute(null);
+            //}
+            this.Close();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

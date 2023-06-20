@@ -150,7 +150,7 @@
 
 
         </Grid>
-        <Border Cursor="Arrow" Background="Gray" Opacity="0"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
+        <Border Cursor="SizeAll" Background="Gray" Opacity="0"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
 
 
 

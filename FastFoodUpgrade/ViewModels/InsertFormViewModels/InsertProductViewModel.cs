@@ -1,27 +1,21 @@
-﻿using FastFoodUpgrade.Commands.InsertCommands;
+﻿using FastFoodUpgrade.Commands;
+using FastFoodUpgrade.Commands.InsertCommands;
 using FastFoodUpgrade.Models;
+using FastFoodUpgrade.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 {
     public class InsertProductViewModel : ViewModelBase
     {
-        public bool IsEnabled { get; set; }
-        private bool _isNameCorrect = false;
-        public bool IsNameCorrect
-        {
-            get { return _isNameCorrect; }
-            set
-            {
-                _isNameCorrect= value;
-                OnPropertyChanged(nameof(IsNameCorrect));
-            }
-        }
+
         private string _name;
         public string Name
         {
@@ -30,9 +24,6 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
             { 
                 _name = value; 
                 OnPropertyChanged("Name");
-                Task.Run(() => {
-                    IsNameCorrect = Product.IsNameConflict(value);
-                });
             }
         }
         // Type
@@ -74,7 +65,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
             }
         }
 
-        private float _discountAmount = 0f;
+        private float _discountAmount = 0;
         public float DiscountAmount
         {
             get { return _discountAmount; }
@@ -88,7 +79,13 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
                 
             }
         }
-        private DateTime _expirationDate;
+        private DateTime _startDate = DateTime.Today;
+        public DateTime StartDate
+        {
+            get => _startDate;
+            set { _startDate = value; OnPropertyChanged(nameof(StartDate)); }
+        }
+        private DateTime _expirationDate=DateTime.Today;
         public DateTime ExpirationDate
         {
             get { return _expirationDate; }
@@ -102,25 +99,27 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 
             }
         }
-        private string _description;
+        public BitmapImage bmpp { get; set; } = new BitmapImage(new Uri("C:\\Users\\anhng\\OneDrive\\Máy tính\\ảnh\\NoAvatar.jpg"));
+        private string _description="";
         public string Description
         { 
             get { return _description; } 
             set { _description = value; OnPropertyChanged(nameof(Description)); } 
         }
         //Avatar
-        private string _avatar;
-        public string Avatar
+        private StringBuilder _fileName = new StringBuilder("");
+        public StringBuilder FileName
         {
-            get { return _avatar;}
-            set { _avatar = value; OnPropertyChanged(nameof(Avatar));}
+            get => _fileName;
+            set { _fileName = value; OnPropertyChanged(nameof(FileName));}
         }
         //COmmand
         public ICommand InsertCommand { get; set; }
+        public ICommand SaveImageDialog { get; set; }
+        public ICommand UpdateCommand { get; set; }
         // Constructor
         public InsertProductViewModel()
         {
-            this.IsEnabled = true;
             this.Name = "";
             this.Type = "";
             this.Description = "";
@@ -128,18 +127,35 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
             this.Price = 0;
             this.DiscountAmount = 0f;
             this.ExpirationDate = DateTime.Today;
-            this.InsertCommand = new InsertProductCommand(this);
+
+            this.InsertCommand = new InsertProductCommand(this,FileName);
+            this.SaveImageDialog = new SaveImageDialogCommand(FileName,this);
         }
         public InsertProductViewModel(Product SelectedProduct)
         {
-            this.IsEnabled = false;
             this.Name = SelectedProduct.Name;
             this.Type = SelectedProduct.Type;
             this.Description = SelectedProduct.Description;
             this.Remaining = SelectedProduct.Remain;
             this.Price = SelectedProduct.Price;
             this.DiscountAmount = SelectedProduct.DiscountAmount.Value;
+            this.StartDate = SelectedProduct.DiscountAmount.StartDate;
             this.ExpirationDate = SelectedProduct.DiscountAmount.EndDate;
+            this.FileName.Clear();
+            this.FileName.Append(ImageStorage.GetImage(ImageStorage.ProductImageLocation,SelectedProduct.Avatar));
+            this.SaveImageDialog = new SaveImageDialogCommand(FileName, this);
+
+        }
+        public void RefreshForm()
+        {
+            this.Name = "";
+            this.Type = "";
+            this.Description = "";
+            this.Remaining = 0;
+            this.Price = 0;
+            this.DiscountAmount = 0f;
+            this.StartDate = DateTime.Today;
+            this.ExpirationDate = DateTime.Today;
         }
 
         

@@ -17,7 +17,7 @@ namespace FastFoodUpgrade.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             StringBuilder filepath = value as StringBuilder;
-            string filename = filepath.ToString();  
+            string filename = filepath.ToString();
             if(!String.IsNullOrEmpty(filename) && File.Exists(filename))
             {
                 BitmapImage bitmapImage = new BitmapImage();
@@ -30,7 +30,7 @@ namespace FastFoodUpgrade.Converters
             BitmapImage bmp = new BitmapImage();
             bmp.BeginInit();
             bmp.CacheOption = BitmapCacheOption.OnLoad;
-            bmp.UriSource = new Uri(Path.Combine(ImageStorage.CurrentSolutionLocation,"IMAGE","Burger.png"), UriKind.Absolute);
+            bmp.UriSource = new Uri(Path.Combine(ImageStorage.CurrentSolutionLocation,"IMAGE","NoImage.png"), UriKind.Absolute);
             bmp.EndInit();
             return bmp;
 
