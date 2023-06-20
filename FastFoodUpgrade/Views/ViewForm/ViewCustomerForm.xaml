@@ -1,0 +1,102 @@
+﻿<Window x:Class="FastFoodUpgrade.Views.ViewForm.ViewCustomerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastFoodUpgrade.Views.ViewForm"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        mc:Ignorable="d"
+        Background="Transparent" >
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
+            <Setter Property="Foreground" Value="Yellow"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource NormalTextbox}">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Padding" Value="3 0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="{StaticResource boldFont}"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </Window.Resources>
+    <Grid  >
+        <Border CornerRadius="25" Background="Black"/>
+        <Border CornerRadius="25">
+            <Border.Background>
+                <ImageBrush Opacity="0.5" ImageSource="/IMAGE/NoAvatar3.png"/>
+            </Border.Background>
+        </Border>
+        <Border CornerRadius="20"  Background="Gray" Margin="0" Opacity="0.3">
+        </Border>
+        <Button Margin="0 0 10 0" Style="{StaticResource CloseButton}" Click="Button_Click"/>
+
+        <Grid Margin="0" >
+            <Border CornerRadius="20" BorderBrush="Yellow" BorderThickness="2" Margin="0,0,0,0">
+                <Border.Effect>
+                    <BlurEffect Radius="15"/>
+                </Border.Effect>
+            </Border>
+
+            <Grid Height="85" Width="209" Margin="46,33,0,0" >
+                <TextBlock Width="164" Height="25"
+                            FontSize="18"
+                            Text="Name" Margin="10,0,0,0"></TextBlock>
+                <TextBox x:Name="txtboxName" Padding="3 0"
+                         FontFamily="{StaticResource boldFont}"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+
+                </TextBox>
+            </Grid>
+            <Grid Margin="300,33,0,0" >
+                <TextBlock FontSize="18"
+                            Text="Phone" Width="183" Margin="10,0,0,0"
+                        />
+                <TextBox x:Name="txtboxPhone" Padding="3 0"
+                         FontFamily="{StaticResource boldFont}"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+                </TextBox>
+            </Grid>
+            <Grid Margin="46,122,0,0" Width="209" >
+                <TextBlock FontSize="18"
+                            Text="Rank" Width="189" HorizontalAlignment="Center"/>
+                <TextBox  x:Name="txtboxRank" Padding="3 0"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+                </TextBox>
+            </Grid>
+            <Grid Margin="300,122,0,0" Width="241" >
+                <TextBlock FontSize="18"
+                            Text="Total" Margin="10,0,0,0" Width="222"></TextBlock>
+                <TextBox x:Name="txtboxTotal" Padding="3 0"
+                         FontFamily="{StaticResource boldFont}"
+                         Margin="10,30,0,0" FontSize="16" Background="White"  >
+                </TextBox>
+            </Grid>
+            <Grid Margin="57,200,0,0" Width="453" Height="120" >
+                <TextBlock FontSize="18"
+                            Text="Address" Margin="0,8,0,0"/>
+                <TextBox x:Name="txtboxAddress"  Tag="Optional" MaxHeight="100" Margin="0 36 0 0"
+                          Height="60" VerticalAlignment="Top"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True" 
+                                 Text="{Binding CurrentIngredient.Description,UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource MyTextBox}" >
+                </TextBox>
+            </Grid>
+        </Grid>
+        <Border Cursor="SizeAll" Background="Gray" Opacity="0"  MouseDown="Border_MouseDown" Height="30" VerticalAlignment="Top" Margin="25,0,60,0"/>
+
+    </Grid>
+
+</Window>

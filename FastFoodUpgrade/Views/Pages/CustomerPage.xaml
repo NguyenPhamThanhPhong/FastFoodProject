@@ -104,8 +104,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Padding="10 0"
-                                       Margin="0 0"
+                <TextBlock Padding="10 0" Margin="0 0"
                             Foreground="White"
                             TextWrapping="Wrap"
                             VerticalAlignment="Center"
@@ -152,7 +151,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ListViewItem >
-                            <Grid Margin="-10 -10"  Width="800" Height="55">
+                            <Grid PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown" Margin="-10 -10"  Width="800" Height="55">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="80"/>

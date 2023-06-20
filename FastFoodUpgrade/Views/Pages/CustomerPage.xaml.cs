@@ -16,6 +16,7 @@ using FastFoodUpgrade.ViewModels;
 using FastFoodUpgrade.Views.InsertForm;
 using FastFoodUpgrade.ViewModels.RightSplitTask;
 using FastFoodUpgrade.Models;
+using FastFoodUpgrade.Views.ViewForm;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -46,6 +47,21 @@ namespace FastFoodUpgrade.Views.Pages
         {
             this.DataContext = await CustomerViewModel.Initialize();
             //AdvancedSearchGrid.DataContext = new CustomerAdvancedSearch(this.DataContext as CustomerViewModel);
+        }
+        private DateTime _lastClickTime;
+
+        private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
+            {
+                Grid g = sender as Grid;
+                Customer c = g.DataContext as Customer;
+                ViewCustomerForm f = new ViewCustomerForm(c);
+                f.ShowDialog();
+            }
+            _lastClickTime = DateTime.Now;
+
+
         }
     }
 }

@@ -315,6 +315,9 @@
       <DependentUpon>test.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThicknessExtensions.cs" />
+    <Compile Include="Views\ViewForm\ViewCustomerForm.xaml.cs">
+      <DependentUpon>ViewCustomerForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DashBoardWindow.xaml.cs">
       <DependentUpon>DashBoardWindow.xaml</DependentUpon>
     </Compile>
@@ -393,6 +396,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SplitTaskTable\ProductPageSplit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewForm\ViewCustomerForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -505,7 +512,6 @@
     <Folder Include="IMAGE_PRODUCT\" />
     <Folder Include="IMAGE_STAFF\" />
     <Folder Include="ViewModels\ViewFormViewModels\" />
-    <Folder Include="Views\ViewForm\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMAGE\Burger.png" />
@@ -543,6 +549,8 @@
     <Resource Include="IMAGE\DarkThemeBackground.jpg" />
     <Resource Include="IMAGE\NoImage.png" />
     <Resource Include="IMAGE\mcdonald1.jpg" />
+    <Resource Include="IMAGE\NoAvatar2.png" />
+    <Resource Include="IMAGE\NoAvatar3.png" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

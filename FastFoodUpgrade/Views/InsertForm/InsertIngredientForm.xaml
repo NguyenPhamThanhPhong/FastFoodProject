@@ -9,8 +9,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         mc:Ignorable="d"
-        Background="Transparent"
-        Title="InsertProductForm" >
+        Background="Transparent" >
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Top"/>
@@ -116,35 +115,5 @@
                 VerticalAlignment="Top" HorizontalAlignment="Left" Margin="32,210,0,0"/>
         </Grid>
     </Grid>
-    <!--<Grid Background="Black">
-        -->
-    <!-- Background -->
-    <!--<Rectangle Fill="LightGray" Opacity="0.8"/>-->
-
-    <!-- Aura -->
-    <!--
-        <Border BorderBrush="Blue" BorderThickness="5" Margin="50">
-            <Border.Effect>
-                <BlurEffect Radius="10"/>
-            </Border.Effect>
-
-            -->
-    <!-- SearchBox -->
-    <!--
-            <TextBox Background="Transparent" BorderThickness="0" Opacity="0.9"/>
-
-            -->
-    <!-- Aura Overlay -->
-    <!--
-
-        </Border>
-        -->
-    <!--<Border BorderBrush="Blue" BorderThickness="4" Margin="48">
-                -->
-    <!--<Border Background="LightGray"/>-->
-    <!--
-            </Border>-->
-    <!--
-    </Grid>-->
 
 </Window>
