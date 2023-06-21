@@ -27,6 +27,19 @@ namespace FastFoodUpgrade.Windows
             this.DataContext = new DashBoardViewModel();
             //MyFrame.Source = new Uri("/Views/Pages/CustomerPage.xaml",UriKind.Relative);
         }
+        public Staff s { get; set; }
+        public DashBoardWindow(Staff loggedinStaff)
+        {
+            InitializeComponent();
+            this.DataContext = new DashBoardViewModel(loggedinStaff);
+            //MyFrame.Source = new Uri("/Views/Pages/CustomerPage.xaml",UriKind.Relative);
+            this.s = loggedinStaff;
+            if(s.AccessRight == "Staff")
+            {
+                this.buttonIngredient.Visibility = Visibility.Hidden;
+                this.buttonManaging.Visibility = Visibility.Hidden;
+            }
+        }
 
         private void insertbutton_Click(object sender, RoutedEventArgs e)
         {

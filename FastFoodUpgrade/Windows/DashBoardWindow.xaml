@@ -7,6 +7,7 @@
         xmlns:views="clr-namespace:FastFoodUpgrade.Views"
         xmlns:viewmodels="clr-namespace:FastFoodUpgrade.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converter="clr-namespace:FastFoodUpgrade.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1500"
         WindowStartupLocation="CenterScreen"
@@ -27,7 +28,7 @@
         <FontFamily x:Key="ColaborateBold">./#Colaborate Bold</FontFamily>
         <FontFamily x:Key="DroidSansRegular">./#Droid Sans Regular</FontFamily>
         <FontFamily x:Key="SegoeRegular">Segoe</FontFamily>
-
+        <converter:StaffAvatarToImage x:Key="AvatartoImage"/>
     </Window.Resources>
     <Grid Background="Transparent">
         <Border BorderBrush="red" BorderThickness="2" CornerRadius="25" Background="Black">
@@ -66,7 +67,7 @@
                             </Grid.ColumnDefinitions>
                             <Ellipse Height="70" Width="70">
                                 <Ellipse.Fill>
-                                <ImageBrush ImageSource="/IMAGE/phong.jpg" />
+                                <ImageBrush ImageSource="{Binding CurrentStaff.Avatar,Converter={StaticResource AvatartoImage}}" />
                             </Ellipse.Fill>
                             </Ellipse>
 
@@ -85,7 +86,7 @@
                                     <DropShadowEffect ShadowDepth="7" Color="Red"/>
                                 </Border.Effect>
                                 <TextBlock 
-                                Text="Nguyễn Phạm Thanh Phong" 
+                                Text="{Binding CurrentStaff.Fullname}" 
                                 FontFamily="{StaticResource boldFont}"
                                 TextWrapping="Wrap" 
                                 Foreground="White"
@@ -99,7 +100,7 @@
                             <TextBlock 
                             x:Name="txtSlide" 
                             FontFamily="{StaticResource boldFont}"  
-                            Text="Staff" FontSize="25" Foreground="Red" 
+                            Text="{Binding CurrentStaff.AccessRight}" FontSize="25" Foreground="Red" 
                             Canvas.Left="0" Canvas.Top="0"/>
                             <Canvas.Triggers>
                                 <EventTrigger RoutedEvent="Loaded">
@@ -144,7 +145,7 @@
                                      Height="45" Content="Customer"
                                      Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_3">
                             </RadioButton>
-                            <RadioButton 
+                            <RadioButton x:Name="buttonManaging"
                                      Tag="AddressCard"
                             FontFamily="{StaticResource boldFont}"
                                      Background="{StaticResource menu_button_color}" 
@@ -152,7 +153,7 @@
                                      Height="45" Content="Managing"
                                      Style="{StaticResource RadioButton1 }" Checked="RadioButton_Checked_4">
                             </RadioButton>
-                            <RadioButton 
+                            <RadioButton x:Name="buttonIngredient"
                                      Tag="Coffee"
                             FontFamily="{StaticResource boldFont}"
                                      Background="{StaticResource menu_button_color}" 

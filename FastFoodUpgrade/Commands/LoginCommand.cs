@@ -27,13 +27,18 @@ namespace FastFoodUpgrade.Commands
             DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
             string user = loginViewModel.username;
             string password = loginViewModel.password;
-            FilterDefinition<Staff> filterLogin = Builders<Staff>.Filter.Eq(s => s.Username, user) & Builders<Staff>.Filter.Eq(s => s.Username, user);
+            FilterDefinition<Staff> filterLogin = Builders<Staff>.Filter.Eq(s => s.Username, user) & Builders<Staff>.Filter.Eq(s => s.Password, password);
             var matchingStaff = await db.ReadFilteredAsync(filterLogin);
             if (matchingStaff != null) 
             {
+                Staff loggedInStaff = new Staff() { Fullname="Notfound",AccessRight="Admin",Avatar="no file" };
+                if (matchingStaff.Count > 0)
+                {
+                    loggedInStaff = matchingStaff[0];
+                }
                 Window f = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
                 f.Hide();
-                DashBoardWindow ff = new DashBoardWindow();
+                DashBoardWindow ff = new DashBoardWindow(loggedInStaff);
                 ff.ShowDialog();
                 f.Show();
             }

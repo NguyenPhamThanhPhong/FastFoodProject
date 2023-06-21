@@ -40,7 +40,7 @@ namespace FastFoodUpgrade.Commands.InsertCommands
 
                 if (P.IsValid())
                 {
-                    if (P.DiscountAmount.StartDate < P.DiscountAmount.EndDate)
+                    if (P.DiscountAmount.StartDate > P.DiscountAmount.EndDate)
                     {
                         MessageBox.Show("invalid Discount: START DATE should be less than END DATE");
                         return;
