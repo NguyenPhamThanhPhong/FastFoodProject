@@ -37,6 +37,8 @@ namespace FastFoodUpgrade.Commands.InsertCommands
                     };
                     DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
                     await db.InsertOneAsync(c);
+                    Window f = parameter as Window;
+                    f.Close();
                 });
             }
             catch

@@ -38,8 +38,11 @@ namespace FastFoodUpgrade.Views.InsertForm
 
         private  void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-
+            InsertCustomerViewModel vm = this.DataContext as InsertCustomerViewModel;
+            if (vm.InsertCustomer != null)
+            {
+                vm.InsertCustomer.Execute(this);
+            }
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)

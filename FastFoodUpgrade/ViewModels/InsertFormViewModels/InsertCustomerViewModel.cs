@@ -46,9 +46,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         private async Task IntializeAsync ()
         {
             await Task.Run(() => {
-                DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
-                List<Customer> AllCustomers = db.ReadAll();
-                ID = AllCustomers.Count;
+                ID = Customer.CreateID();
                 InsertCustomer = new InsertCustomerCommand(this);
             });
         }

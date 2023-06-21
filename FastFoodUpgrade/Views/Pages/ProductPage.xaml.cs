@@ -24,56 +24,21 @@ namespace FastFoodUpgrade.Views.Pages
     /// </summary>
     public partial class ProductPage : System.Windows.Controls.Page
     {
+        private Staff s;
         public ProductPage()
         {
             InitializeComponent();
             this.DataContext = new ProductViewModel();
             RightSplitTable.DataContext = (this.DataContext as ProductViewModel).SplitTableDataContext;
-            //Task.Run(() => {
-
-            //});
-
-            //mylistview.ItemsSource = new List<string> { "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl", "akl" };
-        }
-        //Handle Drag&Drop getting object
-        string SelectedStringItem = "";
-        Tuple<int, Grid> DraggedObject = null;
-
-
-
-
-
-
-        private void ListView_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                if (!(sender is ListView))
-                {
-                    return;
-                }
-                var listView = sender as ListView;
-                var item = FindAncestor<Grid>((DependencyObject)e.OriginalSource);
-
-                if (item != null)
-                {
-                    var index = listView.Items.IndexOf(item.DataContext);
-                    SelectedStringItem = (string)item.DataContext;
-                    DraggedObject = new Tuple<int, Grid>(index, item);
-                    DragDrop.DoDragDrop(listView, new Tuple<int, Grid>(index, item), DragDropEffects.Move);
-                }
+            DashBoardWindow main = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive) as DashBoardWindow;
+            DashBoardViewModel vm = main.DataContext as DashBoardViewModel;
+            Staff loggedinS = vm.CurrentStaff;
+            s = loggedinS;
+            if (s.AccessRight == "Staff") {
+                buttonProduct.Visibility = Visibility.Hidden;
             }
         }
 
-        private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
-        {
-            while (current != null && !(current is T))
-            {
-                current = VisualTreeHelper.GetParent(current);
-            }
-
-            return current as T;
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

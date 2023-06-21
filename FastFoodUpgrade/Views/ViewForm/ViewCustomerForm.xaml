@@ -69,14 +69,14 @@
                 </TextBox>
             </Grid>
             <Grid Margin="46,122,0,0" Width="209" >
-                <TextBlock FontSize="18"
+                <TextBlock FontSize="18" IsEnabled="False"
                             Text="Rank" Width="189" HorizontalAlignment="Center"/>
                 <TextBox  x:Name="txtboxRank" Padding="3 0"
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
                 </TextBox>
             </Grid>
             <Grid Margin="300,122,0,0" Width="241" >
-                <TextBlock FontSize="18"
+                <TextBlock FontSize="18" IsEnabled="False"
                             Text="Total" Margin="10,0,0,0" Width="222"></TextBlock>
                 <TextBox x:Name="txtboxTotal" Padding="3 0"
                          FontFamily="{StaticResource boldFont}"
@@ -99,7 +99,7 @@
                     Click="Button_Click_1"
                     Background="{StaticResource menu_button_color}"
                     Margin="405,325,0,0" Width="105" />
-            <Button VerticalAlignment="Top" HorizontalAlignment="Left"
+            <Button x:Name="buttonDelete" VerticalAlignment="Top" HorizontalAlignment="Left"
                     Content="Delete" BorderBrush="Red" BorderThickness="4"
                     Click="Button_Click_2"
                     Background="OrangeRed"

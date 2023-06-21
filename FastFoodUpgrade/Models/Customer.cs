@@ -21,6 +21,27 @@ namespace FastFoodUpgrade.Models
         public string Rank { get; set; }
         public int Total { get; set; }
         public static string Collection = "customer";
+        public static int CreateID()
+        {
+            DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
+            List<Customer> allcs = db.ReadAll();
+            int expectedValue = 1;
+            foreach (var o in allcs)
+            {
+                int num = o.ID;
+                if (num == expectedValue)
+                {
+                    // Increment the expected value if it matches the current number
+                    expectedValue++;
+                }
+                else
+                {
+                    // Found the smallest missing integer
+                    return expectedValue;
+                }
+            }
+            return expectedValue;
+        }
 
         public static bool IsExisted(string Name,string Phone)
         {

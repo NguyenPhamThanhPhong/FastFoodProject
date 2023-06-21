@@ -116,7 +116,7 @@
         <Button BorderThickness="4" BorderBrush="Green" 
                 FontSize="20"
             FontFamily="{StaticResource boldFont}"
-                Command="{Binding InsertCustomer}"
+                Click="Button_Click_1"
             Background="{StaticResource menu_button_color}" 
             Content="Create" Height="50" VerticalAlignment="Bottom" Margin="433,0,35,25" />
         <Button BorderThickness="4" BorderBrush="Green" 

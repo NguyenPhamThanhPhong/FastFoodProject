@@ -17,6 +17,7 @@ using FastFoodUpgrade.Views.InsertForm;
 using FastFoodUpgrade.ViewModels.RightSplitTask;
 using FastFoodUpgrade.Models;
 using FastFoodUpgrade.Views.ViewForm;
+using FastFoodUpgrade.Windows;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -25,10 +26,15 @@ namespace FastFoodUpgrade.Views.Pages
     /// </summary>
     public partial class CustomerPage : System.Windows.Controls.Page
     {
+        Staff s;
         public CustomerPage()
         {
             InitializeComponent();
             ComboboxFilter.ItemsSource= new List<string>() {"ID", "Name", "Phone" };
+            DashBoardWindow main = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive) as DashBoardWindow;
+            DashBoardViewModel vm = main.DataContext as DashBoardViewModel;
+            Staff loggedinS = vm.CurrentStaff;
+            s = loggedinS;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -50,14 +56,20 @@ namespace FastFoodUpgrade.Views.Pages
         }
         private DateTime _lastClickTime;
 
-        private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
             {
                 Grid g = sender as Grid;
                 Customer c = g.DataContext as Customer;
-                ViewCustomerForm f = new ViewCustomerForm(c);
+                ViewCustomerForm f = new ViewCustomerForm(c,s);
                 f.ShowDialog();
+                if (this.DataContext != null)
+                {
+                    CustomerViewModel ViewModel = this.DataContext as CustomerViewModel;
+                    DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
+                    ViewModel.UpdateCustomerList(await db.ReadAllAsync());
+                }
             }
             _lastClickTime = DateTime.Now;
 

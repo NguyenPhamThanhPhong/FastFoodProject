@@ -67,8 +67,8 @@
                             </Grid.ColumnDefinitions>
                             <Ellipse Height="70" Width="70">
                                 <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding CurrentStaff.Avatar,Converter={StaticResource AvatartoImage}}" />
-                            </Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding CurrentStaff.Avatar,Converter={StaticResource AvatartoImage}}" />
+                                </Ellipse.Fill>
                             </Ellipse>
 
                             <Border 
@@ -187,8 +187,15 @@
                 <Grid Grid.Column="1">
                     <Frame x:Name="MyFrame" NavigationUIVisibility="Hidden" Source="{Binding CurrentPage,UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
-                
-                
+                <Grid Grid.Column="1">
+                    <Button
+                Width="49"
+                Height="49"
+           Margin="0,10,15,0"
+                Style="{StaticResource CloseButton}" Click="Button_Click"/>
+                </Grid>
+
+
 
 
 
