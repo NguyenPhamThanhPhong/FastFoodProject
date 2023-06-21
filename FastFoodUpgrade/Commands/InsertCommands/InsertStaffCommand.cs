@@ -35,25 +35,21 @@ namespace FastFoodUpgrade.Commands.InsertCommands
                     return;
                 }
                     
-                //Staff s = new Staff()
-                //{
-                //    ID = await Staff.GenerateID(),
-                //    Fullname = vm.Name,
-                //    Username = vm.UserName,
-                //    Password = vm.Password,
-                //    Sex = vm.Sex,
-                //    Phone = vm.Phone,
-                //    AccessRight = vm.AccessRight,
-                //    Email = vm.Email,
-                //    Address = vm.Address,
-                //};
-                //s.Avatar = s.ID + ".png";
                 DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
                 await db.InsertOneAsync(s);
                 string filename = sb.ToString();
                 if(!String.IsNullOrEmpty(filename) && File.Exists(filename))
                 {
                     ImageStorage.StoreImage(filename, ImageStorage.StaffImageLocation, s.Avatar);
+                }
+                if (parameter != null)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Window f = parameter as Window;
+                        f.Close();
+                    });
+
                 }
             });
         }

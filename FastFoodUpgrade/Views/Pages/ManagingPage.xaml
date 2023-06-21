@@ -88,7 +88,7 @@
             </TextBox>
             <Button Margin="555,117,177,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
-            <Grid Margin="29,208,38,10" >
+            <Grid Margin="29,208,0,10" >
         <ListView x:Name="lstview" 
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                   ItemsSource="{Binding Staffs}">
@@ -146,7 +146,6 @@
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-            
                 </ListView>
     </Grid>
 

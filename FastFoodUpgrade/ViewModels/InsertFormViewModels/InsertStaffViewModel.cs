@@ -1,4 +1,5 @@
-﻿using FastFoodUpgrade.Commands.InsertCommands;
+﻿using FastFoodUpgrade.Commands;
+using FastFoodUpgrade.Commands.InsertCommands;
 using FastFoodUpgrade.Models;
 using System;
 using System.Collections.Generic;
@@ -12,72 +13,24 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 {
     public class InsertStaffViewModel : ViewModelBase
     {
-        private string _id;
-        public string ID
+        private Staff _currentStaff = new Staff();
+        public Staff CurrentStaff
         {
-            get { return _id; }
-            set { _id = value; OnPropertyChanged(nameof(ID)); }
+            get => _currentStaff;
+            set { _currentStaff = value; OnPropertyChanged(nameof(CurrentStaff)); }
         }
-        private string _name;
-        public string Name
+        private StringBuilder _filename { get; set; } = new StringBuilder("");
+        public StringBuilder Filename
         {
-            get { return _name; }
-            set{_name = value; OnPropertyChanged(nameof(Name));}
-        }
-        private string _userName;
-        public string UserName
-        {
-            get { return _userName; }
-            set { _userName = value; OnPropertyChanged(nameof(UserName)); }
-        }
-        private string _password;
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; OnPropertyChanged(nameof(Password)); }
-        }
-        private string _email;
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; OnPropertyChanged(nameof(Email)); }
-        }
-        private string _phone;
-        public string Phone
-        {
-            get { return _phone; }
-            set { _phone = value; OnPropertyChanged(nameof(Phone)); }
-        }
-        private string _sex;
-        public string Sex
-        {
-            get { return _sex; }
-            set{_sex = value; OnPropertyChanged(nameof(Sex));}
-        }
-        private string _accessRight;
-        public string AccessRight
-        {
-            get { return _accessRight; }
-            set { _accessRight = value; OnPropertyChanged(nameof(AccessRight)); }
-        }
-        private string _address;
-        public string Address
-        {
-            get { return _address; }
-            set { _address = value; OnPropertyChanged(nameof(Address)); }
+            get => _filename;
+            set
+            {_filename = value; OnPropertyChanged(nameof(Filename));}
         }
         public ICommand InsertStaff { get; set; }
+        public ICommand SaveFileDialogCommand { get; set; }
         public InsertStaffViewModel() { }
         public InsertStaffViewModel(Staff s,Uri u)
         {
-            UserName = s.Username;
-            Password = s.Password;
-            Email = s.Email;
-            Phone = s.Phone;
-            Sex= s.Sex;
-            AccessRight = s.AccessRight;
-            Address = s.Address;
-            this.InsertStaff = new InsertStaffCommand(this,u);
         }
 
         public static async Task<InsertStaffViewModel> Initialize()
@@ -91,8 +44,9 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
             await Task.Run(async () =>
             {
                 int x = await Staff.GenerateID();
-                ID = x.ToString();
-                InsertStaff = new InsertStaffCommand(this);
+                CurrentStaff.ID = x;
+                this.InsertStaff = new InsertStaffCommand(CurrentStaff,Filename);
+                this.SaveFileDialogCommand = new SaveImageDialogCommand(Filename, this);
             });
         }
     }

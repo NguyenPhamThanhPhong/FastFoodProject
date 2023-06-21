@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace FastFoodUpgrade.Models
         public static int CreateID()
         {
             DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
-            List<Customer> allcs = db.ReadAll();
+            List<Customer> allcs = db.ReadAll().OrderBy(p => p.ID).ToList();
             int expectedValue = 1;
             foreach (var o in allcs)
             {

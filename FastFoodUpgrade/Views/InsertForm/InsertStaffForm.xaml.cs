@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastFoodUpgrade.ViewModels.InsertFormViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,16 +23,29 @@ namespace FastFoodUpgrade.Views.InsertForm
         public InsertStaffForm()
         {
             InitializeComponent();
+            this.ComboboxAcess.ItemsSource = new List<string>() { "Admin", "Staff" };
+            this.ComboboxSex.ItemsSource = new List<string>() { "Male", "Female", "Others" };
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            this.DataContext = await InsertStaffViewModel.Initialize();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            this.DragMove();
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            InsertStaffViewModel vm = this.DataContext as InsertStaffViewModel;
+            vm.InsertStaff.Execute(this);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
