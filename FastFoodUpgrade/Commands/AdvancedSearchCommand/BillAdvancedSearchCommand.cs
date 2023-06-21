@@ -32,7 +32,7 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
                     && b.BillDate <= vm.DateTo
                     && b.Total <= vm.TotalTo
                     && b.Total >= vm.TotalFrom);
-                List<Bill> results = await db.ReadFilteredAsync(filter);
+                List<Bill> results =  db.ReadFiltered(filter);
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     vm.CurrentBillViewModel.UpdateBillList(results);

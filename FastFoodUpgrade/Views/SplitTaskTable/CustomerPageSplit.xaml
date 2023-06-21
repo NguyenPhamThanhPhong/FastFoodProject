@@ -79,6 +79,7 @@
                 </TextBlock>
                 <ComboBox x:Name="ComboboxRank" SelectedIndex="0"
                           SelectedItem="{Binding SelectedRank}"
+                          
                           Grid.Row="1" Height="40"  Width="270" Background="White">
 
                 </ComboBox>

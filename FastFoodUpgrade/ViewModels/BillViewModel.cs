@@ -106,10 +106,10 @@ namespace FastFoodUpgrade.ViewModels
                 });
             });
         }
-        public void UpdateBillList(List<Bill> bills)
+        public void UpdateBillList(List<Bill> bs)
         {
             Bills.Clear();
-            foreach(Bill b in bills) 
+            foreach(Bill b in bs) 
             {
                 Bills.Add(b);
             }

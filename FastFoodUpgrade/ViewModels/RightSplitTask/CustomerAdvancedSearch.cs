@@ -13,31 +13,31 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
 {
     public class CustomerAdvancedSearch : ViewModelBase
     {
-        private String _customerName;
-        public String CustomerName
+        private string _customerName="";
+        public string CustomerName
         {
             get { return _customerName; }
             set { _customerName = value; OnPropertyChanged(nameof(CustomerName)); }
         }
-        private String _phone;
-        public String Phone
+        private string _phone="";
+        public string Phone
         {
             get { return _phone; }
             set { _phone = value; OnPropertyChanged(nameof(Phone));}
         }
-        private string _selectedRank;
+        private string _selectedRank = "";
         public string SelectedRank
         {
             get { return _selectedRank; }
             set { _selectedRank = value; OnPropertyChanged(nameof(_selectedRank)); }
         }
-        private int _revenueFrom;
+        private int _revenueFrom=0;
         public int RevenueFrom
         {
             get { return _revenueFrom; }
             set { _revenueFrom = value; OnPropertyChanged(nameof(RevenueFrom));}
         }
-        private int _revenueTo;
+        private int _revenueTo=999999;
         public int RevenueTo
         {
             get { return _revenueTo; }
