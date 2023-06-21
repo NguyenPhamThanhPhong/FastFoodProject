@@ -36,7 +36,6 @@ namespace FastFoodUpgrade.Commands.UpdateCommands
                 .Set(x => x.Description, ing.Description);
                 DataProvider<Ingredient> db = new DataProvider<Ingredient>(Ingredient.Collection);
                 db.Update(filter, update);
-                MessageBox.Show(filepath);
                 if (!String.IsNullOrEmpty(filepath))
                 {
                     ImageStorage.StoreImage(filepath, ImageStorage.IngredientImageLocation, ing.Avatar);

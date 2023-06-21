@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FastFoodUpgrade.ViewModels;
+using MongoDB.Driver;
 
 namespace FastFoodUpgrade.Windows
 {
@@ -39,6 +40,20 @@ namespace FastFoodUpgrade.Windows
                 this.buttonIngredient.Visibility = Visibility.Hidden;
                 this.buttonManaging.Visibility = Visibility.Hidden;
             }
+        }
+        public void UpdateStaff()
+        {
+            //DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
+            //FilterDefinition<Staff> filter = Builders<Staff>.Filter.Eq("_id", s.ID);
+            //List<Staff> stfs = db.ReadFiltered(filter);
+            //if (stfs.Count > 0)
+            //{
+            //    Staff clone = stfs[0];
+                
+            //}
+            DashBoardViewModel vm = this.DataContext as DashBoardViewModel;
+            string avt = vm.CurrentStaff.Avatar;
+            vm.CurrentStaff.Avatar = avt;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

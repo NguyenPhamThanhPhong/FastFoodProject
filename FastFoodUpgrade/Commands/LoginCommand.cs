@@ -32,7 +32,7 @@ namespace FastFoodUpgrade.Commands
             var matchingStaff =  db.ReadFiltered(filterLogin);
             if (matchingStaff != null) 
             {
-                Staff loggedInStaff;
+                Staff loggedInStaff=null;
                 if (matchingStaff.Count > 0)
                 {
                     loggedInStaff = matchingStaff[0];
@@ -42,7 +42,6 @@ namespace FastFoodUpgrade.Commands
                     ff.ShowDialog();
                     f.Show();
                 }
-
             }
             else
             {

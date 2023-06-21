@@ -4,10 +4,221 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FastFoodUpgrade.Views.Pages"
+      xmlns:converter="clr-namespace:FastFoodUpgrade.Converters"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       Title="SettingPage">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
 
-    <Grid>
-        
+        </Style>
+        <converter:AbsoluteFileNameToBitmapImage x:Key="filenameToImage"/>
+        <BooleanToVisibilityConverter x:Key="booltoVisibility"/>
+        <converter:CheckMailConfirmedConverter x:Key="checkConfirmed"/>
+    </Page.Resources>
+
+    <Grid Width="1200" Height="700">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="850"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <TextBlock FontSize="50" 
+                           TextWrapping="Wrap"  
+                           Foreground="White"
+                           FontFamily="{StaticResource boldFont}" 
+                           Text="Customer" 
+                           Margin="29,10,555,615">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="Red"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Border Margin="29,106,10,160" CornerRadius="30" Opacity="0.8">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Red" Offset="0"/>
+                        <GradientStop Color="black" Offset="0.2"/>
+                        <GradientStop Color="Black" Offset="0.87"/>
+                        <GradientStop Color="#FFC72C" Offset="0.99"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <TextBlock Margin="54,85,0,0" Width="380" Height="51"
+                       Foreground="Yellow" 
+                       Text="Account Information" 
+                       FontSize="35" FontFamily="{StaticResource RampartOne}">
+            </TextBlock>
+            <TextBlock Margin="71,165,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Full name" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+
+            <TextBox FontFamily="{StaticResource boldFont}"
+                     Text="{Binding CurrentStaff.Fullname,UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="White"
+                Width="296" Style="{StaticResource NormalTextbox}" Margin="71,206,0,0" Height="40">
+
+            </TextBox>
+            <TextBlock Margin="459,165,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Gender" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+
+            <ComboBox  x:Name="ComboboxGender"
+                        Style="{StaticResource LightThemeCombobox2}"
+                       SelectedItem="{Binding CurrentStaff.Sex,UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                         Margin="459,206,0,0"
+                         Height="40"  Width="296" 
+                         Background="White" SelectedIndex="0"
+                         >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding}" FontFamily="{StaticResource boldFont}" Foreground="Black" Width="250"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Margin="71,265,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Phone" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+
+            <TextBox FontFamily="{StaticResource boldFont}" 
+                     Text="{Binding CurrentStaff.Phone,UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Top" HorizontalAlignment="Left" Background="White"
+                Width="296" Style="{StaticResource NormalTextbox}" Margin="71,310,0,0" Height="40">
+
+            </TextBox>
+
+            <TextBlock Margin="459,265,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Access Right" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+
+            <ComboBox  x:Name="ComboboxAcessRight" IsEnabled="False"
+                       FontFamily="{StaticResource boldFont}"
+                       SelectedItem="{Binding CurrentStaff.AcessRight,UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource LightThemeCombobox2}"
+                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                         Margin="459,310,0,0"
+                         Height="40"  Width="296" 
+                         Background="White" SelectedIndex="0"
+                         >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding}" FontFamily="{StaticResource boldFont}" Foreground="Black" Width="250"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Margin="71,369,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Address" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+            <TextBox  Style="{StaticResource MyTextBox}" 
+                      FontFamily="{StaticResource boldFont}"
+                      
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="71,408,0,0"
+                         Height="76" Width="340"  Background="White"
+                         Text="{Binding CurrentStaff.Address,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Margin="459,369,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Gmail" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+
+            <TextBox FontFamily="{StaticResource boldFont}"
+                     Text="{Binding CurrentStaff.Email,UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="White"
+                Width="296" Style="{StaticResource NormalTextbox}" Margin="459,408,0,0" Height="40">
+
+            </TextBox>
+            <TextBlock Margin="459,453,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Confirm Code" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+            </TextBlock>
+
+            <TextBox FontFamily="{StaticResource boldFont}"
+                     FontSize="12"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="White"
+                     Text="{Binding Code,UpdateSourceTrigger=PropertyChanged}"
+                Width="148" Style="{StaticResource NormalTextbox}" Margin="459,487,0,0" Height="29">
+
+            </TextBox>
+            <Button Width="100" Height="40" Click="Button_Click"
+                    
+                    Content="send Code" Margin="709,487,41,173">
+
+            </Button>
+        </Grid>
+
+        <Border Margin="32,558,10,10" CornerRadius="30" Opacity="0.8">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="Red" Offset="0"/>
+                    <GradientStop Color="black" Offset="0.2"/>
+                    <GradientStop Color="Black" Offset="0.87"/>
+                    <GradientStop Color="#FFC72C" Offset="0.99"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <TextBlock Margin="45,517,0,0" Width="380" Height="51"
+                       Foreground="Aqua" 
+                       Text="Account Information" 
+                       FontSize="35" FontFamily="{StaticResource RampartOne}">
+        </TextBlock>
+
+        <TextBlock Margin="71,573,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Username" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+        </TextBlock>
+        <TextBox IsEnabled="False" FontFamily="{StaticResource boldFont}"
+                 Text="{Binding CurrentStaff.Username,UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="White"
+                Width="296" Style="{StaticResource NormalTextbox}" Margin="71,612,0,0" Height="40">
+
+        </TextBox>
+        <TextBlock Margin="461,573,0,0" Width="224" Height="34"
+                       Foreground="Cornsilk" 
+                       Text="Password" 
+                       FontSize="20" FontFamily="{StaticResource boldFont}">
+        </TextBlock>
+        <TextBox FontFamily="{StaticResource boldFont}"
+                 Text="{Binding CurrentStaff.Password,UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="White"
+                Width="296" Style="{StaticResource NormalTextbox}" Margin="461,612,0,0" Height="40">
+
+        </TextBox>
+        <Grid Grid.Column="1">
+            <Ellipse  Width="150" Height="150" Margin="128,90,72,460"  >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding Filename,Converter={StaticResource filenameToImage}}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Button Command="{Binding SaveFileDialog}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,259,0,0" Width="206" Height="39">
+                Change Image
+            </Button>
+            <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,56,0,0" Width="90" Height="29">
+                Refresh
+            </Button>
+            <Button BorderBrush="Green" BorderThickness="4"
+                    Click="Button_Click_1"
+                Background="{StaticResource menu_button_checked_color}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,500,0,0" Width="206" Height="39">
+                Update
+            </Button>
+        </Grid>
     </Grid>
 </Page>

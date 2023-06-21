@@ -252,7 +252,9 @@
     <Compile Include="Commands\SaveImageDialogCommand.cs" />
     <Compile Include="Commands\UpdateCommands\UpdateIngredientCommand.cs" />
     <Compile Include="Commands\UpdateCommands\UpdateProductCommand.cs" />
+    <Compile Include="Commands\UpdateCommands\UpdateStaffCommand.cs" />
     <Compile Include="Converters\AbsoluteFileNameToBitmapImage.cs" />
+    <Compile Include="Converters\CheckMailConfirmedConverter.cs" />
     <Compile Include="Converters\IngredientAvatartoImage.cs" />
     <Compile Include="Converters\ProductAvatarToImage.cs" />
     <Compile Include="Converters\StaffAvatarToImage.cs" />
@@ -290,6 +292,7 @@
     <Compile Include="ViewModels\RightSplitTask\IngredientAdvancedSearch.cs" />
     <Compile Include="ViewModels\RightSplitTask\ProductAdvancedSearch.cs" />
     <Compile Include="ViewModels\RightSplitTask\StaffAdvancedSearch.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\InsertForm\InsertBillForm.xaml.cs">
@@ -610,6 +613,7 @@
     <Resource Include="IMAGE\mcdonald1.jpg" />
     <Resource Include="IMAGE\NoAvatar2.png" />
     <Resource Include="IMAGE\NoAvatar3.png" />
+    <Resource Include="IMAGE\checkIcon.png" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
