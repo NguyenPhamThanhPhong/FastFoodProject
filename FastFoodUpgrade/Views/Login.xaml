@@ -17,18 +17,7 @@
     </UserControl.Resources>
 
     <Border CornerRadius="25">
-        <Border.Background >
-            <ImageBrush ImageSource="/IMAGE/DarkThemeBackground.jpg"/>
-            <!--<LinearGradientBrush>
-                <GradientStop Color="Black" Offset="0.5"/>
-                
-                --><!--<GradientStop Color="#FFC72C" Offset="0.55"/>
-                <GradientStop Color="#27251F" Offset="0.7"/>
-                <GradientStop Color="#27251F" Offset="0.8"/>
 
-                <GradientStop Color="#FFC72C" Offset="0.99"/>--><!--
-            </LinearGradientBrush>-->
-        </Border.Background>
         <Grid >
             <!--<Grid.Background>
                 <LinearGradientBrush>
@@ -114,6 +103,7 @@
                                 <TextBlock TextAlignment="Center"
                                 Margin="-1 20" Cursor="Hand" 
                                 FontFamily="{StaticResource boldFont}" 
+                                           MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_1"
                                 FontSize="22" Text="Forgot Password" Grid.Row="1">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">

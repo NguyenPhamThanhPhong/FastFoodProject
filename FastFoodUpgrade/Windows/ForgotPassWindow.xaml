@@ -1,0 +1,29 @@
+﻿<Window x:Class="FastFoodUpgrade.Windows.ForgotPassWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastFoodUpgrade.Windows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="ForgotPassWindow" Height="309" Width="419">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TextBlock Width="200" Height="30" Margin="33,39,0,0" Text="Enter Email" FontSize="20" FontFamily="{StaticResource boldFont}"/>
+        <TextBox x:Name="txtboxEmail" BorderThickness="2" BorderBrush="Black" Height="40" Margin="33,74,0,0" Width="297"/>
+        <TextBlock Width="200" Height="30" Margin="34,0,0,0" Text="Enter Username" FontSize="20" FontFamily="{StaticResource boldFont}" VerticalAlignment="Center">
+
+        </TextBlock>
+        <TextBox x:Name="txtboxUsername" BorderThickness="2" BorderBrush="Black" Height="40" Margin="34,167,0,0" Width="296"/>
+        <Button Click="Button_Click" Content="Confirm" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="27" Margin="0,236,0,0"></Button>
+    </Grid>
+</Window>

@@ -33,5 +33,11 @@ namespace FastFoodUpgrade.Views
             SignUpWindow f = new SignUpWindow();
             f.ShowDialog();
         }
+
+        private void TextBlock_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ForgotPassWindow f = new ForgotPassWindow();
+            f.ShowDialog();
+        }
     }
 }

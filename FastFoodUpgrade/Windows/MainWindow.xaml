@@ -27,8 +27,20 @@
     </Window.DataContext>
 
 
-    <Grid Background="{StaticResource background_cs}">
+    <Grid >
+        <Border CornerRadius="25">
+            <Border.Background >
+                <ImageBrush ImageSource="/IMAGE/DarkThemeBackground.jpg"/>
+            </Border.Background>
+        </Border>
         <views:Login/>
+        <Grid Grid.Column="1">
+            <Button
+                Width="60"
+                Height="60"
+           Margin="0,10,15,0"
+                Style="{StaticResource CloseButton}" Click="Button_Click"/>
+        </Grid>
         <!--<Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:Login />

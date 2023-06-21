@@ -12,6 +12,8 @@ using FastFoodUpgrade.Commands.InsertCommands;
 using System.Windows.Media.Imaging;
 using SharpCompress.Common;
 using System.Windows;
+using FastFoodUpgrade.Utility;
+using FastFoodUpgrade.Windows;
 
 namespace FastFoodUpgrade.ViewModels
 {
@@ -30,6 +32,10 @@ namespace FastFoodUpgrade.ViewModels
             set { _filename = value; 
                 OnPropertyChanged(nameof(Filename)); }
         }
+
+        public bool IsConfirmed { get; set; } = false;
+        public string Current6Digits { get; set; }
+        public string MailConfirmed { get; set; }
       
         public ICommand InsertStaff { get; set; }
         public ICommand SaveImageDialog { get; set; }
@@ -44,6 +50,7 @@ namespace FastFoodUpgrade.ViewModels
         public async void GetID()
         {
             this.CurrentStaff.ID = await Staff.GenerateID();
+            OnPropertyChanged(nameof(CurrentStaff));
         }
         public void ChangeFilename(string filename)
         {
@@ -55,6 +62,38 @@ namespace FastFoodUpgrade.ViewModels
                 OnPropertyChanged(nameof(Filename));
             });
 
+        }
+        public async void ConfirmMail()
+        {
+            await Task.Run(() =>
+            {
+                string str = MailUtil.Generate6Digits();
+                Current6Digits = str;
+                MailConfirmed = CurrentStaff.Email;
+                if(String.IsNullOrEmpty(MailConfirmed))
+                {
+                    MessageBox.Show("Please fill in Mail first");
+                    return;
+                }    
+                MailUtil.SendEmail(MailConfirmed, "NoReply", str);
+            });
+            ConfirmMailWindow f = new ConfirmMailWindow(this);
+            f.ShowDialog();
+        }
+        public void InsertStaffExecute()
+        {
+            if (String.IsNullOrEmpty(CurrentStaff.Email))
+            {
+                MessageBox.Show("please fill in Email");
+                return;
+            }
+            if(IsConfirmed == false|| MailConfirmed != CurrentStaff.Email)
+            {
+                MessageBox.Show("please confirm mail");
+                return;
+            }
+            this.InsertStaff.Execute(null);
+            GetID();
         }
     }
 }

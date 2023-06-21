@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using FastFoodUpgrade.ViewModels;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
@@ -116,6 +117,22 @@ namespace FastFoodUpgrade.Models
                     return true;
             }
             return false;
+        }
+        public static Staff GetStaffbyUsernameEmail( string username_para,string mail)
+        {
+            if (!String.IsNullOrEmpty(username_para))
+            {
+                DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
+                FilterDefinition<Staff> filterLogin = Builders<Staff>.Filter.Eq(s => s.Username, username_para)&
+                    Builders<Staff>.Filter.Eq(s=>s.Email,mail);
+                var matchingStaff = db.ReadFiltered(filterLogin);
+                if (matchingStaff.Count > 0)
+                {
+                    return matchingStaff[0];
+                }
+                return null;
+            }
+            return null;
         }
     }
 }

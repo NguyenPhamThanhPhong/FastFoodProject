@@ -4,6 +4,8 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +28,9 @@ namespace FastFoodUpgrade.Windows
         {
             InitializeComponent();
             this.DataContext = new SignUpViewModel();
-            ComboboxAcessright.ItemsSource = new List<String>() { "aabbcv", "lkakjsdklajs", "kdkdsk" };
+            ComboboxAcessright.ItemsSource = new List<String>() { "Admin", "Staff"};
+            ComboboxGender.ItemsSource = new List<String>() { "Male", "Female", "Other" };
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -72,33 +76,20 @@ namespace FastFoodUpgrade.Windows
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //BitmapImage bitmapImage = new BitmapImage();
-            //bitmapImage.BeginInit();
-            //bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            //bitmapImage.UriSource = new Uri("D:\\Fastfood\\FastFoodUpgrade\\IMAGE\\Burger.png", UriKind.Absolute);
-            //bitmapImage.EndInit();
-            //MessageBox.Show(bitmapImage.UriSource.ToString());
-
-            //BitmapImage bmp = new BitmapImage();
-            //bmp.BeginInit();
-            //bmp.CacheOption = BitmapCacheOption.OnLoad;
-            //bmp.UriSource = new Uri("D:\\Fastfood\\FastFoodUpgrade\\IMAGE\\test.png");
-            //bmp.EndInit();
-            //bitmapImage = bmp;
-            //MessageBox.Show(bitmapImage.ToString());
-
-
             SignUpViewModel vm = this.DataContext as SignUpViewModel;
             //vm.Filename.Clear();
             //vm.Filename.Append();
             vm.ChangeFilename("D:\\Fastfood\\FastFoodUpgrade\\IMAGE\\test.png");
-            //MessageBox.Show(vm.Filename.ToString());
-            //vm.SaveImageDialog.Execute(null);
-
-            //MessageBox.Show(vm.Filename.ToString());
 
 
 
+        }
+
+        //Send mail here
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            SignUpViewModel vm = this.DataContext as SignUpViewModel;
+            vm.ConfirmMail();
         }
     }
 }

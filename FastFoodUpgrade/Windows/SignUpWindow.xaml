@@ -10,7 +10,7 @@
         WindowStyle="None"
         AllowsTransparency="True" 
         Title="InsertStaffForm" Height="550" Width="900">
-    
+
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Yellow"/>
@@ -40,7 +40,7 @@
                 <Image x:Name="MyImage" Source="{Binding Filename,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource filenameToImage}}"/>
 
             </Grid>
-            
+
 
 
             <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,30,0" >
@@ -61,7 +61,7 @@
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
                           IsEnabled="False"
-                         Text="{Binding CurrentStaff.ID,UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding CurrentStaff.ID}"/>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 ID
                 </TextBlock>
@@ -71,7 +71,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding CurrentStaff.Fullname}"/>
+                         Text="{Binding CurrentStaff.Fullname,UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Full Name
                     </TextBlock>
@@ -82,7 +82,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding CurrentStaff.Username}"/>
+                         Text="{Binding CurrentStaff.Username,UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 User Name
                     </TextBlock>
@@ -93,7 +93,7 @@
                          Margin="0 30 0 0"
                                   Focusable="True"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding CurrentStaff.Password}"/>
+                         Text="{Binding CurrentStaff.Password,UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}">
                                 Password
                     </TextBlock>
@@ -103,17 +103,22 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding CurrentStaff.Email}"/>
-                    <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
+                         Text="{Binding CurrentStaff.Email,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock HorizontalAlignment="Left" FontFamily="{StaticResource boldFont}" Width="100" Grid.Row="0">
                                 Email
                     </TextBlock>
+                    <TextBlock Foreground="Pink" FontSize="18"
+                               HorizontalAlignment="Left" Height="30"  
+                               Margin="75,0,0,0" Text="Send code"
+                               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
+                               FontFamily="{StaticResource RampartOne}"/>
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="2">
                     <TextBox  Style="{StaticResource NormalTextbox}" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="40"  Width="270" Background="White"
-                         Text="{Binding CurrentStaff.Phone}"/>
+                         Text="{Binding CurrentStaff.Phone,UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Phone
                     </TextBlock>
@@ -126,11 +131,11 @@
                          Margin="0 30 0 0"
                          Height="40"  Width="270" 
                          Background="White" SelectedIndex="0"
-                         SelectedItem="{Binding CurrentStaff.AccessRight}">
+                         SelectedItem="{Binding CurrentStaff.AccessRight,UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <TextBlock Text="{Binding}" Foreground="Black" />
+                                    <TextBlock Text="{Binding}" Foreground="Black" Width="250" />
                                 </Grid>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
@@ -140,11 +145,22 @@
                     </TextBlock>
                 </Grid>
                 <Grid Grid.Row="3" Grid.Column="2">
-                    <TextBox  Style="{StaticResource NormalTextbox}" 
+                    <ComboBox  x:Name="ComboboxGender"
+                        Style="{StaticResource LightThemeCombobox2}" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
+                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                          Margin="0 30 0 0"
-                         Height="40"  Width="270" Background="White"
-                         Text="{Binding CurrentStaff.Sex}"/>
+                         Height="40"  Width="270" 
+                         Background="White" SelectedIndex="0"
+                         SelectedItem="{Binding CurrentStaff.Sex,UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding}" Foreground="Black" Width="250"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Gender
                     </TextBlock>
@@ -154,7 +170,7 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="0 30 0 0"
                          Height="90" Width="400"  Background="White"
-                         Text="{Binding CurrentStaff.Address}"/>
+                         Text="{Binding CurrentStaff.Address,UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
                                 Address
                     </TextBlock>
