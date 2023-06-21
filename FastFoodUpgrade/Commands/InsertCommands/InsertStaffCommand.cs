@@ -42,10 +42,12 @@ namespace FastFoodUpgrade.Commands.InsertCommands
                 {
                     ImageStorage.StoreImage(filename, ImageStorage.StaffImageLocation, s.Avatar);
                 }
+                MessageBox.Show("Singed up sucessfully");
                 if (parameter != null)
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
+
                         Window f = parameter as Window;
                         f.Close();
                     });

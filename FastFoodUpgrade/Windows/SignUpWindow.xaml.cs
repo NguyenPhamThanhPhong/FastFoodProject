@@ -91,5 +91,19 @@ namespace FastFoodUpgrade.Windows
             SignUpViewModel vm = this.DataContext as SignUpViewModel;
             vm.ConfirmMail();
         }
+        //insert
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            SignUpViewModel vm = this.DataContext as SignUpViewModel;
+            if (vm.InsertStaff != null)
+            {
+                vm.InsertStaff.Execute(this);
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
