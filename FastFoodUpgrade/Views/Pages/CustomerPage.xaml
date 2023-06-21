@@ -89,7 +89,7 @@
                                 HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="244" Height="46">
 
             </TextBox>
-            <Button Margin="555,117,177,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button Margin="555,117,155,0" Height="45" Content="create Customer" VerticalAlignment="Top" Click="Button_Click"/>
 
 
             <Grid VerticalAlignment="Top"

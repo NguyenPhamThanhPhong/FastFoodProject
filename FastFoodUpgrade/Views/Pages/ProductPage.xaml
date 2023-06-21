@@ -80,8 +80,8 @@
                                 HorizontalAlignment="Left"  FontSize="18"  Style="{StaticResource SearchTextbox}" Width="244" Height="46">
 
                 </TextBox>
-                <Button x:Name="buttonProduct" Margin="523,122,209,0" Content="Create Product" Height="45" VerticalAlignment="Top" Click="Button_Click"/>
-                <Button Margin="676,123,56,0" Height="45" Content="create bill" VerticalAlignment="Top" Click="Button_Click_1"/>
+                <Button x:Name="buttonProduct" Margin="523,122,194,0" Content="Create Product" Height="45" VerticalAlignment="Top" Click="Button_Click"/>
+                <Button Margin="706,122,26,0" Height="44" Content="create bill" VerticalAlignment="Top" Click="Button_Click_1"/>
 
                 <!--<ComboBox
                         BorderBrush="White"

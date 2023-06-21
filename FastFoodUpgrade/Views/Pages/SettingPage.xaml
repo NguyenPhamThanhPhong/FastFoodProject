@@ -211,9 +211,6 @@
             <Button Command="{Binding SaveFileDialog}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,259,0,0" Width="206" Height="39">
                 Change Image
             </Button>
-            <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,56,0,0" Width="90" Height="29">
-                Refresh
-            </Button>
             <Button BorderBrush="Green" BorderThickness="4"
                     Click="Button_Click_1"
                 Background="{StaticResource menu_button_checked_color}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,500,0,0" Width="206" Height="39">
