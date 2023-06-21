@@ -42,7 +42,7 @@ namespace FastFoodUpgrade.ViewModels
             get { return _types; }
         }
         // Search String in textbox
-        private string _searchString;
+        private string _searchString="";
         public string SearchString
         {
             get { return _searchString; }
@@ -80,6 +80,7 @@ namespace FastFoodUpgrade.ViewModels
             this._products = new ObservableCollection<Product>(QueryProducts);
 
             List<String> DistinctTypes = db.ReadDistinctString("Type");
+            DistinctTypes.Insert(0, "All");
             this._types = new ObservableCollection<String>(DistinctTypes);
 
             this.SplitTableDataContext = new ProductAdvancedSearch(this);
@@ -95,6 +96,7 @@ namespace FastFoodUpgrade.ViewModels
             }
             List<String> DistinctTypes = db.ReadDistinctString("Type");
             this.Types.Clear();
+            Types.Add("All");
             foreach(String type in DistinctTypes)
             {
                 this.Types.Add(type);
@@ -121,7 +123,7 @@ namespace FastFoodUpgrade.ViewModels
                 {
                     DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
 
-                    if (SelectedTypeIndex < 0)
+                    if (SelectedTypeIndex <= 0)
                     {
                         string searchInput = SearchString.Trim();
                         FilterDefinition<Product> filter = Builders<Product>.Filter.Regex("Name", new BsonRegularExpression(searchInput, "i"));

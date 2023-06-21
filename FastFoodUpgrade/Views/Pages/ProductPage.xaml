@@ -114,30 +114,22 @@
                 <ComboBox
                         x:Name="ComboboxFilter"
                         BorderBrush="White"
+                Background="Transparent"
                         FontSize="11"
                         FontFamily="{StaticResource boldFont}"
                         Foreground="White"
                         BorderThickness="2 2 2 2"
-                        ItemsSource="{Binding Types}"
-                        SelectedIndex="{Binding SelectedTypeIndex}"
-                         Margin="29,122,633,0" VerticalAlignment="Top" Height="46">
-                    <ComboBox.Style>
-                        <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="BorderThickness" Value="2 2 2 5" />
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="False">
-                                    <Setter Property="BorderThickness" Value="2 2 2 2" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
+                        ItemsSource ="{Binding Types,UpdateSourceTrigger=PropertyChanged}"
+                        SelectedIndex="{Binding SelectedTypeIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                Style="{StaticResource DarkThemeCombobox}"
+                         Width="194" Height="46" Margin="29,129,0,0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" FontSize="20" Foreground="AliceBlue" Background="Gray" />
+                            <TextBlock Text="{Binding }" Width="170" FontSize="20"   Foreground="AliceBlue" Padding="7 0" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <!--<ComboBoxItem>Payment greater than</ComboBoxItem>
+                <ComboBoxItem>Customer Name</ComboBoxItem>-->
                 </ComboBox>
                 <!--listview food here-->
                 <Grid   Background="Transparent"

@@ -26,6 +26,8 @@ namespace FastFoodUpgrade.Commands.AdvancedSearchCommand
                 string AcessRight = vm.AccessRight.Trim().ToLower();
                 string Gender = vm.Gender.Trim().ToLower();
                 string Phone = vm.Phone.Trim().ToLower();
+                if (AcessRight == "All")
+                    AcessRight = "";
                 DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
                 FilterDefinition<Staff> filter = Builders<Staff>.Filter.Where(
                     s => s.Fullname.Trim().ToLower().Contains(Name)

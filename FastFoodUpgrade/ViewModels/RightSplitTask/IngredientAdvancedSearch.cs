@@ -22,13 +22,13 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _name; }
             set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
-        private string _type;
+        private string _type = "";
         public string Type
         {
             get { return _type; }
             set { _type = value; OnPropertyChanged(nameof(Type)); }
         }
-        private string _unit;
+        private string _unit = "";
         public string Unit
         {
             get => _unit;
@@ -40,7 +40,7 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get => _quantityFrom;
             set { _quantityFrom = value; OnPropertyChanged(nameof(QuantityFrom)); }
         }
-        private int _quantityTo=100;
+        private int _quantityTo=999999;
         public int QuantityTo
         {
             get => _quantityTo;

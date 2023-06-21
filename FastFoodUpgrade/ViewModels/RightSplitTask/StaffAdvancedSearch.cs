@@ -22,7 +22,7 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _email; }
             set { _email = value; OnPropertyChanged(nameof(this.Email)); }
         }
-        private string _accessRight ;
+        private string _accessRight = "" ;
         public string AccessRight
         {
             get { return _accessRight; }
@@ -34,7 +34,7 @@ namespace FastFoodUpgrade.ViewModels.RightSplitTask
             get { return _gender; }
             set { _gender = value; OnPropertyChanged(nameof(this.Gender));}
         }
-        private string _phone;
+        private string _phone = "";
         public string Phone
         {
             get { return _phone; }
