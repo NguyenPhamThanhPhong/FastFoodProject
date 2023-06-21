@@ -28,7 +28,7 @@ MessageBoxButton.YesNo, MessageBoxImage.Question);
                 MessageBox.Show("please confirm mail");
                 return;
             }
-            if (s.Phone.Any(c => char.IsDigit(c)))
+            if (!s.Phone.Any(c => char.IsDigit(c)))
             {
                 MessageBox.Show("invalid phone number");
                 return;

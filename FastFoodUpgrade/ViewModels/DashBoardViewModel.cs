@@ -38,6 +38,8 @@ namespace FastFoodUpgrade.ViewModels
         {
             this._currentStaff= s;
             OnPropertyChanged(nameof(CurrentStaff));
+            SwitchHomePage();
+
         }
         // Methods
         public void SwitchBillPage()

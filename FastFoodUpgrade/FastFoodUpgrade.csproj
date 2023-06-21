@@ -614,6 +614,7 @@
     <Resource Include="IMAGE\NoAvatar2.png" />
     <Resource Include="IMAGE\NoAvatar3.png" />
     <Resource Include="IMAGE\checkIcon.png" />
+    <Resource Include="IMAGE\welcome.jpg" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
