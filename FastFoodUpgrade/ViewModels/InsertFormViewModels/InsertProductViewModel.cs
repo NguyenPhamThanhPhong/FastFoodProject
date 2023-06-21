@@ -101,7 +101,7 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
 
             }
         }
-        public BitmapImage bmpp { get; set; } = new BitmapImage(new Uri("C:\\Users\\anhng\\OneDrive\\Máy tính\\ảnh\\NoAvatar.jpg"));
+        public BitmapImage bmpp { get; set; } 
         private string _description="";
         public string Description
         { 

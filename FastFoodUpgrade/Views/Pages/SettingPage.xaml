@@ -29,7 +29,7 @@
                            TextWrapping="Wrap"  
                            Foreground="White"
                            FontFamily="{StaticResource boldFont}" 
-                           Text="Customer" 
+                           Text="Settings" 
                            Margin="29,10,555,615">
                 <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="25" Color="Red"/>
