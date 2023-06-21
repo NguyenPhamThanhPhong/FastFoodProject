@@ -78,7 +78,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock FontFamily="{StaticResource boldFont}" Grid.Row="0">
-                                Total Revenue
+                                Total quantity
                 </TextBlock>
 
                 <Grid Width="270" Grid.Row="1">
