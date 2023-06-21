@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FastFoodUpgrade.Views.InsertForm;
 using FastFoodUpgrade.Models;
+using FastFoodUpgrade.Views.ViewForm;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -41,6 +42,25 @@ namespace FastFoodUpgrade.Views.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = await ManagingViewModel.Initialize();
+        }
+        private DateTime _lastClickTime;
+
+        private async void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
+            {
+                Grid g = sender as Grid;
+                Staff selectedStaff = g.DataContext as Staff;
+                if (selectedStaff != null)
+                {
+                    InsertStaffForm f = new InsertStaffForm(selectedStaff);
+                    f.ShowDialog();
+                    DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
+                    List<Staff> results = await db.ReadAllAsync();
+                    (this.DataContext as ManagingViewModel).UpdateListStaff(results);
+                }
+            }
+            _lastClickTime = DateTime.Now;
         }
     }
 }

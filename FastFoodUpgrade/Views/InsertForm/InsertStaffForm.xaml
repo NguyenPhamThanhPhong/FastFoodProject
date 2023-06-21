@@ -188,7 +188,7 @@
 
 
 
-            <Button VerticalAlignment="Bottom" 
+            <Button x:Name="buttonInsert" VerticalAlignment="Bottom" 
                     Click="Button_Click"
                     Width="150" Height="50" Margin="658,0,92,32">
                 Insert Staff

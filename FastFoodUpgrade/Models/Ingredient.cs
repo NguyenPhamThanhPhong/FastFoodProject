@@ -75,8 +75,6 @@ namespace FastFoodUpgrade.Models
                 }
                 return true;
             });
-
-            
         }
         public async Task<bool> IsExisted()
         {

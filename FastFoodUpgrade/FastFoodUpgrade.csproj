@@ -239,6 +239,7 @@
     <Compile Include="Commands\AdvancedSearchCommand\StaffAdvancedSearchCommand.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DeleteCommands\DeleteIngredientCommand.cs" />
     <Compile Include="Commands\DeleteCommands\DeleteProductCommand.cs" />
     <Compile Include="Commands\DragDropCommands\DropCommand.cs" />
     <Compile Include="Commands\DragDropCommands\MouseDownDrag.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Commands\InsertCommands\InsertStaffCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveImageDialogCommand.cs" />
+    <Compile Include="Commands\UpdateCommands\UpdateIngredientCommand.cs" />
     <Compile Include="Commands\UpdateCommands\UpdateProductCommand.cs" />
     <Compile Include="Converters\AbsoluteFileNameToBitmapImage.cs" />
     <Compile Include="Converters\IngredientAvatartoImage.cs" />

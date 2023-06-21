@@ -60,7 +60,7 @@
                 <TextBlock Width="164" Height="25"
                             FontSize="18"
                             Text="Ingredient Name" Margin="10,0,0,0"></TextBlock>
-                <TextBox x:Name="productname" Padding="3 0" Text="{Binding CurrentIngredient.Name, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                <TextBox x:Name="productname" Padding="3 0" Text="{Binding CurrentIngredient.Name, UpdateSourceTrigger=PropertyChanged}" 
                          FontFamily="{StaticResource boldFont}"
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
 
@@ -81,10 +81,10 @@
 
                 <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Please choose product type" Margin="24,65,0,0" Width="236"/>
             </Grid>
-            <Grid Margin="190,118,0,0" Width="209" >
+            <Grid  Margin="190,118,0,0" Width="209" >
                 <TextBlock FontSize="18"
                             Text="Product Quantity" Width="189" HorizontalAlignment="Center"/>
-                <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Quantity, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput"  Padding="3 0" Text="{Binding CurrentIngredient.Quantity, UpdateSourceTrigger=PropertyChanged}"
                          Margin="10,30,0,0" FontSize="16" Background="White"  >
                 </TextBox>
                 <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="Red" Text="Invalid Quantity" Margin="10,65,0,0" Width="166"/>
@@ -92,7 +92,7 @@
             <Grid Margin="427,118,0,0" Width="241" >
                 <TextBlock FontSize="18"
                             Text="Unit" Margin="10,0,0,0" Width="222"></TextBlock>
-                <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Unit, UpdateSourceTrigger=PropertyChanged}" Tag="Must fill"
+                <TextBox  Padding="3 0" Text="{Binding CurrentIngredient.Unit, UpdateSourceTrigger=PropertyChanged}"
                          Margin="10,30,0,0" FontSize="16" Background="White" Width="207"  >
                 </TextBox>
             </Grid>
@@ -107,9 +107,18 @@
                                  Style="{StaticResource MyTextBox}" >
                 </TextBox>
             </Grid>
-            <Button Width="200" Height="40" Content="Insert ingredient"
+            <Button x:Name="buttonInsert"  Width="160" Height="40" Content="Insert ingredient"
                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Background="{StaticResource menu_button_color}"
+                    BorderThickness="4" BorderBrush="Green"
                     Command="{Binding InsertIngredient}" Margin="0,0,32,35"/>
+
+            <Button x:Name="buttondelete"  Width="156" Height="40" Content="Delete ingredient"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Background="OrangeRed"
+                    BorderThickness="4" BorderBrush="Green"
+                    Click="Button_Click_1" Margin="0,0,308,35"/>
+
             <Button Width="130" Height="40" Content="Insert ingredient"
                     Command="{Binding SaveImageDialog}"
                 VerticalAlignment="Top" HorizontalAlignment="Left" Margin="32,210,0,0"/>

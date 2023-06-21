@@ -1,35 +1,36 @@
 ﻿using FastFoodUpgrade.Models;
-using FastFoodUpgrade.Utility;
 using FastFoodUpgrade.ViewModels.InsertFormViewModels;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace FastFoodUpgrade.Commands.DeleteCommands
 {
-    public class DeleteProductCommand : AsyncCommandBase
+    public class DeleteIngredientCommand : AsyncCommandBase
     {
-        private InsertProductViewModel ipvm;
         StringBuilder filename;
-        public DeleteProductCommand(InsertProductViewModel ipvm, StringBuilder filepath) {
-            this.ipvm = ipvm;
-            this.filename = filepath;
+        InsertIngredientViewModel vm;
+        public DeleteIngredientCommand(InsertIngredientViewModel vm, StringBuilder filename)
+        {
+            this.vm = vm;
+            this.filename = filename;
         }
         public override async Task ExecuteAsync(object parameter)
         {
             MessageBoxResult asking = MessageBox.Show("Are you sure to DELETE?", "REMINDING",
-    MessageBoxButton.YesNo, MessageBoxImage.Question);
+MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (asking == MessageBoxResult.No) return;
             await Task.Run(() =>
             {
-                DataProvider<Product> db = new DataProvider<Product>(Product.Collection);
-                FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(x => x._id, ipvm.ID);
+                DataProvider<Ingredient> db = new DataProvider<Ingredient>(Ingredient.Collection);
+                FilterDefinition<Ingredient> filter = Builders<Ingredient>.Filter.Eq(x => x.ID, vm.CurrentIngredient.ID);
                 db.Delete(filter);
-                ImageStorage.DeleteImage(ImageStorage.ProductImageLocation,filename.ToString());
+                MessageBox.Show("Deleted");
                 if (parameter != null)
                 {
                     Application.Current.Dispatcher.Invoke(() => {
@@ -37,6 +38,7 @@ namespace FastFoodUpgrade.Commands.DeleteCommands
                         f.Close();
                     });
                 }
+
             });
         }
     }

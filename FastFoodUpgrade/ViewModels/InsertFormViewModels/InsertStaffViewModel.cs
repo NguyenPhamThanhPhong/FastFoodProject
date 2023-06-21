@@ -1,6 +1,7 @@
 ﻿using FastFoodUpgrade.Commands;
 using FastFoodUpgrade.Commands.InsertCommands;
 using FastFoodUpgrade.Models;
+using FastFoodUpgrade.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,12 @@ namespace FastFoodUpgrade.ViewModels.InsertFormViewModels
         public ICommand InsertStaff { get; set; }
         public ICommand SaveFileDialogCommand { get; set; }
         public InsertStaffViewModel() { }
-        public InsertStaffViewModel(Staff s,Uri u)
+        public InsertStaffViewModel(Staff s)
         {
+            this.CurrentStaff = s;
+            this.Filename.Clear();
+            this.Filename.Append(ImageStorage.GetImage(ImageStorage.StaffImageLocation, s.Avatar));
+            OnPropertyChanged(nameof(Filename));
         }
 
         public static async Task<InsertStaffViewModel> Initialize()

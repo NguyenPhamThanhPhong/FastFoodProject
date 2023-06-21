@@ -99,7 +99,7 @@
             </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Cursor="Hand" Width="371" Height="192">
+                            <Grid PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown" Cursor="Hand" Width="371" Height="192">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="110"/>
                                     <ColumnDefinition/>

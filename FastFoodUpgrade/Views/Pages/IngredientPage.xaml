@@ -106,7 +106,7 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Cursor="Hand" Width="240" Height="140">
+                            <Grid PreviewMouseLeftButtonDown="Grid_MouseLeftButtonDown" Cursor="Hand" Width="240" Height="140">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="110"/>
                                     <ColumnDefinition/>

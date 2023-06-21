@@ -1,4 +1,5 @@
-﻿using FastFoodUpgrade.ViewModels.InsertFormViewModels;
+﻿using FastFoodUpgrade.Models;
+using FastFoodUpgrade.ViewModels.InsertFormViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,28 @@ namespace FastFoodUpgrade.Views.InsertForm
     /// </summary>
     public partial class InsertStaffForm : Window
     {
+        private Staff s;
         public InsertStaffForm()
         {
             InitializeComponent();
             this.ComboboxAcess.ItemsSource = new List<string>() { "Admin", "Staff" };
             this.ComboboxSex.ItemsSource = new List<string>() { "Male", "Female", "Others" };
         }
+        public InsertStaffForm(Staff selectedStaff)
+        {
+            InitializeComponent();
+            this.s = selectedStaff;
+            this.buttonInsert.Visibility = Visibility.Hidden;
+            this.ComboboxAcess.ItemsSource = new List<string>() { "Admin", "Staff" };
+            this.ComboboxSex.ItemsSource = new List<string>() { "Male", "Female", "Others" };
+        }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = await InsertStaffViewModel.Initialize();
+            if (this.s == null)
+                this.DataContext = await InsertStaffViewModel.Initialize();
+            else
+                this.DataContext = new InsertStaffViewModel(s);
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -40,7 +53,8 @@ namespace FastFoodUpgrade.Views.InsertForm
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             InsertStaffViewModel vm = this.DataContext as InsertStaffViewModel;
-            vm.InsertStaff.Execute(this);
+            if(vm.InsertStaff!=null)
+                vm.InsertStaff.Execute(this);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

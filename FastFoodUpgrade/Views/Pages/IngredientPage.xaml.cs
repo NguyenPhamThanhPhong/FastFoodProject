@@ -1,6 +1,7 @@
 ﻿using FastFoodUpgrade.Models;
 using FastFoodUpgrade.ViewModels;
 using FastFoodUpgrade.Views.InsertForm;
+using FastFoodUpgrade.Views.ViewForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,35 @@ namespace FastFoodUpgrade.Views.Pages
         {
             //this.DataContext = await ManagingViewModel.Initialize();
             this.DataContext = await IngredientViewModel.Initialize();
+        }
+        // double click
+        private DateTime _lastClickTime;
+
+        private async void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
+            {
+                Grid g = sender as Grid;
+                Ingredient ii = g.DataContext as Ingredient;
+                if (ii != null)
+                {
+                    InsertIngredientForm f = new InsertIngredientForm(ii);
+                    f.ShowDialog();
+                    await Task.Run(() =>
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            IngredientViewModel vm = this.DataContext as IngredientViewModel;
+                            DataProvider<Ingredient> db = new DataProvider<Ingredient>(Ingredient.Collection);
+                            List<Ingredient> all = db.ReadAll();
+                            vm.UpdateListIngredients(all);
+                        });
+                    });
+                }
+            }
+            _lastClickTime = DateTime.Now;
+
+
         }
     }
 }
