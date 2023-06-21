@@ -32,16 +32,17 @@ namespace FastFoodUpgrade.Commands
             var matchingStaff =  db.ReadFiltered(filterLogin);
             if (matchingStaff != null) 
             {
-                Staff loggedInStaff = new Staff() { Fullname="Notfound",AccessRight="Admin",Avatar="no file" };
+                Staff loggedInStaff;
                 if (matchingStaff.Count > 0)
                 {
                     loggedInStaff = matchingStaff[0];
+                    Window f = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                    f.Hide();
+                    DashBoardWindow ff = new DashBoardWindow(loggedInStaff);
+                    ff.ShowDialog();
+                    f.Show();
                 }
-                Window f = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                f.Hide();
-                DashBoardWindow ff = new DashBoardWindow(loggedInStaff);
-                ff.ShowDialog();
-                f.Show();
+
             }
             else
             {
