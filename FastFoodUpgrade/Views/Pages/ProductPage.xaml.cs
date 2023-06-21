@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FastFoodUpgrade.Models;
 using FastFoodUpgrade.ViewModels;
 using FastFoodUpgrade.Views.InsertForm;
+using FastFoodUpgrade.Windows;
 
 namespace FastFoodUpgrade.Views.Pages
 {
@@ -84,13 +85,10 @@ namespace FastFoodUpgrade.Views.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Staff s = new Staff()
-            {
-                Fullname = "john",
-                ID = 5
-            };
-            InsertBillForm f = new InsertBillForm(s);
-            f.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            DashBoardWindow main = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive) as DashBoardWindow;
+            DashBoardViewModel vm = main.DataContext as DashBoardViewModel;
+            InsertBillForm f = new InsertBillForm(vm.CurrentStaff);
+            f.Owner = main;
             f.Show();
         }
     }

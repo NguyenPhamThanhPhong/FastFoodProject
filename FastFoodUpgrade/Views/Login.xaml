@@ -57,7 +57,7 @@
                         FontFamily="{StaticResource boldFont}"
                         BorderThickness="2" Background="#FFFFFF"  Foreground="#9B9CA3"
                         BorderBrush="Red"
-                                     Text="{Binding username,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"
+                                     Text="{Binding username,UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="64">
 
                             </TextBox>
@@ -69,7 +69,7 @@
                         FontFamily="{StaticResource boldFont}"
                         BorderThickness="2" Background="#FFFFFF"  Foreground="#9B9CA3"
                         BorderBrush="Red" 
-                                     Text="{Binding password,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"
+                                     Text="{Binding password,UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61">
 
                             </TextBox>

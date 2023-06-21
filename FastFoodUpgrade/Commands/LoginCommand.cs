@@ -24,11 +24,12 @@ namespace FastFoodUpgrade.Commands
         }
         public override async void Execute(object parameter)
         {
+
             DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
             string user = loginViewModel.username;
             string password = loginViewModel.password;
-            FilterDefinition<Staff> filterLogin = Builders<Staff>.Filter.Eq(s => s.Username, user) & Builders<Staff>.Filter.Eq(s => s.Password, password);
-            var matchingStaff = await db.ReadFilteredAsync(filterLogin);
+            FilterDefinition<Staff> filterLogin = Builders<Staff>.Filter.Where(s=>s.Username == user&&s.Password==password);
+            var matchingStaff =  db.ReadFiltered(filterLogin);
             if (matchingStaff != null) 
             {
                 Staff loggedInStaff = new Staff() { Fullname="Notfound",AccessRight="Admin",Avatar="no file" };
