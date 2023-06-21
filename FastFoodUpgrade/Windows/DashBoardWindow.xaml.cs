@@ -37,8 +37,8 @@ namespace FastFoodUpgrade.Windows
             this.s = loggedinStaff;
             if(s.AccessRight == "Staff")
             {
-                this.buttonIngredient.Visibility = Visibility.Hidden;
-                this.buttonManaging.Visibility = Visibility.Hidden;
+                this.buttonIngredient.Visibility = Visibility.Collapsed;
+                this.buttonManaging.Visibility = Visibility.Collapsed;
             }
         }
         public void UpdateStaff()
